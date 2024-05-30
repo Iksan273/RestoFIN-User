@@ -1,5 +1,5 @@
 /*
-[Table of contents] 
+[Table of contents]
 
 - 1.0 Datepicker
 - 1.1 Timepicker
@@ -453,6 +453,12 @@ button.backward {
   color: #777;
   background: #e8e8e8;
 }
+
+@media (max-width: 991px) {
+    button.backward {
+        margin-bottom: 5px;
+      }
+  }
 
 button[disabled] {
   display: none;

@@ -1,5 +1,5 @@
 /*
-[Table of contents] 
+[Table of contents]
 
 - 1.0 Bootstrap Library 5.1.3
 - 1.1 Icons
@@ -1839,7 +1839,7 @@
 .owl-theme .owl-dots .owl-dot {
   display: inline-block;
   zoom: 1;
-  *display: inline;
+  display: inline;
 }
 
 .owl-carousel .owl-nav button.owl-prev, .owl-carousel .owl-nav button.owl-next, .owl-carousel button.owl-dot {

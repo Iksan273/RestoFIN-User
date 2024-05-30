@@ -4,7 +4,7 @@ Theme URI: http://www.ansonika.com/foores/
 Author: Ansonika
 Author URI: http://themeforest.net/user/Ansonika/
 
-[Table of contents] 
+[Table of contents]
 
 1. SITE STRUCTURE and TYPOGRAPHY
 - 1.1 Typography
@@ -213,7 +213,9 @@ a:hover, a:focus {
 
 /* Buttons */
 a.btn_1,
-.btn_1 {
+.btn_1,
+a.btn_2,
+.btn_2 {
   border: none;
   background: #978667;
   outline: none;
@@ -238,55 +240,75 @@ a.btn_1,
   line-height: normal;
 }
 a.btn_1:focus,
-.btn_1:focus {
+.btn_1:focus,
+a.btn_2:focus,
+.btn_2:focus {
   outline: none;
 }
 a.btn_1:hover,
-.btn_1:hover {
+.btn_1:hover,
+a.btn_2:hover,
+.btn_2:hover {
   -webkit-filter: brightness(115%);
   filter: brightness(115%);
 }
 a.btn_1.full-width,
-.btn_1.full-width {
+.btn_1.full-width
+a.btn_2.full-width,
+.btn_2.full-width {
   display: block;
   width: 100%;
   text-align: center;
 }
 a.btn_1.small,
-.btn_1.small {
+.btn_1.small,
+a.btn_2.small,
+.btn_2.small {
   font-size: 12px;
   font-size: 0.75rem;
   padding: 7px 15px;
 }
 a.btn_1.medium,
-.btn_1.medium {
+.btn_1.medium,
+a.btn_2.medium,
+.btn_2.medium {
   font-size: 18px;
   font-size: 1.125rem;
   padding: 15px 30px;
 }
 a.btn_1.outline,
-.btn_1.outline {
+.btn_1.outline,
+a.btn_2.outline,
+.btn_2.outline {
   border: 2px solid #111;
   color: #111;
   padding: 6px 15px;
   background: none;
 }
 a.btn_1.outline:hover,
-.btn_1.outline:hover {
+.btn_1.outline:hover,
+a.btn_2.outline:hover,
+.btn_2.outline:hover {
   border-color: #978667;
   color: #978667 !important;
 }
 a.btn_1.outline:focus,
-.btn_1.outline:focus {
+.btn_1.outline:focus,
+a.btn_2.outline:focus,
+.btn_2.outline:focus {
   outline: none;
 }
 a.btn_1.gray,
-.btn_1.gray {
+.btn_1.gray,
+a.btn_2.gray,
+.btn_2.gray {
   background: #f0f0f0;
   color: #111 !important;
 }
 a.btn_1.gray:hover,
-.btn_1.gray:hover {
+.btn_1.gray:hover,
+a.btn_2.gray:hover,
+.btn_2.gray:hover{
   background-color: #FFC107;
   color: #111 !important;
 }
@@ -414,6 +436,7 @@ header {
   padding: 15px;
   z-index: 99999;
   border-bottom: 1px solid rgba(255, 255, 255, 0);
+  background-color: rgba(206, 190, 165, 0.8);
 }
 @media (max-width: 991px) {
   header.header {
@@ -430,7 +453,7 @@ header.header.sticky {
   -ms-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
   border-bottom: 1px solid #ededed;
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.9);
 }
 @media (max-width: 991px) {
   header.header.sticky {
@@ -479,7 +502,7 @@ header.header_in ul#top_menu li a {
 header a.open_close {
   position: absolute;
   left: 10px;
-  top: 2px;
+  top: 7px;
   z-index: 999;
   color: #fff;
   font-size: 32px;
@@ -546,6 +569,10 @@ header.sticky a.open_close,
   padding: 0;
   display: block;
   padding: 10px;
+}
+
+.main-menu ul li a.btn_tl, .main-menu ul li a.btn_tc {
+    display: none;
 }
 
 /*First level styles */
@@ -773,6 +800,10 @@ header.header_in .main-menu > ul > li:hover > a {
     padding: 15px !important;
   }
 
+  .main-menu ul li a.btn_tl, .main-menu ul li a.btn_tc {
+    display: flex;
+}
+
   .main-menu li,
   .main-menu a {
     display: block;
@@ -900,6 +931,26 @@ a.btn_top.order:hover {
     -ms-border-radius: 0;
     border-radius: 0;
   }
+
+  a.btn_tc {
+    background-color: #978667;
+    color: #fff !important;
+    border: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    -ms-border-radius: 0;
+    border-radius: 0;
+  }
+
+  a.btn_tl {
+    background-color: #ff0000;
+    color: #fff !important;
+    border: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    -ms-border-radius: 0;
+    border-radius: 0;
+  }
 }
 
 .sticky a.btn_top {
@@ -943,33 +994,33 @@ ul#top_menu li a:hover {
   color: #fff;
   opacity: 0.7;
 }
-ul#top_menu li a.cart_bt, ul#top_menu li a.search-overlay-menu-btn {
+ul#top_menu li a.cart_bt, ul#top_menu li a.profile_bt {
   display: block;
   width: 22px;
   height: 23px;
   position: absolute;
-  top: 7px;
+  top: 10px;
   -moz-transition: opacity 0.5s ease;
   -o-transition: opacity 0.5s ease;
   -webkit-transition: opacity 0.5s ease;
   -ms-transition: opacity 0.5s ease;
   transition: opacity 0.5s ease;
 }
-ul#top_menu li a.cart_bt.cart_bt, ul#top_menu li a.search-overlay-menu-btn.cart_bt {
-  top: 5px;
+ul#top_menu li a.cart_bt.cart_bt, ul#top_menu li a.profile_bt.cart_bt {
+  top: 8px;
 }
 @media (max-width: 991px) {
-  ul#top_menu li a.cart_bt.cart_bt, ul#top_menu li a.search-overlay-menu-btn.cart_bt {
-    top: 2px;
+  ul#top_menu li a.cart_bt.cart_bt, ul#top_menu li a.profile_bt.cart_bt {
+    top: 7px;
   }
 }
 @media (max-width: 991px) {
-  ul#top_menu li a.cart_bt, ul#top_menu li a.search-overlay-menu-btn {
-    top: 2px;
+  ul#top_menu li a.cart_bt, ul#top_menu li a.profile_bt {
+    top: 7px;
     right: 5px;
   }
 }
-ul#top_menu li a.cart_bt strong, ul#top_menu li a.search-overlay-menu-btn strong {
+ul#top_menu li a.cart_bt strong, ul#top_menu li a.profile_bt strong {
   font-size: 10px;
   font-size: 0.625rem;
   font-weight: 700;
@@ -990,11 +1041,11 @@ ul#top_menu li a.cart_bt strong, ul#top_menu li a.search-overlay-menu-btn strong
   color: #fff !important;
 }
 @media (max-width: 767px) {
-  ul#top_menu li a.cart_bt strong, ul#top_menu li a.search-overlay-menu-btn strong {
+  ul#top_menu li a.cart_bt strong, ul#top_menu li a.profile_bt strong {
     bottom: -3px;
   }
 }
-ul#top_menu li a.cart_bt:before, ul#top_menu li a.search-overlay-menu-btn:before {
+ul#top_menu li a.cart_bt:before {
   font-family: 'ElegantIcons';
   content: "\e013";
   font-size: 21px;
@@ -1006,25 +1057,31 @@ ul#top_menu li a.cart_bt:before, ul#top_menu li a.search-overlay-menu-btn:before
   font-weight: normal;
   line-height: 1;
 }
-.sticky ul#top_menu li a.cart_bt:before, .sticky ul#top_menu li a.search-overlay-menu-btn:before {
-  color: #444;
+.sticky ul#top_menu li a.cart_bt:before, .sticky ul#top_menu li a.profile_bt:before {
+  color: black;
 }
-ul#top_menu li a.search-overlay-menu-btn {
+ul#top_menu li a.profile_bt {
   position: relative;
   margin-right: 10px;
+  margin-top: -1px;
 }
 @media (max-width: 991px) {
-  ul#top_menu li a.search-overlay-menu-btn {
-    top: 3px;
-    right: 25px;
+    ul#top_menu li a.profile_bt {
+    top: 8px;
+    right: 24px;
   }
 }
-ul#top_menu li a.search-overlay-menu-btn:before {
-  font-family: 'ElegantIcons';
-  content: "\55";
-}
-.sticky ul#top_menu li a.search-overlay-menu-btn:before {
-  color: #444;
+ul#top_menu li a.profile_bt:before {
+  font-family: 'Font Awesome\ 5 Free';
+  content: "\f007";
+  font-size: 25px;
+  font-size: 1.3rem;
+  text-indent: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-weight: normal;
+  line-height: 1;
 }
 
 .dropdown-cart .dropdown-menu {
@@ -1153,8 +1210,8 @@ ul#top_menu li a.search-overlay-menu-btn:before {
   background-color: transparent;
 }
 .dropdown-cart .dropdown-menu a.btn_1.outline:hover {
-  -webkit-filter: brightness(none !important);
-  filter: brightness(none !important);
+  -webkit-filter: brightness(none) !important;
+  filter: brightness(none) !important;
   color: #fff !important;
   background-color: #978667;
 }
@@ -2061,7 +2118,7 @@ ul#banners_grid li a.img_container .short_info p {
 }
 @media (max-width: 991px) {
   .tabs_menu .tab-content .card .card-body {
-    padding: 25px 15px 5px 15px;
+    padding: 5px 15px 5px 15px;
   }
 }
 @media (max-width: 991px) {
@@ -2476,7 +2533,7 @@ ul#banners_grid li a.img_container .short_info p {
 }
 
 /* Order Checkout */
-.box_booking_2 {
+.box_booking_2, .box_booking_3, .box_booking_4, .box_booking_5, .box_booking_6, .box_booking_7 {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
@@ -2488,48 +2545,48 @@ ul#banners_grid li a.img_container .short_info p {
   box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.3);
   overflow: hidden;
 }
-.box_booking_2 .head {
+.box_booking_2 .head, .box_booking_3 .head, .box_booking_4 .head, .box_booking_5 .head, .box_booking_6 .head, .box_booking_7 .head {
   text-align: center;
   padding: 23px 20px 18px 20px;
   background-color: #978667;
   color: #fff;
 }
-.box_booking_2 .head h3 {
+.box_booking_2 .head h3, .box_booking_3 .head h3, .box_booking_4 .head h3, .box_booking_5 .head h3, .box_booking_6 .head h3, .box_booking_7 .head h3 {
   font-size: 24px;
   font-size: 1.5rem;
   margin: 0;
   color: #fff;
 }
-.box_booking_2 .head small {
+.box_booking_2 .head small, .box_booking_3 .head small, .box_booking_4 .head small, .box_booking_5 .head small, .box_booking_6 .head small, .box_booking_7 .head small {
   display: block;
 }
-.box_booking_2 .head a {
+.box_booking_2 .head a, .box_booking_3 .head a, .box_booking_4 .head a, .box_booking_5 .head a, .box_booking_6 .head a, .box_booking_7 .head a {
   color: #fff;
   text-decoration: underline;
 }
-.box_booking_2 .main {
+.box_booking_2 .main, .box_booking_3 .main, .box_booking_4 .main, .box_booking_5 .main, .box_booking_6 .main, .box_booking_7 .main {
   padding: 25px;
 }
-.box_booking_2 .main ul {
+.box_booking_2 .main ul, .box_booking_3 .main ul, .box_booking_4 .main ul, .box_booking_5 .main ul, .box_booking_6 .main ul, .box_booking_7 .main ul {
   list-style: none;
   padding: 0;
 }
-.box_booking_2 .main ul li {
+.box_booking_2 .main ul li, .box_booking_3 .main ul li, .box_booking_4 .main ul li, .box_booking_5 .main ul li, .box_booking_6 .main ul li, .box_booking_7 .main ul li {
   font-weight: 500;
   margin-bottom: 5px;
 }
-.box_booking_2 .main ul li span {
+.box_booking_2 .main ul li span, .box_booking_3 .main ul li span, .box_booking_4 .main ul li span, .box_booking_5 .main ul li span, .box_booking_6 .main ul li span, .box_booking_7 .main ul li span {
   float: right;
   font-weight: 400;
 }
-.box_booking_2 .main ul li.total {
+.box_booking_2 .main ul li.total, .box_booking_3 .main ul li.total, .box_booking_4 .main ul li.total, .box_booking_5 .main ul li.total, .box_booking_6 .main ul li.total, .box_booking_7 .main ul li.total {
   font-size: 16px;
   font-size: 1rem;
   font-weight: 600;
   color: #e74747;
   text-transform: uppercase;
 }
-.box_booking_2 .main ul li.total span {
+.box_booking_2 .main ul li.total span, .box_booking_3 .main ul li.total span, .box_booking_4 .main ul li.total span, .box_booking_5 .main ul li.total span, .box_booking_6 .main ul li.total span, .box_booking_7 .main ul li.total span {
   font-weight: 600;
 }
 
@@ -2552,8 +2609,9 @@ ul#banners_grid li a.img_container .short_info p {
   float: right;
   font-size: 24px;
 }
-.payment_select#paypal {
-  background: #f0f0f0 url(../img/paypal_2.svg) center right no-repeat;
+.payment_select#midtrans {
+  background: #f0f0f0 url(../img/Midtrans.png) center right no-repeat;
+  background-size: 80px;
 }
 
 /* Confirm page */
@@ -3513,10 +3571,10 @@ footer .copy {
 }
 
 /*-------- 3.5 Advertise modal --------*/
-/* Advertise and newsletter popup */
-.cookie_popup {
+/* Nomor Meja dan Benefit popup */
+/* .cookie_popup {
   display: none !important;
-}
+} */
 
 .popup_wrapper {
   background: rgba(0, 0, 0, 0.7) none repeat scroll 0 0;
