@@ -48,7 +48,7 @@
     <header class="header clearfix element_to_stick">
         <div class="container-fluid">
             <div id="logo">
-                <a href="{{route('index')}}">
+                <a href="{{ route('index') }}">
                     <img src="{{ asset('resto/logo.png') }}"
                         style="width: auto; height: auto; max-width: 140px; max-height: 35px;" alt=""
                         class="logo_normal">
@@ -58,10 +58,11 @@
                 </a>
             </div>
             <ul id="top_menu">
-                <li>
-                    <a href="{{ route('login-2') }}" class="profile_bt">
-                    </a>
-                </li>
+                @if (!Auth::user())
+                    <li><a href="{{ route('login-2') }}" class="profile_bt"></a></li>
+                @else
+                    <li><a href="/profile" class="profile_bt"></a></li>
+                @endif
                 <li>
                     <div class="dropdown dropdown-cart">
                         <a href="/cart" class="cart_bt"><strong>2</strong></a>
@@ -72,7 +73,7 @@
                                             data-src="img/item_square_small_1.jpg" alt="" width="50"
                                             height="50" class="lazy"></figure>
                                     <strong><span>1x Pizza Napoli</span>$12.00</strong>
-                                    <a href="#0" class="action"><i class="icon_trash_alt"></i></a>
+                                    <a class="action"><i class="icon_trash_alt"></i></a>
                                 </li>
                                 <li>
                                     <figure><img src="img/item_placeholder_square_small.jpg"
@@ -90,8 +91,10 @@
                                 </li>
                             </ul>
                             <div class="total_drop">
-                                <div class="clearfix add_bottom_15"><strong>Transaksi</strong><span>Rp. 100.000</span></div>
-                                <div class="clearfix add_bottom_15"><strong>Pajak - 10%</strong><span>Rp. 10.000</span></div>
+                                <div class="clearfix add_bottom_15"><strong>Transaksi</strong><span>Rp. 100.000</span>
+                                </div>
+                                <div class="clearfix add_bottom_15"><strong>Pajak - 10%</strong><span>Rp. 10.000</span>
+                                </div>
                                 <div class="clearfix add_bottom_15"><strong>Total</strong><span>Rp. 110.000</span></div>
                                 <a href="/cart" class="btn_1 outline">View Cart</a><a href="/checkout"
                                     class="btn_1 outline">Checkout</a>
@@ -100,11 +103,6 @@
                     </div>
                     <!-- /dropdown-cart-->
                 </li>
-                {{-- <li>
-                    <a href="profile.html" class="profile_bt">
-                        <i class="fas fa-user" style="font-size: 1.2em; color: black;"></i>
-                    </a>
-                </li> --}}
             </ul>
             <!-- /top_menu -->
             <a href="#0" class="open_close">
@@ -115,19 +113,15 @@
                     <a href="#0" class="open_close">
                         <i class="icon_close"></i><span>Menu</span>
                     </a>
-                    <a href="{{route('index')}}"><img src="{{ asset('resto/logo.png') }}" alt=""
+                    <a href="{{ route('index') }}"><img src="{{ asset('resto/logo.png') }}" alt=""
                             style="width: auto; height: auto; max-width: 140px; max-height: 35px;"></a>
                 </div>
                 <ul>
                     <li>
-                        <a href="{{route('index')}}" class="show-submenu">Home</a>
+                        <a href="{{ route('index') }}" class="show-submenu">Home</a>
                     </li>
                     <li>
                         <a href="{{ route('list-menu') }}">Daftar Menu</a>
-                        {{-- <ul>
-                            <li><a href="{{ route('list-menu') }}">Daftar Menu</a></li>
-                            <li><a href="{{ route('nomor-meja') }}">Order Makanan</a></li>
-                        </ul> --}}
                     </li>
                     <li>
                         <a href="/promo" class="show-submenu">Promo</a>
@@ -141,57 +135,27 @@
                             <li><a href="/information">Information & Contact</a></li>
                             <li><a href="/carrer-history">Career & History</a></li>
                             <li><a href="/review">Kritik & Saran</a></li>
-                            <li><a href="https://www.google.co.id/maps/place/Vin+Autism+Gallery/@-7.2950762,112.6521202,17z/data=!4m8!3m7!1s0x2dd7fdc112922645:0xc953059a61c6938!8m2!3d-7.2950762!4d112.6546951!9m1!1b1!16s%2Fg%2F11jr53fzzx?entry=ttu">Review Google</a></li>
+                            <li><a
+                                    href="https://www.google.co.id/maps/place/Vin+Autism+Gallery/@-7.2950762,112.6521202,17z/data=!4m8!3m7!1s0x2dd7fdc112922645:0xc953059a61c6938!8m2!3d-7.2950762!4d112.6546951!9m1!1b1!16s%2Fg%2F11jr53fzzx?entry=ttu">Review
+                                    Google</a></li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="/konversi-point" class="show-submenu">Struk Online</a>
-                    </li>
-                    {{-- <li class="submenu">
-                        <a href="#0" class="show-submenu">Other Pages</a>
-                        <ul>
-                            <li><a href="about.html">About</a></li>
-                            <li><a href="blog.html">Blog</a></li>
-                            <li><a href="gallery.html">Gallery</a></li>
-                            <li><a href="gallery-2.html">Gallery Masonry</a></li>
-                            <li><a href="modal-advertise.html">Modal Advertise</a></li>
-                            <li><a href="modal-newsletter.html">Modal Newsletter</a></li>
-                            <li><a href="404.html">404 Error page</a></li>
-                            <li><a href="coming-soon.html" target="_blank">Coming Soon</a></li>
-                            <li><a href="leave-review.html">Leave a review</a></li>
-                            <li><a href="contacts.html">Contacts</a></li>
-                            <li><a href="icon-pack-1.html">Icon Pack 1</a></li>
-                            <li><a href="icon-pack-2.html">Icon Pack 2</a></li>
-                        </ul>
-                    </li>
-                    <li class="submenu">
-                        <a href="#0" class="show-submenu">Shop</a>
-                        <ul>
-                            <li><a href="shop-1.html">Shop Grid</a></li>
-                            <li><a href="shop-2.html">Shop Rows</a></li>
-                            <li><a href="shop-single.html">Product Single</a></li>
-                            <li><a href="shop-cart.html">Cart Page</a></li>
-                            <li><a href="shop-checkout.html">Checkout</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#0">Buy this template</a></li> --}}
+                    @can('customer')
+                        <li>
+                            <a href="/konversi-point" class="show-submenu">Struk Online</a>
+                        </li>
+                    @endcan
                     <li><a href="/reservation" class="btn_top">Reservations</a></li>
                     <li><a href="/cart" class="btn_tc">Cart</a></li>
-                    <li><a href="{{ route('login-2') }}" class="btn_tl">Login</a></li>
-
-                    <!-- IF sudah login -->
-                    {{-- <li class='submenu'><a href="{{ route('profile') }}" class="btn_p">Profile</a></li> --}}
+                    @if (!Auth::user())
+                        <li><a href="{{ route('login-2') }}" class="btn_top">Login</a></li>
+                    @else
+                        <li><a href="/profile" class="btn_top">Profile</a></li>
+                        <li><a href="{{route('logout')}}" class="btn_tl">Log Out</a></li>
+                    @endif
                 </ul>
             </nav>
         </div>
-        {{-- <!-- Search -->
-	<div class="search-overlay-menu">
-	    <span class="search-overlay-close"><span class="closebt"><i class="icon_close"></i></span></span>
-	    <form role="search" id="searchform" method="get">
-	        <input value="" name="q" type="search" placeholder="Search..." />
-	        <button type="submit"><i class="icon_search"></i></button>
-	    </form>
-	</div><!-- End Search --> --}}
     </header>
     @yield('content')
 

@@ -52,44 +52,129 @@
                                             <div class="radio_select add_bottom_15">
                                                 <ul>
                                                     <li>
-                                                        <input type="radio" id="time_1" name="time" value="12.00am"
+                                                        <input type="radio" id="time_1" name="time" value="09:00"
                                                             class="required">
-                                                        <label for="time_1">12.00</label>
+                                                        <label for="time_1">09:00</label>
                                                     </li>
                                                     <li>
-                                                        <input type="radio" id="time_2" name="time" value="12.30pm"
+                                                        <input type="radio" id="time_2" name="time" value="09:30"
                                                             class="required">
-                                                        <label for="time_2">12.30</label>
+                                                        <label for="time_2">09:30</label>
                                                     </li>
                                                     <li>
-                                                        <input type="radio" id="time_3" name="time" value="1.00pm"
+                                                        <input type="radio" id="time_3" name="time" value="10:00"
                                                             class="required">
-                                                        <label for="time_3">1.00</label>
+                                                        <label for="time_3">10:00</label>
                                                     </li>
                                                     <li>
-                                                        <input type="radio" id="time_4" name="time" value="1.30pm"
+                                                        <input type="radio" id="time_4" name="time" value="10:30"
                                                             class="required">
-                                                        <label for="time_4">1.30</label>
+                                                        <label for="time_4">10:30</label>
                                                     </li>
                                                     <li>
-                                                        <input type="radio" id="time_5" name="time" value="08.00pm"
+                                                        <input type="radio" id="time_5" name="time" value="11:00"
                                                             class="required">
-                                                        <label for="time_5">8.00</label>
+                                                        <label for="time_5">11:00</label>
                                                     </li>
                                                     <li>
-                                                        <input type="radio" id="time_6" name="time" value="08.30pm"
+                                                        <input type="radio" id="time_6" name="time" value="11:30"
                                                             class="required">
-                                                        <label for="time_6">8.30</label>
+                                                        <label for="time_6">11:30</label>
                                                     </li>
                                                     <li>
-                                                        <input type="radio" id="time_7" name="time" value="09.00pm"
+                                                        <input type="radio" id="time_7" name="time" value="12:00"
                                                             class="required">
-                                                        <label for="time_7">9.00</label>
+                                                        <label for="time_7">12:00</label>
                                                     </li>
                                                     <li>
-                                                        <input type="radio" id="time_8" name="time" value="09.30pm"
+                                                        <input type="radio" id="time_8" name="time" value="12:30"
                                                             class="required">
-                                                        <label for="time_8">9.30</label>
+                                                        <label for="time_8">12:30</label>
+                                                    </li>
+                                                    <li>
+                                                        <input type="radio" id="time_9" name="time" value="13:00"
+                                                            class="required">
+                                                        <label for="time_9">13:00</label>
+                                                    </li>
+                                                    <li>
+                                                        <input type="radio" id="time_10" name="time" value="13:30"
+                                                            class="required">
+                                                        <label for="time_10">13:30</label>
+                                                    </li>
+                                                    <li>
+                                                        <input type="radio" id="time_11" name="time"
+                                                            value="14:00" class="required">
+                                                        <label for="time_11">14:00</label>
+                                                    </li>
+                                                    <li>
+                                                        <input type="radio" id="time_12" name="time"
+                                                            value="14:30" class="required">
+                                                        <label for="time_12">14:30</label>
+                                                    </li>
+                                                    <li>
+                                                        <input type="radio" id="time_13" name="time"
+                                                            value="15:00" class="required">
+                                                        <label for="time_13">15:00</label>
+                                                    </li>
+                                                    <li>
+                                                        <input type="radio" id="time_14" name="time"
+                                                            value="15:30" class="required">
+                                                        <label for="time_14">15:30</label>
+                                                    </li>
+                                                    <li>
+                                                        <input type="radio" id="time_15" name="time"
+                                                            value="16:00" class="required">
+                                                        <label for="time_15">16:00</label>
+                                                    </li>
+                                                    <li>
+                                                        <input type="radio" id="time_16" name="time"
+                                                            value="16:30" class="required">
+                                                        <label for="time_16">16:30</label>
+                                                    </li>
+                                                    <li>
+                                                        <input type="radio" id="time_17" name="time"
+                                                            value="17:00" class="required">
+                                                        <label for="time_17">17:00</label>
+                                                    </li>
+                                                    <li>
+                                                        <input type="radio" id="time_18" name="time"
+                                                            value="17:30" class="required">
+                                                        <label for="time_18">17:30</label>
+                                                    </li>
+                                                    <li>
+                                                        <input type="radio" id="time_19" name="time"
+                                                            value="18:00" class="required">
+                                                        <label for="time_19">18:00</label>
+                                                    </li>
+                                                    <li>
+                                                        <input type="radio" id="time_20" name="time"
+                                                            value="18:30" class="required">
+                                                        <label for="time_20">18:30</label>
+                                                    </li>
+                                                    <li>
+                                                        <input type="radio" id="time_21" name="time"
+                                                            value="19:00" class="required">
+                                                        <label for="time_21">19:00</label>
+                                                    </li>
+                                                    <li>
+                                                        <input type="radio" id="time_22" name="time"
+                                                            value="19:30" class="required">
+                                                        <label for="time_22">19:30</label>
+                                                    </li>
+                                                    <li>
+                                                        <input type="radio" id="time_23" name="time"
+                                                            value="20:00" class="required">
+                                                        <label for="time_23">20:00</label>
+                                                    </li>
+                                                    <li>
+                                                        <input type="radio" id="time_24" name="time"
+                                                            value="20:30" class="required">
+                                                        <label for="time_24">20:30</label>
+                                                    </li>
+                                                    <li>
+                                                        <input type="radio" id="time_25" name="time"
+                                                            value="21:00" class="required">
+                                                        <label for="time_25">21:00</label>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -101,13 +186,13 @@
                                             <div class="radio_select">
                                                 <ul>
                                                     <li>
-                                                        <input type="radio" id="people_1" name="people" value="1"
-                                                            class="required">
+                                                        <input type="radio" id="people_1" name="people"
+                                                            value="1" class="required">
                                                         <label for="people_1">1</label>
                                                     </li>
                                                     <li>
-                                                        <input type="radio" id="people_2" name="people" value="2"
-                                                            class="required">
+                                                        <input type="radio" id="people_2" name="people"
+                                                            value="2" class="required">
                                                         <label for="people_2">2</label>
                                                     </li>
                                                     <li>
@@ -120,7 +205,73 @@
                                                             value="4" class="required">
                                                         <label for="people_4">4</label>
                                                     </li>
+                                                    <li>
+                                                        <input type="radio" id="people_5" name="people"
+                                                            value="5" class="required">
+                                                        <label for="people_5">5</label>
+                                                    </li>
+                                                    <li>
+                                                        <input type="radio" id="people_6" name="people"
+                                                            value="6" class="required">
+                                                        <label for="people_6">6</label>
+                                                    </li>
+                                                    <li>
+                                                        <input type="radio" id="people_7" name="people"
+                                                            value="7" class="required">
+                                                        <label for="people_7">7</label>
+                                                    </li>
+                                                    <li>
+                                                        <input type="radio" id="people_8" name="people"
+                                                            value="8" class="required">
+                                                        <label for="people_8">8</label>
+                                                    </li>
+                                                    <ul>
+                                                        <li>
+                                                            <input type="radio" id="people_9" name="people"
+                                                                value="9" class="required">
+                                                            <label for="people_9">9</label>
+                                                        </li>
+                                                        <li>
+                                                            <input type="radio" id="people_10" name="people"
+                                                                value="10" class="required">
+                                                            <label for="people_10">10</label>
+                                                        </li>
+                                                        <li>
+                                                            <input type="radio" id="people_11" name="people"
+                                                                value="11" class="required">
+                                                            <label for="people_11">11</label>
+                                                        </li>
+                                                        <li>
+                                                            <input type="radio" id="people_12" name="people"
+                                                                value="12" class="required">
+                                                            <label for="people_12">12</label>
+                                                        </li>
+                                                        <li>
+                                                            <input type="radio" id="people_13" name="people"
+                                                                value="13" class="required">
+                                                            <label for="people_13">13</label>
+                                                        </li>
+                                                        <li>
+                                                            <input type="radio" id="people_14" name="people"
+                                                                value="14" class="required">
+                                                            <label for="people_14">14</label>
+                                                        </li>
+                                                        <li>
+                                                            <input type="radio" id="people_15" name="people"
+                                                                value="15" class="required">
+                                                            <label for="people_15">15</label>
+                                                        </li>
+                                                        <li>
+                                                            <input type="radio" id="people_16" name="people"
+                                                                value="16" class="required">
+                                                            <label for="people_16">16</label>
+                                                        </li>
+                                                    </ul>
                                                 </ul>
+                                                <div class="centered-div">
+                                                    <p>Apabila jumlah lebih banyak, silahkan hubungi link berikut: <a
+                                                            href="">Klik Disini.</a></p>
+                                                </div>
                                             </div>
                                             <!-- /people_select -->
                                         </div>
@@ -152,7 +303,7 @@
                                         </div>
                                         <div class="form-group terms">
                                             <label class="container_check">Mohon terima <a href="#"
-                                                    data-bs-toggle="modal" data-bs-target="#terms-txt">Syarat dan
+                                                    data-bs-toggle="modal" data-bs-target="#skModal">Syarat dan
                                                     Ketentuan kami.</a>
                                                 <input type="checkbox" name="terms" value="Yes" class="required">
                                                 <span class="checkmark"></span>
@@ -178,21 +329,52 @@
             <!-- /container -->
         </div>
         <!-- /pattern_2 -->
-
     </main>
+
+    <!-- Modal Syarat & Ketentuan -->
+    <div class="modal fade" id="skModal" tabindex="-1" aria-labelledby="skModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="d-flex align-items-center">
+                        <a href="{{ route('index') }}" class="d-flex align-items-center">
+                            <b><span>Vin Autism Gallery Resto</span></b>
+                        </a>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div style="margin-bottom: 17px;">
+                        <h2>Syarat & Ketentuan</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Modal Syarat & Ketentuan -->
 
     <!-- style -->
     <style>
         .reservasi-link {
             cursor: pointer;
-            color: inherit; /* Ini agar teks mengikuti warna dari parent */
-            transition: color 0.3s ease; /* Menambahkan efek transisi pada warna */
+            color: inherit;
+            /* Ini agar teks mengikuti warna dari parent */
+            transition: color 0.3s ease;
+            /* Menambahkan efek transisi pada warna */
             text-decoration: underline;
         }
 
         .reservasi-link:hover {
-            color: blue; /* Ganti warna ini sesuai keinginan Anda */
-            text-decoration: underline; /* Tambahkan underline saat dihover */
+            color: blue;
+            /* Ganti warna ini sesuai keinginan Anda */
+            text-decoration: underline;
+            /* Tambahkan underline saat dihover */
+        }
+
+        .centered-div {
+            text-align: center;
+            margin-top: 10px;
+            margin-bottom: -20px;
         }
     </style>
     <!-- /style -->

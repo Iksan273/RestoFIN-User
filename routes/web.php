@@ -47,6 +47,10 @@ Route::get('/login-2', [LoginController::class, 'showLoginForm2'])->name('login-
 Route::post('/login-2', [LoginController::class, 'login2'])->name('login-post-2');
 
 
+// Halaman Logout
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+
+
 // Halaman Register
 // Halaman Register Menuju Login (Order)
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
@@ -118,19 +122,20 @@ Route::get('/review', function () {
 });
 
 
-// Halaman Profile
-Route::get('/profile', function () {
-    return view('profile');
-});
-
-
-// Halaman Struk Online
-Route::get('/konversi-point', function () {
-    return view('strukonline');
-});
-
-
 // Halaman Ganti Password
 Route::get('/change-password', function () {
     return view('auth.changepass');
+});
+
+Route::middleware(['can:customer'])->group(function () {
+    // Halaman Struk Online
+    Route::get('/konversi-point', function () {
+        return view('strukonline');
+    });
+
+
+    // Halaman Profile
+    Route::get('/profile', function () {
+        return view('profile');
+    });
 });

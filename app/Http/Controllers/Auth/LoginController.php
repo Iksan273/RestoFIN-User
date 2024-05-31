@@ -52,7 +52,7 @@ class LoginController extends Controller
     {
         Auth::logout();
 
-        return redirect()->route('/')->with('success', 'LOGOUT SUCCESS');
+        return redirect()->route('index')->with('success', 'LOGOUT SUCCESS');
     }
 
     public function login(Request $request)

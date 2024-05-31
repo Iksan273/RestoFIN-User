@@ -25,7 +25,7 @@
                         </div>
                         <!-- /head -->
                         <div class="main">
-                            <p class="navigation-text">---------- Akun Member ----------</p>
+                            <p class="navigation-text">------------ Akun Member ------------</p>
                             <a href="#user-profile" id="akunSayaButton" class="btn_1 full-width mb_5 icon-account actived"
                                 onclick="handleClick(this)">Akun Member Saya</a>
                             <a href="#change-password" id="passwordButton" class="btn_1 full-width mb_5 icon-password"
@@ -37,7 +37,7 @@
                                 onclick="handleClick(this)">Transaksi Saya</a>
                         </div>
                         <div class="main" style="margin-top: -30px;">
-                            <p class="navigation-text">---------- Navigasi ----------</p>
+                            <p class="navigation-text">--------------- Navigasi --------------</p>
                             <a href="{{ route('index') }}" class="btn_1 full-width mb_5 icon-home">Beranda</a>
                             <a href="{{ route('list-menu') }}" class="btn_1 full-width mb_5 icon-menu">Daftar Menu</a>
                             <a href="/promo" class="btn_1 full-width mb_5 icon-promo">Promo</a>
@@ -47,6 +47,10 @@
                                 class="btn_1 full-width mb_5 icon-maps">Review Google</a>
                             <a href="/carrer" class="btn_1 full-width mb_5 icon-career">Sejarah & Karir</a>
                             <a href="/information" class="btn_1 full-width mb_5 icon-contact">Informasi & Kontak</a>
+                        </div>
+                        <div class="main" style="margin-top: -30px;">
+                            <p class="navigation-text">---------------- Aksi ----------------</p>
+                            <a href="{{ route('logout') }}" class="btn_1 full-width mb_5" style="background-color: red; color: white;">Logout</a>
                         </div>
                     </div>
                     <!-- /box_booking -->
@@ -636,11 +640,8 @@
             /* Unicode untuk ikon akun (👤) */
             position: absolute;
             left: 10px;
-            /* Position it 10px from the left edge */
             font-size: 16px;
-            /* Adjust size as needed */
             line-height: 1;
-            /* Adjust to align with text */
         }
 
         a.icon-password::before {
@@ -648,11 +649,8 @@
             /* Unicode untuk ikon password (🔑) */
             position: absolute;
             left: 10px;
-            /* Position it 10px from the left edge */
             font-size: 16px;
-            /* Adjust size as needed */
             line-height: 1;
-            /* Adjust to align with text */
         }
 
         a.icon-my-voucher::before {
@@ -660,11 +658,8 @@
             /* Unicode untuk ikon kotak hadiah (🎁) */
             position: absolute;
             left: 10px;
-            /* Position it 10px from the left edge */
             font-size: 16px;
-            /* Adjust size as needed */
             line-height: 1;
-            /* Adjust to align with text */
         }
 
         a.icon-history::before {
@@ -672,11 +667,8 @@
             /* Unicode untuk ikon transaksi (📃) */
             position: absolute;
             left: 10px;
-            /* Position it 10px from the left edge */
             font-size: 16px;
-            /* Adjust size as needed */
             line-height: 1;
-            /* Adjust to align with text */
         }
 
         a.icon-points::before {
@@ -684,11 +676,8 @@
             /* Unicode untuk ikon koin (💰) */
             position: absolute;
             left: 10px;
-            /* Position it 10px from the left edge */
             font-size: 16px;
-            /* Adjust size as needed */
             line-height: 1;
-            /* Adjust to align with text */
         }
 
         a.icon-home::before {
@@ -696,11 +685,8 @@
             /* Unicode untuk ikon rumah (🏠) */
             position: absolute;
             left: 10px;
-            /* Position it 10px from the left edge */
             font-size: 16px;
-            /* Adjust size as needed */
             line-height: 1;
-            /* Adjust to align with text */
         }
 
         a.btn_1::after,
