@@ -865,7 +865,7 @@ input.qty2:focus {
 }
 
 .table.cart-list th:nth-child(1) {
-  width: 70%;
+  width: 55%;
 }
 .table.cart-list th:nth-child(2) {
   width: 15%;
@@ -874,7 +874,7 @@ input.qty2:focus {
   width: 20%;
 }
 .table.cart-list th:nth-child(4) {
-  width: 5%;
+  width: 15%;
 }
 
 .table.cart-list td {
