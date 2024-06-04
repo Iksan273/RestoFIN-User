@@ -46,15 +46,13 @@
                                     <input type="email" name="email" class="form-control" placeholder="Email" required>
                                 </div>
                                 <div class="form-group">
-                                    <input id="pass" type="password" name="password" class="form-control" placeholder="Password"
-                                        required>
-                                    <input type="checkbox" onclick="pass()" style="margin-top: 10px;"> Show
-                                    Password
+                                    <input id="new-pass" type="password" name="password" class="form-control"
+                                        placeholder="Password" required>
                                 </div>
                                 <div class="form-group">
                                     <input id="re-pass" type="password" name="password_confirmation" class="form-control"
                                         placeholder="Re-type Password" required>
-                                    <input type="checkbox" onclick="rePass()" style="margin-top: 10px;"> Show
+                                    <input type="checkbox" onclick="pass()" style="margin-top: 10px;"> Show
                                     Password
                                 </div>
                                 <button type="submit" class="btn_1 mt-2 mb-4">Daftar</button>
@@ -113,20 +111,14 @@
 
         // Password //
         function pass() {
-            var x = document.getElementById("pass");
-            if (x.type === "password") {
+            var x = document.getElementById("new-pass");
+            var y = document.getElementById("re-pass");
+            if (x.type === "password" && y.type == "password") {
                 x.type = "text";
+                y.type = "text";
             } else {
                 x.type = "password";
-            }
-        }
-
-        function rePass() {
-            var x = document.getElementById("re-pass");
-            if (x.type === "password") {
-                x.type = "text";
-            } else {
-                x.type = "password";
+                y.type = "password";
             }
         }
     </script>
