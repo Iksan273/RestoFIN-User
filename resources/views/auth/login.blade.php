@@ -20,7 +20,8 @@
     <!-- Modal Login -->
     <div class="popup_wrapper">
         <div class="popup_content newsletter_c">
-            <span class="popup_close"><a href="{{route('index')}}" style="color: black"><i class="icon_close"></i></a></span>
+            <span class="popup_close"><a href="{{ route('index') }}" style="color: black"><i
+                        class="icon_close"></i></a></span>
             <div class="row g-0">
                 <div class="col-md-5 d-none d-md-flex align-items-center justify-content-center">
                     <figure><img src="{{ asset('resto/gallery2.jpeg') }}" alt=""></figure>
@@ -28,7 +29,7 @@
                 <div class="col-md-7">
                     <div class="content">
                         <div class="wrapper">
-                            <a href="{{route('index')}}">
+                            <a href="{{ route('index') }}">
                                 <img src="{{ asset('resto/logo.png') }}" alt=""
                                     style="width: auto; height: auto; max-width: 140px; max-height: 35px;">
                             </a>
@@ -38,8 +39,10 @@
                                 @csrf
                                 <div class="form-group">
                                     <input type="email" name="email" class="form-control" placeholder="Email" required>
-                                    <input type="password" name="password" class="form-control" placeholder="Password"
+                                    <input id="password" type="password" name="password" class="form-control" placeholder="Password"
                                         required>
+                                    <input type="checkbox" onclick="pass()" style="margin-top: 10px;"> Show
+                                    Password
                                     @error('email_password')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -82,6 +85,14 @@
 
     <!-- script -->
     <script>
+        function pass() {
+            var x = document.getElementById("password");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
     </script>
     <!-- /script -->
 @endsection

@@ -80,14 +80,14 @@
                                             data-src="img/item_square_small_2.jpg" alt="" width="50"
                                             height="50" class="lazy"></figure>
                                     <strong><span>1x Hamburgher Maxi</span>$10.00</strong>
-                                    <a href="#0" class="action"><i class="icon_trash_alt"></i></a>
+                                    <a class="action"><i class="icon_trash_alt"></i></a>
                                 </li>
                                 <li>
                                     <figure><img src="img/item_placeholder_square_small.jpg"
                                             data-src="img/item_square_small_3.jpg" alt="" width="50"
                                             height="50" class="lazy"></figure>
                                     <strong><span>1x Red Wine Bottle</span>$20.00</strong>
-                                    <a href="#0" class="action"><i class="icon_trash_alt"></i></a>
+                                    <a class="action"><i class="icon_trash_alt"></i></a>
                                 </li>
                             </ul>
                             <div class="total_drop">
@@ -105,12 +105,12 @@
                 </li>
             </ul>
             <!-- /top_menu -->
-            <a href="#0" class="open_close">
+            <a  class="open_close">
                 <i class="icon_menu"></i><span>Menu</span>
             </a>
             <nav class="main-menu">
                 <div id="header_menu">
-                    <a href="#0" class="open_close">
+                    <a  class="open_close">
                         <i class="icon_close"></i><span>Menu</span>
                     </a>
                     <a href="{{ route('index') }}"><img src="{{ asset('resto/logo.png') }}" alt=""
@@ -130,7 +130,7 @@
                         <a href="/gallery" class="show-submenu">Gallery</a>
                     </li>
                     <li class="submenu">
-                        <a href="#0" class="show-submenu">About Us</a>
+                        <a  class="show-submenu">About Us</a>
                         <ul>
                             <li><a href="/information">Information & Contact</a></li>
                             <li><a href="/carrer-history">Career & History</a></li>
@@ -150,7 +150,7 @@
                     @if (!Auth::user())
                         <li><a href="{{ route('login-2') }}" class="btn_top">Login</a></li>
                     @else
-                        <li><a href="/profile" class="btn_top">Profile</a></li>
+                        <li><a href="{{route('profile')}}" class="btn_top">Profile</a></li>
                         <li><a href="{{route('logout')}}" class="btn_tl">Log Out</a></li>
                     @endif
                 </ul>
@@ -178,7 +178,7 @@
                         <i class="icon_tag_alt"></i>
                         <h3>Reservations</h3>
                         <p><a href="tel:009442323221">+94 423-23-221</a><br><a
-                                href="#0">reservations@Foores.com</a></p>
+                                >reservations@Foores.com</a></p>
                     </div>
                 </div>
                 <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
@@ -201,11 +201,11 @@
                 <div class="col-sm-7">
                     <div class="follow_us">
                         <ul>
-                            <li><a href="#0"><i class="bi bi-facebook"></i></a></li>
-                            <li><a href="#0"><i class="bi bi-twitter-x"></i></a></li>
-                            <li><a href="#0"><i class="bi bi-instagram"></i></a></li>
-                            <li><a href="#0"><i class="bi bi-tiktok"></i></a></li>
-                            <li><a href="#0"><i class="bi bi-whatsapp"></i></a></li>
+                            <li><a ><i class="bi bi-facebook"></i></a></li>
+                            <li><a ><i class="bi bi-twitter-x"></i></a></li>
+                            <li><a ><i class="bi bi-instagram"></i></a></li>
+                            <li><a ><i class="bi bi-tiktok"></i></a></li>
+                            <li><a ><i class="bi bi-whatsapp"></i></a></li>
                         </ul>
                     </div>
                 </div>

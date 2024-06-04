@@ -51,6 +51,7 @@ class LoginController extends Controller
     public function logout()
     {
         Auth::logout();
+        session()->forget('email');
 
         return redirect()->route('index')->with('success', 'LOGOUT SUCCESS');
     }
@@ -66,6 +67,7 @@ class LoginController extends Controller
             $user = auth()->user();
 
             if ($user) {
+                session(['email' => $user->email]);
                 return redirect()->route('menu-order')->with('success', 'LOGIN SUCCESS');
             }
         }
@@ -85,6 +87,7 @@ class LoginController extends Controller
             $user = auth()->user();
 
             if ($user) {
+                session(['email' => $user->email]);
                 return redirect()->route('index')->with('success', 'LOGIN SUCCESS');
             }
         }

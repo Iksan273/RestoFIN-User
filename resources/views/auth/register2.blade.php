@@ -46,12 +46,14 @@
                                     <input type="email" name="email" class="form-control" placeholder="Email" required>
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" name="password" class="form-control" placeholder="Password"
+                                    <input id="new-pass" type="password" name="password" class="form-control" placeholder="Password"
                                         required>
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" name="password_confirmation" class="form-control"
+                                    <input id="re-pass" type="password" name="password_confirmation" class="form-control"
                                         placeholder="Re-type Password" required>
+                                    <input type="checkbox" onclick="pass()" style="margin-top: 10px;"> Show
+                                    Password
                                 </div>
                                 <button type="submit" class="btn_1 mt-2 mb-4">Daftar</button>
                                 <p>Sudah menjadi Membership? <a href="{{route('login-2')}}" class="login-member">Login</a></p>
@@ -102,6 +104,19 @@
                 event.preventDefault(); // Mencegah form submit
             }
         });
+
+        // Password //
+        function pass() {
+            var x = document.getElementById("new-pass");
+            var y = document.getElementById("re-pass");
+            if (x.type === "password" && y.type == "password") {
+                x.type = "text";
+                y.type = "text";
+            } else {
+                x.type = "password";
+                y.type = "password";
+            }
+        }
     </script>
     <!-- /script -->
 @endsection

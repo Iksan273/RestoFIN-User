@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\TableController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -135,7 +136,7 @@ Route::middleware(['can:customer'])->group(function () {
 
 
     // Halaman Profile
-    Route::get('/profile', function () {
-        return view('profile');
-    });
+    Route::get('/profile', [UserController::class, 'index'])->name('profile');
+    Route::post('/profile/update-profile', [UserController::class, 'update'])->name('customer.update');
+    Route::post('/profile/update-password', [UserController::class, 'updatePassword'])->name('customer.password');
 });

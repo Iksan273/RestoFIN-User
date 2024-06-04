@@ -50,7 +50,8 @@
                         </div>
                         <div class="main" style="margin-top: -30px;">
                             <p class="navigation-text">---------------- Aksi ----------------</p>
-                            <a href="{{ route('logout') }}" class="btn_1 full-width mb_5" style="background-color: red; color: white;">Logout</a>
+                            <a href="{{ route('logout') }}" class="btn_1 full-width mb_5"
+                                style="background-color: red; color: white;">Logout</a>
                         </div>
                     </div>
                     <!-- /box_booking -->
@@ -65,76 +66,92 @@
                             </div>
                         </div>
                         <!-- /head -->
-                        <div class="main">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group d-flex justify-content-between align-items-center">
-                                        <label>First Name</label>
+                        <form id="profileForm" method="POST" action="{{ route('customer.update') }}">
+                            @csrf
+                            <div class="main">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group d-flex justify-content-between align-items-center">
+                                            <label>First Name</label>
+                                        </div>
+                                        <input id="firstname" name="firstname" class="form-control"
+                                            value="{{ $customer->firstname }}" placeholder="Value First Name" disabled>
                                     </div>
-                                    <input class="form-control" placeholder="Value First Name" disabled>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group d-flex justify-content-between align-items-center">
-                                        <label>Last Name</label>
+                                    <div class="col-md-6">
+                                        <div class="form-group d-flex justify-content-between align-items-center">
+                                            <label>Last Name</label>
+                                        </div>
+                                        <input id="lastname" name="lastname" class="form-control"
+                                            value="{{ $customer->lastname }}" placeholder="Value Last Name" disabled>
                                     </div>
-                                    <input class="form-control" placeholder="Value Last Name" disabled>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group d-flex justify-content-between align-items-center">
-                                        <label>Email Address</label>
-                                        <label><a href="#verifyemail" id="verifyEmailBtn" class="ml-auto disabled-link"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#verificationEmailModal">Verify</a></label>
+                                    <div class="col-md-6">
+                                        <div class="form-group d-flex justify-content-between align-items-center">
+                                            <label>Email Address</label>
+                                            <label><a href="#verifyemail" id="verifyEmailBtn" class="ml-auto disabled-link"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#verificationEmailModal">Verify</a></label>
+                                        </div>
+                                        <input id="email" name="email" class="form-control"
+                                            value="{{ $customer->email }}" placeholder="Value Email" disabled>
                                     </div>
-                                    <input class="form-control" placeholder="Value Phone" disabled>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group d-flex justify-content-between align-items-center">
-                                        <label>Phone</label>
-                                        <label><a href="#verifyphone" id="verifyPhoneBtn" class="ml-auto disabled-link"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#verificationPhoneModal">Verify</a></label>
+                                    <div class="col-md-6">
+                                        <div class="form-group d-flex justify-content-between align-items-center">
+                                            <label>Phone</label>
+                                            <label><a href="#verifyphone" id="verifyPhoneBtn"
+                                                    class="ml-auto disabled-link" data-bs-toggle="modal"
+                                                    data-bs-target="#verificationPhoneModal">Verify</a></label>
+                                        </div>
+                                        <input id="phone" name="phone" class="form-control"
+                                            value="{{ $customer->phone }}"
+                                            placeholder="{{ $customer->phone ? $customer->phone : 'Masukkan Nomor Telepon' }}"
+                                            disabled>
                                     </div>
-                                    <input class="form-control" placeholder="Value Phone" disabled>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group d-flex justify-content-between align-items-center">
-                                        <label>Tanggal dan Bulan Lahir</label>
+                                    <div class="col-md-6">
+                                        <div class="form-group d-flex justify-content-between align-items-center">
+                                            <label>Tanggal dan Bulan Lahir</label>
+                                        </div>
+                                        <div class="d-flex-2">
+                                            <select id="birth_day" name="birth_day" class="form-control mr-2"
+                                                aria-label="Tanggal" disabled>
+                                                <option value=""
+                                                    {{ is_null($customer->birth_day) ? 'selected' : '' }}>Pilih Tanggal
+                                                </option>
+                                                @for ($i = 1; $i <= 31; $i++)
+                                                    <option value="{{ $i }}"
+                                                        {{ $customer->birth_day == $i ? 'selected' : '' }}>
+                                                        {{ $i }}</option>
+                                                @endfor
+                                            </select>
+                                            <select id="birth_month" name="birth_month" class="form-control"
+                                                aria-label="Bulan" disabled>
+                                                <option value=""
+                                                    {{ is_null($customer->birth_month) ? 'selected' : '' }}>Pilih Bulan
+                                                </option>
+                                                @foreach ($months as $key => $month)
+                                                    <option value="{{ $key + 1 }}"
+                                                        {{ $customer->birth_month == $key + 1 ? 'selected' : '' }}>
+                                                        {{ $month }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                     </div>
-                                    <div class="d-flex-2">
-                                        <select class="form-control mr-2" aria-label="Tanggal" disabled>
-                                            <option value="" disabled selected>Pilih Tanggal</option>
-                                            <!-- Options for days 1-31 -->
-                                            <?php
-                                            for ($i = 1; $i <= 31; $i++) {
-                                                echo "<option value=\"$i\">$i</option>";
-                                            }
-                                            ?>
-                                        </select>
-                                        <select class="form-control" aria-label="Bulan" disabled>
-                                            <option value="" disabled selected>Pilih Bulan</option>
-                                            <!-- Options for months 1-12 -->
-                                            <?php
-                                            $months = ['1 - Januari', '2 - Februari', '3 - Maret', '4 - April', '5 - Mei', '6 - Juni', '7 - Juli', '8 - Agustus', '9 - September', '10 - Oktober', '11 - November', '12 - Desember'];
-                                            foreach ($months as $key => $month) {
-                                                echo "<option value=\"" . ($key + 1) . "\">$month</option>";
-                                            }
-                                            ?>
-                                        </select>
+                                    <div class="col-md-6">
+                                        <div class="form-group d-flex justify-content-between align-items-center">
+                                            <label>Instagram</label>
+                                        </div>
+                                        <input id="instagram" name="instagram" class="form-control"
+                                            value="{{ $customer->instagram }}"
+                                            placeholder="{{ $customer->instagram ? $customer->instagram : 'Masukkan ID Instagram' }}"
+                                            disabled>
                                     </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group d-flex justify-content-between align-items-center">
-                                        <label>Instagram</label>
-                                    </div>
-                                    <input class="form-control" placeholder="Value Instagram ID" disabled>
                                 </div>
                             </div>
-                        </div>
-                        <div class="text-right">
-                            <button class="btn btn-primary" onclick="ubahProfile()">Ubah
-                                Profile</button>
-                        </div>
+                            <div class="text-right">
+                                <button type="button" class="btn btn-primary" onclick="ubahProfile()">Ubah
+                                    Profile</button>
+                            </div>
+                        </form>
                     </div>
 
                     <!-- Change Password -->
@@ -145,24 +162,36 @@
                             </div>
                         </div>
                         <!-- /head -->
-                        <div class="main">
-                            <div class="form-group">
-                                <label>Password Saat Ini</label>
-                                <input type="password" class="form-control" placeholder="Password Saat Ini" disabled>
+                        <form id="passwordForm" method="POST" action="{{ route('customer.password') }}">
+                            @csrf
+                            <div class="main">
+                                <div class="form-group">
+                                    <label for="currentPassword">Password Saat Ini</label>
+                                    <input type="password" class="form-control" id="currentPassword"
+                                        name="currentPassword" placeholder="Password Saat Ini" disabled>
+                                    <input type="checkbox" onclick="crPass()" style="margin-top: 10px;" disabled> Show
+                                    Password
+                                </div>
+                                <div class="form-group">
+                                    <label for="newPassword">Password Baru</label>
+                                    <input type="password" class="form-control" id="newPassword" name="newPassword"
+                                        placeholder="Password Baru" disabled>
+                                    <input type="checkbox" onclick="nPass()" style="margin-top: 10px;" disabled> Show
+                                    Password
+                                </div>
+                                <div class="form-group">
+                                    <label for="confirmNewPassword">Re-type Password Baru</label>
+                                    <input type="password" class="form-control" id="confirmNewPassword"
+                                        name="confirmNewPassword" placeholder="Re-type Password Baru" disabled>
+                                    <input type="checkbox" onclick="cfnPass()" style="margin-top: 10px;" disabled> Show
+                                    Password
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label>Password Baru</label>
-                                <input type="password" class="form-control" placeholder="Password Baru" disabled>
+                            <div class="text-right-2">
+                                <button id="ubahPasswordBtn" class="btn btn-primary" onclick="ubahPassword()">Ubah
+                                    Password</button>
                             </div>
-                            <div class="form-group">
-                                <label>Re-type Password Baru</label>
-                                <input type="password" class="form-control" placeholder="Re-type Password Baru" disabled>
-                            </div>
-                        </div>
-                        <div class="text-right-2">
-                            <button id="ubahPasswordBtn" class="btn btn-primary" onclick="ubahPassword()">Ubah
-                                Password</button>
-                        </div>
+                        </form>
                     </div>
 
                     <!-- Voucher Saya -->
@@ -1643,26 +1672,6 @@
                     document.querySelector('.box_booking_3').classList.remove('box_booking_visible');
                 }
             }
-
-            // if (window.innerWidth <= 991) {
-            //     removeAllActiveClasses();
-            // } else {
-            //     // Jika lebar layar lebih dari 991px, tambahkan kelas 'actived' ke ikon yang terakhir aktif
-            //     if (lastActiveIcon) {
-            //         addActiveClass(lastActiveIcon);
-            //     } else {
-            //         // Jika tidak ada ikon yang aktif terakhir, aktifkan ikon default
-            //         const defaultIcon = document.querySelector('.icon-account');
-            //         if (defaultIcon) {
-            //             addActiveClass(defaultIcon);
-            //             document.querySelector('.box_booking').classList.remove('box_booking_hidden');
-            //             document.querySelector('.box_booking').classList.add('box_booking_visible');
-            //             document.querySelector('.box_booking_2').classList.remove('box_booking_visible');
-            //             document.querySelector('.box_booking_3').classList.add('box_booking_hidden');
-            //             document.querySelector('.box_booking_3').classList.remove('box_booking_visible');
-            //         }
-            //     }
-            // }
         }
 
         // Tambahkan event listener untuk perubahan ukuran jendela
@@ -1694,10 +1703,38 @@
         }
 
         function saveProfile() {
-            // Simpan perubahan profil (tambahkan logika penyimpanan di sini)
-            console.log('Profile saved');
-            // Kembalikan tombol "Ubah Profile" dan nonaktifkan input
-            resetProfileForm();
+            var form = document.getElementById('profileForm');
+            var formData = new FormData(form);
+
+            fetch('{{ route('customer.update') }}', {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    },
+                    body: formData,
+                })
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    } else {
+                        throw new Error('Network response was not ok.');
+                    }
+                })
+                .then(data => {
+                    if (data.success) {
+                        window.location.href = '{{ route('profile') }}'; // Mengarahkan ke halaman profil
+                        alert('Profil berhasil tersimpan');
+                    } else {
+                        window.location.href = '{{ route('profile') }}'; // Mengarahkan ke halaman profil
+                        alert('Profil gagal tersimpan');
+                    }
+                    resetProfileForm();
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Profil gagal tersimpan');
+                    resetProfileForm();
+                });
         }
 
         function cancelProfile() {
@@ -1709,6 +1746,14 @@
 
 
         function resetProfileForm() {
+            document.getElementById('firstname').value = '{{ $customer->firstname }}';
+            document.getElementById('lastname').value = '{{ $customer->lastname }}';
+            document.getElementById('email').value = '{{ $customer->email }}';
+            document.getElementById('phone').value = '{{ $customer->phone }}';
+            document.getElementById('birth_day').value = '{{ $customer->birth_day }}';
+            document.getElementById('birth_month').value = '{{ $customer->birth_month }}';
+            document.getElementById('instagram').value = '{{ $customer->instagram }}';
+
             var inputs = document.querySelectorAll('.form-control');
             inputs.forEach(function(input) {
                 input.disabled = true;
@@ -1759,6 +1804,12 @@
                 input.disabled = !input.disabled;
             });
 
+            var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(function(checkbox) {
+                checkbox.checked = false;
+                checkbox.disabled = false;
+            });
+
             // Ganti tombol "Ubah Password" dengan tombol "Save" dan "Cancel"
             var buttonContainer = document.querySelector('.text-right-2');
             buttonContainer.innerHTML = `
@@ -1768,24 +1819,67 @@
         }
 
         function savePassword() {
-            // Simpan perubahan Password (tambahkan logika penyimpanan di sini)
-            console.log('Password saved');
-            // Kembalikan tombol "Ubah Password" dan nonaktifkan input
-            resetPasswordForm();
+            var currentPassword = document.getElementById('currentPassword').value;
+            var newPassword = document.getElementById('newPassword').value;
+            var confirmNewPassword = document.getElementById('confirmNewPassword').value;
+
+            // Periksa apakah password baru dan re-type password baru sesuai
+            if (newPassword !== confirmNewPassword) {
+                alert('Password baru dan re-type password baru tidak cocok.');
+                return; // Hentikan eksekusi fungsi jika password tidak cocok
+            }
+
+            var formData = new FormData();
+            formData.append('currentPassword', currentPassword);
+            formData.append('newPassword', newPassword);
+            formData.append('confirmNewPassword', confirmNewPassword);
+
+            fetch('{{ route('customer.password') }}', {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    },
+                    body: formData,
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        window.location.href = '{{ route('profile') }}'; // Mengarahkan ke halaman profil
+                        alert('Password berhasil diubah');
+                    } else {
+                        window.location.href = '{{ route('profile') }}'; // Mengarahkan ke halaman profil
+                        alert(data.message); // Menampilkan pesan error jika gagal
+                    }
+                    resetPasswordForm();
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Terjadi kesalahan. Silakan coba lagi.');
+                    resetPasswordForm();
+                });
         }
 
+
+
         function cancelPassword() {
-            // Batalkan perubahan dan kembalikan nilai asli
-            console.log('Password edit canceled');
-            // Kembalikan tombol "Ubah Password" dan nonaktifkan input
             resetPasswordForm();
         }
 
 
         function resetPasswordForm() {
+            document.getElementById('currentPassword').value = '';
+            document.getElementById('newPassword').value = '';
+            document.getElementById('confirmNewPassword').value = '';
+
             var inputs = document.querySelectorAll('.form-control');
             inputs.forEach(function(input) {
                 input.disabled = true;
+            });
+
+            var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(function(checkbox) {
+                checkbox.checked = false;
+                checkbox.disabled = true;
             });
 
             // Kembalikan tombol "Ubah Profile"
@@ -1793,6 +1887,36 @@
             buttonContainer.innerHTML = `
         <button class="btn btn-primary" onclick="ubahPassword()">Ubah Profile</button>
     `;
+        }
+
+        // -------------------------------------------------------------------------------------//
+        // Lihat Password //
+
+        function crPass() {
+            var x = document.getElementById("currentPassword");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+
+        function nPass() {
+            var x = document.getElementById("newPassword");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+
+        function cfnPass() {
+            var x = document.getElementById("confirmNewPassword");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
         }
     </script>
 @endsection

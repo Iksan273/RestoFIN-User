@@ -28,7 +28,7 @@
                 <div class="col-md-7">
                     <div class="content">
                         <div class="wrapper">
-                            <a href="{{route('index')}}">
+                            <a href="{{ route('index') }}">
                                 <img src="{{ asset('resto/logo.png') }}" alt=""
                                     style="width: auto; height: auto; max-width: 140px; max-height: 35px;">
                             </a><br><br>
@@ -46,16 +46,21 @@
                                     <input type="email" name="email" class="form-control" placeholder="Email" required>
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" name="password" class="form-control" placeholder="Password"
+                                    <input id="pass" type="password" name="password" class="form-control" placeholder="Password"
                                         required>
+                                    <input type="checkbox" onclick="pass()" style="margin-top: 10px;"> Show
+                                    Password
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" name="password_confirmation" class="form-control"
+                                    <input id="re-pass" type="password" name="password_confirmation" class="form-control"
                                         placeholder="Re-type Password" required>
+                                    <input type="checkbox" onclick="rePass()" style="margin-top: 10px;"> Show
+                                    Password
                                 </div>
                                 <button type="submit" class="btn_1 mt-2 mb-4">Daftar</button>
-                                <p>Sudah menjadi Membership? <a href="{{route('login')}}" class="login-member">Login</a></p>
-                                <a href="{{route('menu-order')}}" class="guest">Masuk sebagai Guest</a>
+                                <p>Sudah menjadi Membership? <a href="{{ route('login') }}" class="login-member">Login</a>
+                                </p>
+                                <a href="{{ route('menu-order') }}" class="guest">Masuk sebagai Guest</a>
                             </form>
                         </div>
                     </div>
@@ -68,7 +73,8 @@
 
     <!-- Style -->
     <style>
-        .login-member, .guest {
+        .login-member,
+        .guest {
             display: block;
             margin-top: 5px;
             color: #007bff;
@@ -76,7 +82,8 @@
             text-decoration: none;
         }
 
-        .login-member:hover, .guest:hover {
+        .login-member:hover,
+        .guest:hover {
             text-decoration: underline;
         }
     </style>
@@ -89,7 +96,7 @@
             var backToLogin = document.querySelector('.back-to-login');
 
             backToLogin.addEventListener('click', function() {
-                window.location.href = '{{route('login')}}'; // Arahkan kembali ke halaman login
+                window.location.href = '{{ route('login') }}'; // Arahkan kembali ke halaman login
             });
         });
 
@@ -103,6 +110,25 @@
                 event.preventDefault(); // Mencegah form submit
             }
         });
+
+        // Password //
+        function pass() {
+            var x = document.getElementById("pass");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+
+        function rePass() {
+            var x = document.getElementById("re-pass");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
     </script>
     <!-- /script -->
 @endsection

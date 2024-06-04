@@ -118,7 +118,7 @@ class RegisterController extends Controller
             'lastname' => $validatedData['last_name'],
             'email' => $validatedData['email'],
             'password' => Hash::make($validatedData['password']),
-            'phone' => 0, // Atur phone menjadi null
+            'phone' => null, // Atur phone menjadi null
             'membership' => 1, // Atur membership menjadi 1
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),

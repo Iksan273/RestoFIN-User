@@ -26,6 +26,9 @@ class User extends Authenticatable
         'membership',
         'email_verify',
         'phone_verify',
+        'birth_day',
+        'birth_month',
+        'instagram'
     ];
 
     /**
