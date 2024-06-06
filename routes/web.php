@@ -5,6 +5,8 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\TableController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -88,9 +90,8 @@ Route::get('/checkout', function () {
 
 
 // Halaman Reservasi
-Route::get('/reservation', function () {
-    return view('reservation');
-});
+Route::get('/reservation', [ReservationController::class, 'index'])->name('reservation');
+Route::post('/new-reservation', [ReservationController::class, 'store'])->name('reservation.store');
 
 
 // Halaman Promo
@@ -118,9 +119,8 @@ Route::get('/gallery', function () {
 
 
 // Halaman Review
-Route::get('/review', function () {
-    return view('review');
-});
+Route::get('/review', [ReviewController::class, 'index'])->name('review');
+Route::post('/new-review', [ReviewController::class, 'store'])->name('review.store');
 
 
 // Halaman Ganti Password

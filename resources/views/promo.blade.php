@@ -118,8 +118,12 @@
                     <div class="modal-body">
                         <p>Anda dapat melakukan reservasi atau melakukan pemesanan makanan sekarang.</p>
                         <div class="text-center">
-                            <a href="/reservation" class="btn_1">Reservasi</a>
-                            <a href="{{ route('login') }}" class="btn_1">Pesan Makanan</a>
+                            <a href="{{ route('reservation') }}" class="btn_1">Reservasi</a>
+                            @if (!Auth::user())
+                                <a href="{{ route('login') }}" class="btn_1">Pesan Makanan</a>
+                            @else
+                                <a href="{{ route('menu-order') }}" class="btn_1">Pesan Makanan</a>
+                            @endif
                         </div>
                     </div>
                 </div>

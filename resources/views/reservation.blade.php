@@ -32,7 +32,8 @@
                             <p class="reservasi-link">atau Hubungi Kami 08xxxxxx</p>
                         </div>
                         <div id="wizard_container">
-                            <form id="wrapped" method="POST">
+                            <form id="wrapped" method="POST" action="{{ route('reservation.store') }}">
+                                @csrf
                                 <input id="website" name="website" type="text" value="">
                                 <!-- Leave for security protection, read docs for details -->
                                 <div id="middle-wizard">
@@ -316,7 +317,8 @@
                                 <div id="bottom-wizard">
                                     <button type="button" name="backward" class="backward">Sebelumnya</button>
                                     <button type="button" name="forward" class="forward">Berikutnya</button>
-                                    <button type="submit" name="process" class="submit">Kirim</button>
+                                    <button type="button" name="process" class="submit" id="submit-button"
+                                        onclick="kirim()">Kirim</button>
                                 </div>
                                 <!-- /bottom-wizard -->
                             </form>
@@ -384,6 +386,105 @@
         document.querySelector('.reservasi-link').onclick = function() {
             window.location.href = 'https://example.com'; // Ganti URL ini dengan URL tujuan Anda
         };
+
+
+        function kirim() {
+            var date = document.getElementById('datepicker_field').value;
+            var time = document.querySelector('input[name="time"]:checked').value;
+
+            // Ensure the time has ':00' appended if necessary
+            if (!time.includes(':')) {
+                time += ':00';
+            }
+
+            // Log the values to debug
+            console.log('Date:', date);
+            console.log('Time:', time);
+
+            // Assuming datepicker_value is in the format MM/DD/YYYY
+            var dateParts = date.split('/');
+            if (dateParts.length !== 3) {
+                alert('Invalid date format. Please select a valid date.');
+                return;
+            }
+
+            var month = parseInt(dateParts[0]);
+            var day = parseInt(dateParts[1]);
+            var yearPart = dateParts[2];
+
+            // Handle double year
+            var year = yearPart.length > 4 ? yearPart.slice(0, 4) : yearPart;
+
+            // Log the parsed date parts
+            console.log('Parsed Date Parts:', {
+                year,
+                month,
+                day
+            });
+
+            // Combine date and time parts to create a Date object
+            var dateTimeStr = `${year}-${('0' + month).slice(-2)}-${('0' + day).slice(-2)}T${time}`;
+            console.log('DateTime String:', dateTimeStr);
+
+            var dateTime = new Date(dateTimeStr);
+            if (isNaN(dateTime.getTime())) {
+                alert('Invalid date or time format. Please select a valid date and time.');
+                return;
+            }
+
+            // Log the Date object
+            console.log('DateTime Object:', dateTime);
+
+            // Format the date to Y-m-d H:i:s
+            var formattedDateTime = dateTime.getFullYear() + '-' +
+                ('0' + (dateTime.getMonth() + 1)).slice(-2) + '-' +
+                ('0' + dateTime.getDate()).slice(-2) + ' ' +
+                ('0' + dateTime.getHours()).slice(-2) + ':' +
+                ('0' + dateTime.getMinutes()).slice(-2) + ':' +
+                ('0' + dateTime.getSeconds()).slice(-2);
+
+            console.log('Formatted DateTime:', formattedDateTime);
+
+            let hiddenInput = document.createElement('input');
+            hiddenInput.type = 'hidden';
+            hiddenInput.name = 'reservation_date';
+            hiddenInput.value = formattedDateTime;
+
+            document.getElementById('wrapped').appendChild(hiddenInput);
+
+            var formData = new FormData(document.getElementById('wrapped'));
+
+            fetch('{{ route('reservation.store') }}', {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    },
+                    body: formData,
+                })
+                .then(response => {
+                    console.log(response); // Log the raw response
+                    const contentType = response.headers.get('content-type');
+                    if (contentType && contentType.includes('application/json')) {
+                        return response.json();
+                    } else {
+                        return response.text().then(text => {
+                            throw new Error(text);
+                        });
+                    }
+                })
+                .then(data => {
+                    if (data.success) {
+                        alert('Reservasi berhasil disimpan');
+                        window.location.href = '{{ route('reservation') }}';
+                    } else {
+                        alert(data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Terjadi kesalahan. Silakan coba lagi.');
+                });
+        }
     </script>
     <!-- /script -->
 @endsection

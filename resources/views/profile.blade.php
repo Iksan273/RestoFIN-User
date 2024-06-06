@@ -17,15 +17,14 @@
                                 <h5>Email</h5>
                             </div>
                             <a href="#points" id="pointButton" class="btn_1 full-width mb_5 icon-points"
-                                style="margin-top: 20px" onclick="handleClick(this)">500
-                                Points</a>
+                                style="margin-top: 20px" onclick="handleClick(this)">{{ $customer->point }} Points</a>
                             <a href="#struk-pembelian-online" id="strukButton" class="btn_1 full-width mb_5 icon-online"
                                 style="margin-top: 20px" onclick="handleClick(this)">Struk Pembelian Online
                             </a>
                         </div>
                         <!-- /head -->
                         <div class="main">
-                            <p class="navigation-text">------------ Akun Member ------------</p>
+                            <p class="navigation-text">----------- Akun Member -----------</p>
                             <a href="#user-profile" id="akunSayaButton" class="btn_1 full-width mb_5 icon-account actived"
                                 onclick="handleClick(this)">Akun Member Saya</a>
                             <a href="#change-password" id="passwordButton" class="btn_1 full-width mb_5 icon-password"
@@ -37,7 +36,7 @@
                                 onclick="handleClick(this)">Transaksi Saya</a>
                         </div>
                         <div class="main" style="margin-top: -30px;">
-                            <p class="navigation-text">--------------- Navigasi --------------</p>
+                            <p class="navigation-text">-------------- Navigasi -------------</p>
                             <a href="{{ route('index') }}" class="btn_1 full-width mb_5 icon-home">Beranda</a>
                             <a href="{{ route('list-menu') }}" class="btn_1 full-width mb_5 icon-menu">Daftar Menu</a>
                             <a href="/promo" class="btn_1 full-width mb_5 icon-promo">Promo</a>
@@ -49,7 +48,7 @@
                             <a href="/information" class="btn_1 full-width mb_5 icon-contact">Informasi & Kontak</a>
                         </div>
                         <div class="main" style="margin-top: -30px;">
-                            <p class="navigation-text">---------------- Aksi ----------------</p>
+                            <p class="navigation-text">--------------- Aksi ---------------</p>
                             <a href="{{ route('logout') }}" class="btn_1 full-width mb_5"
                                 style="background-color: red; color: white;">Logout</a>
                         </div>
@@ -236,9 +235,15 @@
                         </div>
                         <!-- /head -->
                         <div class="main">
-                            <a href="#detail-point" class="btn_1 full-width mb_5 icon-points" style="margin-top: 20px"
-                                data-bs-toggle="modal" data-bs-target="#pointModal">100
-                                Points</a>
+                            @foreach ($memberPoints as $point)
+                                <a href="#detail-point" class="btn_1 full-width mb_5 icon-detail-points"
+                                    style="margin-top: 20px" data-bs-toggle="modal" data-bs-target="#pointModal"
+                                    data-point="{{ $point->point }}"
+                                    data-keterangan="{{ $point->keterangan ? $point->keterangan : 'Tidak ada keterangan' }}"
+                                    onclick="showPointDetail('{{ $point->keterangan ? $point->keterangan : 'Tidak ada keterangan' }}')">
+                                    {{ $point->point }} Points
+                                </a>
+                            @endforeach
                         </div>
                     </div>
 
@@ -367,7 +372,7 @@
                     <!-- Detail Promo -->
                     <div style="margin-bottom: 17px;">
                         <h2>Detail Point</h2>
-                        <p>Dapat karena hasil dari transaksi senilai Rp. 100.000</p>
+                        <p id="pointDetail"></p>
                     </div>
                     <!-- History Transaksi -->
                     <div style="margin-bottom: 17px;">
@@ -700,7 +705,8 @@
             line-height: 1;
         }
 
-        a.icon-points::before {
+        a.icon-points::before,
+        a.icon-detail-points::before {
             content: '\1F4B0';
             /* Unicode untuk ikon koin (💰) */
             position: absolute;
@@ -1917,6 +1923,11 @@
             } else {
                 x.type = "password";
             }
+        }
+
+        function showPointDetail(keterangan) {
+            var pointDetail = document.getElementById('pointDetail');
+            pointDetail.textContent = keterangan;
         }
     </script>
 @endsection

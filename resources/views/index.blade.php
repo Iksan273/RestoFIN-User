@@ -411,13 +411,12 @@
     </main>
 
     <!-- Modal Pesan -->
-    <div class="modal fade" id="reservationModal" tabindex="-1" aria-labelledby="reservationModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="reservationModal" tabindex="-1" aria-labelledby="reservationModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <div class="d-flex align-items-center">
-                        <a href="{{route('index')}}" class="d-flex align-items-center">
+                        <a href="{{ route('index') }}" class="d-flex align-items-center">
                             <b><span>Vin Autism Gallery Resto</span></b>
                         </a>
                     </div>
@@ -426,8 +425,12 @@
                 <div class="modal-body">
                     <p>Anda dapat melakukan reservasi atau melakukan pemesanan makanan sekarang.</p>
                     <div class="text-center">
-                        <a href="/reservation" class="btn_1">Reservasi</a>
-                        <a href="{{ route('login') }}" class="btn_1">Pesan Makanan</a>
+                        <a href="{{ route('reservation') }}" class="btn_1">Reservasi</a>
+                        @if (!Auth::user())
+                            <a href="{{ route('login') }}" class="btn_1">Pesan Makanan</a>
+                        @else
+                            <a href="{{ route('menu-order') }}" class="btn_1">Pesan Makanan</a>
+                        @endif
                     </div>
                 </div>
             </div>

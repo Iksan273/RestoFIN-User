@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MemberPoint;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -29,10 +30,17 @@ class UserController extends Controller
         }
 
         // Daftar bulan dalam bahasa Indonesia
-        $months = ['1 - Januari', '2 - Februari', '3 - Maret', '4 - April', '5 - Mei', '6 - Juni', '7 - Juli', '8 - Agustus', '9 - September', '10 - Oktober', '11 - November', '12 - Desember'];
+        $months = [
+            '1 - Januari', '2 - Februari', '3 - Maret', '4 - April',
+            '5 - Mei', '6 - Juni', '7 - Juli', '8 - Agustus',
+            '9 - September', '10 - Oktober', '11 - November', '12 - Desember'
+        ];
 
-        // Kirim data customer dan daftar bulan ke view
-        return view('profile', compact('customer', 'months'));
+        // Ambil daftar member_point yang terkait dengan customer
+        $memberPoints = MemberPoint::where('users_id', $customer->id)->get();
+
+        // Kirim data customer, daftar bulan, dan memberPoints ke view
+        return view('profile', compact('customer', 'months', 'memberPoints'));
     }
 
     public function update(Request $request)
@@ -61,7 +69,6 @@ class UserController extends Controller
             $user->firstname = $request->firstname;
             $user->lastname = $request->lastname;
             $user->email = $request->email;
-            $user->password = Hash::make($request->password);
             $user->phone = $request->phone;
             $user->birth_day = $request->birth_day;
             $user->birth_month = $request->birth_month;
@@ -87,7 +94,7 @@ class UserController extends Controller
         $user = User::where('email', $email)->first();
 
         // Validasi password saat ini
-        if (!\Illuminate\Support\Facades\Auth::attempt(['email' => $email, 'password' => $request->currentPassword])) {
+        if (!Auth::attempt(['email' => $email, 'password' => $request->currentPassword])) {
             return response()->json(['success' => false, 'message' => 'Password saat ini salah.'], 400);
         }
 

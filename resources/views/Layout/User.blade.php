@@ -145,12 +145,12 @@
                             <a href="/konversi-point" class="show-submenu">Struk Online</a>
                         </li>
                     @endcan
-                    <li><a href="/reservation" class="btn_top">Reservations</a></li>
+                    <li><a href="{{ route('reservation') }}" class="btn_top">Reservations</a></li>
                     <li><a href="/cart" class="btn_tc">Cart</a></li>
                     @if (!Auth::user())
-                        <li><a href="{{ route('login-2') }}" class="btn_top">Login</a></li>
+                        <li><a href="{{ route('login-2') }}" class="btn_top_pl">Login</a></li>
                     @else
-                        <li><a href="{{route('profile')}}" class="btn_top">Profile</a></li>
+                        <li><a href="{{route('profile')}}" class="btn_top_pl">Profile</a></li>
                         <li><a href="{{route('logout')}}" class="btn_tl">Log Out</a></li>
                     @endif
                 </ul>
