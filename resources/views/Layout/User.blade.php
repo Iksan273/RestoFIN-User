@@ -61,11 +61,11 @@
                 @if (!Auth::user())
                     <li><a href="{{ route('login-2') }}" class="profile_bt"></a></li>
                 @else
-                    <li><a href="/profile" class="profile_bt"></a></li>
+                    <li><a href="{{ route('profile') }}" class="profile_bt"></a></li>
                 @endif
                 <li>
                     <div class="dropdown dropdown-cart">
-                        <a href="/cart" class="cart_bt"><strong>2</strong></a>
+                        <a href="{{route('cart')}}" class="cart_bt"><strong>2</strong></a>
                         <div class="dropdown-menu">
                             <ul>
                                 <li>
@@ -96,7 +96,7 @@
                                 <div class="clearfix add_bottom_15"><strong>Pajak - 10%</strong><span>Rp. 10.000</span>
                                 </div>
                                 <div class="clearfix add_bottom_15"><strong>Total</strong><span>Rp. 110.000</span></div>
-                                <a href="/cart" class="btn_1 outline">View Cart</a><a href="/checkout"
+                                <a href="{{route('cart')}}" class="btn_1 outline">View Cart</a><a href="{{route('checkout')}}"
                                     class="btn_1 outline">Checkout</a>
                             </div>
                         </div>
@@ -124,17 +124,17 @@
                         <a href="{{ route('list-menu') }}">Daftar Menu</a>
                     </li>
                     <li>
-                        <a href="/promo" class="show-submenu">Promo</a>
+                        <a href="{{route('promo')}}" class="show-submenu">Promo</a>
                     </li>
                     <li>
-                        <a href="/gallery" class="show-submenu">Gallery</a>
+                        <a href="{{route('gallery')}}" class="show-submenu">Gallery</a>
                     </li>
                     <li class="submenu">
                         <a  class="show-submenu">About Us</a>
                         <ul>
-                            <li><a href="/information">Information & Contact</a></li>
-                            <li><a href="/carrer-history">Career & History</a></li>
-                            <li><a href="/review">Kritik & Saran</a></li>
+                            <li><a href="{{route('information')}}">Information & Contact</a></li>
+                            <li><a href="{{route('carrerhistory')}}">Career & History</a></li>
+                            <li><a href="{{ route('review') }}">Kritik & Saran</a></li>
                             <li><a
                                     href="https://www.google.co.id/maps/place/Vin+Autism+Gallery/@-7.2950762,112.6521202,17z/data=!4m8!3m7!1s0x2dd7fdc112922645:0xc953059a61c6938!8m2!3d-7.2950762!4d112.6546951!9m1!1b1!16s%2Fg%2F11jr53fzzx?entry=ttu">Review
                                     Google</a></li>
@@ -142,11 +142,11 @@
                     </li>
                     @can('customer')
                         <li>
-                            <a href="/konversi-point" class="show-submenu">Struk Online</a>
+                            <a href="{{route('struk')}}" class="show-submenu">Struk Online</a>
                         </li>
                     @endcan
                     <li><a href="{{ route('reservation') }}" class="btn_top">Reservations</a></li>
-                    <li><a href="/cart" class="btn_tc">Cart</a></li>
+                    <li><a href="{{route('cart')}}" class="btn_tc">Cart</a></li>
                     @if (!Auth::user())
                         <li><a href="{{ route('login-2') }}" class="btn_top_pl">Login</a></li>
                     @else
@@ -169,14 +169,14 @@
                 <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
                     <div class="footer_wp">
                         <i class="icon_pin_alt"></i>
-                        <h3>Address</h3>
-                        <p>97845 Baker st. 567<br>Los Angeles - US</p>
+                        <h3>Alamat Resto & Gallery</h3>
+                        <p>G Walk, Junction TL 6<br>Jl. Citraland Surabaya No.11, Sambikerep, Kec. Sambikerep, Surabaya, Jawa Timur 60217</p>
                     </div>
                 </div>
                 <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
                     <div class="footer_wp">
                         <i class="icon_tag_alt"></i>
-                        <h3>Reservations</h3>
+                        <h3>Reservasi</h3>
                         <p><a href="tel:009442323221">+94 423-23-221</a><br><a
                                 >reservations@Foores.com</a></p>
                     </div>
@@ -184,10 +184,9 @@
                 <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
                     <div class="footer_wp">
                         <i class="icon_clock_alt"></i>
-                        <h3>Opening Hours</h3>
+                        <h3>Jam Operasional</h3>
                         <ul>
-                            <li>Mon - Sat: 10am - 11pm</li>
-                            <li>Sunday: Closed</li>
+                            <li>Mon - Sat: 9am - 9pm</li>
                         </ul>
                     </div>
                 </div>

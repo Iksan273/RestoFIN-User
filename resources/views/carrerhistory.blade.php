@@ -3,7 +3,7 @@
 @section('content')
     <main>
 
-        <div class="hero_single inner_pages background-image" data-background="url(img/hero_general.jpg)">
+        <div class="hero_single inner_pages background-image" data-background="url({{ asset('resto/gallery7.jpg') }})">
             <div class="opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.6)">
                 <div class="container">
                     <div class="row justify-content-center">
@@ -34,7 +34,8 @@
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
                             labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
                             laboris nisi ut aliquip ex ea commodo consequat.</p>
-                        <p><img src="img/signature.png" width="140" height="50" alt="" class="mt-3"></p>
+                        <p><img src="{{ asset('resto/logo.png') }}" width="140" height="auto" alt=""
+                                class="mt-3"></p>
                     </div>
                 </div>
                 <!--/row -->
@@ -50,13 +51,14 @@
                         <div class="intro_txt" data-cue="slideInUp" data-delay="500">
                             <div class="main_title">
                                 <span><em></em></span>
-                                <h2>Why Choose Foore</h2>
+                                <h2>Kenapa memilih Vin Autism Gallery Resto</h2>
                             </div>
                             <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed imperdiet libero
                                 id nisi euismod, sed porta est consectetur deserunt.</p>
                             <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
                                 pariatur.</p>
-                            <p><a href="reservations.html" class="btn_1 mt-2">Reserve a table</a></p>
+                            <p><a href="#reserve" class="btn_1 add_top_30" data-bs-toggle="modal"
+                                    data-bs-target="#reservationModal">Pesan Makanan Sekarang</a></p>
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -98,7 +100,7 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
-                        <h3>What Our Clients Says</h3>
+                        <h3 style="color: black;">Apa kata Pembeli</h3>
                         <div class="carousel_testimonials owl-carousel owl-theme">
                             <div>
                                 <div class="box_overlay">
@@ -154,7 +156,7 @@
             <div class="container margin_120_100">
                 <div class="main_title center mb-5">
                     <span><em></em></span>
-                    <h2>Our Chefs and staff</h2>
+                    <h2>Staff Vin Autism Gallery Resto</h2>
                 </div>
                 <div id="staff" class="owl-carousel owl-theme">
                     <div class="item">
@@ -200,4 +202,33 @@
         <!--/pattern_2 -->
 
     </main>
+
+    <!-- Modal Pesan -->
+    <div class="modal fade" id="reservationModal" tabindex="-1" aria-labelledby="reservationModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="d-flex align-items-center">
+                        <a href="{{ route('index') }}" class="d-flex align-items-center">
+                            <b><span>Vin Autism Gallery Resto</span></b>
+                        </a>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Anda dapat melakukan reservasi atau melakukan pemesanan makanan sekarang.</p>
+                    <div class="text-center">
+                        <a href="{{ route('reservation') }}" class="btn_1">Reservasi</a>
+                        @if (!Auth::user())
+                            <a href="{{ route('login') }}" class="btn_1">Pesan Makanan</a>
+                        @else
+                            <a href="{{ route('menu-order') }}" class="btn_1">Pesan Makanan</a>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Modal Pesan -->
 @endsection

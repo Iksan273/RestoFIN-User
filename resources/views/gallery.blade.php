@@ -2,7 +2,7 @@
 
 @section('content')
     <main>
-        <div class="hero_single inner_pages background-image" data-background="url(img/hero_general.jpg)">
+        <div class="hero_single inner_pages background-image" data-background="url({{ asset('resto/gallery8.jpg') }})">
             <div class="opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.6)">
                 <div class="container">
                     <div class="row justify-content-center">
@@ -29,9 +29,9 @@
                         <li>
                             <div class="item">
                                 <div class="item-img" data-cue="slideInUp">
-                                    <img src="img/gallery/large/pic_1.jpg" alt="">
+                                    <img src="{{ asset('resto/gallery.jpeg') }}" alt="">
                                     <div class="content">
-                                        <a href="img/gallery/large/pic_1.jpg" title="Photo title"
+                                        <a href="{{ asset('resto/gallery.jpeg') }}" title="Photo title"
                                             data-effect="mfp-zoom-in"><i class="arrow_expand"></i></a>
                                     </div>
                                 </div>
@@ -40,9 +40,9 @@
                         <li>
                             <div class="item">
                                 <div class="item-img" data-cue="slideInUp">
-                                    <img src="img/gallery/large/pic_2.jpg" alt="">
+                                    <img src="{{ asset('resto/gallery2.jpeg') }}" alt="">
                                     <div class="content">
-                                        <a href="img/gallery/large/pic_2.jpg" title="Photo title"
+                                        <a href="{{ asset('resto/gallery2.jpeg') }}" title="Photo title"
                                             data-effect="mfp-zoom-in"><i class="arrow_expand"></i></a>
                                     </div>
                                 </div>
@@ -51,9 +51,9 @@
                         <li>
                             <div class="item">
                                 <div class="item-img" data-cue="slideInUp">
-                                    <img src="img/gallery/large/pic_3.jpg" alt="">
+                                    <img src="{{ asset('resto/gallery3.jpg') }}" alt="">
                                     <div class="content">
-                                        <a href="img/gallery/large/pic_3.jpg" title="Photo title"
+                                        <a href="{{ asset('resto/gallery3.jpg') }}" title="Photo title"
                                             data-effect="mfp-zoom-in"><i class="arrow_expand"></i></a>
                                     </div>
                                 </div>
@@ -62,9 +62,9 @@
                         <li>
                             <div class="item">
                                 <div class="item-img" data-cue="slideInUp">
-                                    <img src="img/gallery/large/pic_4.jpg" alt="">
+                                    <img src="{{ asset('resto/gallery4.jpg') }}" alt="">
                                     <div class="content">
-                                        <a href="img/gallery/large/pic_4.jpg" title="Photo title"
+                                        <a href="{{ asset('resto/gallery4.jpg') }}" title="Photo title"
                                             data-effect="mfp-zoom-in"><i class="arrow_expand"></i></a>
                                     </div>
                                 </div>
@@ -73,9 +73,9 @@
                         <li>
                             <div class="item">
                                 <div class="item-img" data-cue="slideInUp">
-                                    <img src="img/gallery/large/pic_5.jpg" alt="">
+                                    <img src="{{ asset('resto/gallery5.jpg') }}" alt="">
                                     <div class="content">
-                                        <a href="img/gallery/large/pic_5.jpg" title="Photo title"
+                                        <a href="{{ asset('resto/gallery5.jpg') }}" title="Photo title"
                                             data-effect="mfp-zoom-in"><i class="arrow_expand"></i></a>
                                     </div>
                                 </div>
@@ -84,9 +84,9 @@
                         <li>
                             <div class="item">
                                 <div class="item-img" data-cue="slideInUp">
-                                    <img src="img/gallery/large/pic_6.jpg" alt="">
+                                    <img src="{{ asset('resto/gallery6.jpg') }}" alt="">
                                     <div class="content">
-                                        <a href="img/gallery/large/pic_6.jpg" title="Photo title"
+                                        <a href="{{ asset('resto/gallery6.jpg') }}" title="Photo title"
                                             data-effect="mfp-zoom-in"><i class="arrow_expand"></i></a>
                                     </div>
                                 </div>
@@ -95,9 +95,9 @@
                         <li>
                             <div class="item">
                                 <div class="item-img" data-cue="slideInUp">
-                                    <img src="img/gallery/large/pic_7.jpg" alt="">
+                                    <img src="{{ asset('resto/gallery7.jpg') }}" alt="">
                                     <div class="content">
-                                        <a href="img/gallery/large/pic_7.jpg" title="Photo title"
+                                        <a href="{{ asset('resto/gallery7.jpg') }}" title="Photo title"
                                             data-effect="mfp-zoom-in"><i class="arrow_expand"></i></a>
                                     </div>
                                 </div>
@@ -106,9 +106,9 @@
                         <li>
                             <div class="item">
                                 <div class="item-img" data-cue="slideInUp">
-                                    <img src="img/gallery/large/pic_8.jpg" alt="">
+                                    <img src="{{ asset('resto/gallery8.jpg') }}" alt="">
                                     <div class="content">
-                                        <a href="img/gallery/large/pic_8.jpg" title="Photo title"
+                                        <a href="{{ asset('resto/gallery8.jpg') }}" title="Photo title"
                                             data-effect="mfp-zoom-in"><i class="arrow_expand"></i></a>
                                     </div>
                                 </div>
@@ -132,20 +132,9 @@
                     <li>
                         <div class="item">
                             <div class="item-img" data-cue="slideInUp">
-                                <img src="img/gallery/large/pic_4.jpg" alt="" />
+                                <img src="{{ asset('resto/logo.png') }}" alt="" />
                                 <div class="content">
-                                    <a href="https://vimeo.com/45830194" class="video" title="Video Vimeo"><i
-                                            class="arrow_expand"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="item">
-                            <div class="item-img" data-cue="slideInUp">
-                                <img src="img/gallery/large/pic_1.jpg" alt="" />
-                                <div class="content">
-                                    <a href="https://www.youtube.com/watch?v=Zz5cu72Gv5Y" class="video"
+                                    <a href="https://www.youtube.com/watch?v=Gj1PAk9uEzE" class="video"
                                         title="Video Youtube"><i class="arrow_expand"></i></a>
                                 </div>
                             </div>
@@ -154,10 +143,21 @@
                     <li>
                         <div class="item">
                             <div class="item-img" data-cue="slideInUp">
-                                <img src="img/gallery/large/pic_3.jpg" alt="" />
+                                <img src="{{ asset('resto/logo.png') }}" alt="" />
                                 <div class="content">
-                                    <a href="https://vimeo.com/45830194" class="video" title="Video Vimeo"><i
-                                            class="arrow_expand"></i></a>
+                                    <a href="https://www.youtube.com/watch?v=Gj1PAk9uEzE" class="video"
+                                        title="Video Youtube"><i class="arrow_expand"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item">
+                            <div class="item-img" data-cue="slideInUp">
+                                <img src="{{ asset('resto/logo.png') }}" alt="" />
+                                <div class="content">
+                                    <a href="https://www.youtube.com/watch?v=Gj1PAk9uEzE" class="video"
+                                        title="Video Youtube"><i class="arrow_expand"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -168,4 +168,26 @@
         </div>
         <!-- /container -->
     </main>
+
+    <style>
+        .item-img img {
+            max-width: 100%;
+            height: auto;
+            width: 100%;
+            height: 200px;
+            /* Atur tinggi gambar sesuai kebutuhan */
+            object-fit: cover;
+            /* Memastikan gambar mengisi area dengan proporsi yang tepat */
+        }
+
+        .item {
+            margin: 10px;
+        }
+
+        @media (max-width: 767px) {
+            .item {
+                margin-bottom: 20px;
+            }
+        }
+    </style>
 @endsection

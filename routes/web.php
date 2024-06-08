@@ -3,10 +3,17 @@
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\CarrerHistoryController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InformationController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\PromoController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\StrukOnlineController;
 use App\Http\Controllers\TableController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -78,15 +85,11 @@ Route::get('/list-menu', [MenuController::class, 'menulist'])->name('list-menu')
 
 
 // Halaman Cart
-Route::get('/cart', function () {
-    return view('cart');
-});
+Route::get('/cart', [CartController::class, 'index'])->name('cart');
 
 
 // Halaman Checkout
-Route::get('/checkout', function () {
-    return view('checkout');
-});
+Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
 
 
 // Halaman Reservasi
@@ -95,27 +98,19 @@ Route::post('/new-reservation', [ReservationController::class, 'store'])->name('
 
 
 // Halaman Promo
-Route::get('/promo', function () {
-    return view('promo');
-});
+Route::get('/promo', [PromoController::class, 'index'])->name('promo');
 
 
 // Halaman Information & Contact
-Route::get('/information', function () {
-    return view('information');
-});
+Route::get('/information', [InformationController::class, 'index'])->name('information');
 
 
 // Halaman Carrer & History
-Route::get('/carrer-history', function () {
-    return view('carrerhistory');
-});
+Route::get('/carrerhistory', [CarrerHistoryController::class, 'index'])->name('carrerhistory');
 
 
 // Halaman Gallery Makanan
-Route::get('/gallery', function () {
-    return view('gallery');
-});
+Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery');
 
 
 // Halaman Review
@@ -130,9 +125,8 @@ Route::get('/change-password', function () {
 
 Route::middleware(['can:customer'])->group(function () {
     // Halaman Struk Online
-    Route::get('/konversi-point', function () {
-        return view('strukonline');
-    });
+    Route::get('/konversi-point', [StrukOnlineController::class, 'index'])->name('struk');
+    Route::post('/new-struk', [StrukOnlineController::class, 'store'])->name('struk.store');
 
 
     // Halaman Profile

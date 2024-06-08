@@ -3,7 +3,7 @@
 @section('content')
     <main>
 
-        <div class="hero_single inner_pages background-image" data-background="url(img/hero_menu.jpg)">
+        <div class="hero_single inner_pages background-image" data-background="url({{ asset('resto/gallery4.jpg') }})">
             <div class="opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.6)">
                 <div class="container">
                     <div class="row justify-content-center">
@@ -21,26 +21,31 @@
         </div>
         <!-- /hero_single -->
 
-        <div class="pattern_2">
-            <div class="container margin_60_40" data-cues="slideInUp">
-                <div class="banner lazy" style="background-image: url('img/banner_bg.jpg');">
-                    <div class="wrapper d-flex align-items-center justify-content-between opacity-mask">
-                        <div>
-                            <small>Special Offer</small>
-                            <h3>Burgher Menu $18 only</h3>
-                            <p>Hamburgher, Chips, Mix Sausages, Beer, Muffin</p>
-                            <a href="#" class="btn_1" data-bs-toggle="modal" data-bs-target="#detailPromo">Lihat
-                                Detail Voucher</a>
+        @foreach ($promo as $p)
+            <div class="pattern_2">
+                <div class="container margin_60_40" data-cues="slideInUp">
+                    <div class="banner lazy" style="background-image: url({{ asset('' . $p->image_url . '') }});">
+                        <div class="wrapper d-flex align-items-center justify-content-between opacity-mask">
+                            <div>
+                                <small>Tawaran Spesial</small>
+                                <h3>{{ $p->title }}</h3>
+                                <p>{{ $p->description }}</p>
+                                <br>
+                                <p>Promo Dimulai : {{ $p->start_date }}</p>
+                                <p>Promo Berakhir : {{ $p->end_date }}</p>
+                                <p>Point Digunakan : {{ $p->point_digunakan }}</p>
+                                <p>Minimal Point : {{ $p->point_dibutuhkan }}</p>
+                            </div>
+                            <figure class="d-none d-lg-block"><img src="{{asset('resto/logo.png')}}" alt="" width="200"
+                                    height="200" class="img-fluid"></figure>
                         </div>
-                        <figure class="d-none d-lg-block"><img src="img/banner.svg" alt="" width="200"
-                                height="200" class="img-fluid"></figure>
+                        <!-- /wrapper -->
                     </div>
-                    <!-- /wrapper -->
+                    <!-- /banner -->
                 </div>
-                <!-- /banner -->
+                <!-- /container -->
             </div>
-            <!-- /container -->
-        </div>
+        @endforeach
         <!-- /pattern_2 -->
 
         <!-- style -->
@@ -71,36 +76,16 @@
                 background-color: #f5f5f5;
                 border: 1px solid #ddd;
             }
+
+            p {
+                margin-bottom: 0px;
+            }
         </style>
         <!-- /style -->
 
         <!-- script -->
         <script></script>
         <!-- /script -->
-
-        <!-- Modal Promo -->
-        <div class="modal fade" id="detailPromo" tabindex="-1" aria-labelledby="detailPromoLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div class="d-flex align-items-center">
-                            <a href="{{ route('index') }}" class="d-flex align-items-center">
-                                <b><span>Detail Voucher</span></b>
-                            </a>
-                        </div>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <p>Anda dapat melakukan reservasi atau melakukan pemesanan makanan sekarang.</p>
-                        {{-- <div class="text-center">
-                            <a href="/reservation" class="btn_1">Reservasi</a>
-                            <a href="{{ route('nomor-meja') }}" class="btn_1">Pesan Makanan</a>
-                        </div> --}}
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- /Modal Promo -->
 
         <!-- Modal Pesan -->
         <div class="modal fade" id="reservationModal" tabindex="-1" aria-labelledby="reservationModalLabel"

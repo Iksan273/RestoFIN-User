@@ -39,13 +39,13 @@
                             <p class="navigation-text">-------------- Navigasi -------------</p>
                             <a href="{{ route('index') }}" class="btn_1 full-width mb_5 icon-home">Beranda</a>
                             <a href="{{ route('list-menu') }}" class="btn_1 full-width mb_5 icon-menu">Daftar Menu</a>
-                            <a href="/promo" class="btn_1 full-width mb_5 icon-promo">Promo</a>
-                            <a href="/gallery" class="btn_1 full-width mb_5 icon-gallery">Galeri Makanan</a>
-                            <a href="/review" class="btn_1 full-width mb_5 icon-review">Kritik & Saran</a>
+                            <a href="{{route('promo')}}" class="btn_1 full-width mb_5 icon-promo">Promo</a>
+                            <a href="{{route('gallery')}}" class="btn_1 full-width mb_5 icon-gallery">Galeri Makanan</a>
+                            <a href="{{route('review')}}" class="btn_1 full-width mb_5 icon-review">Kritik & Saran</a>
                             <a href="https://www.google.co.id/maps/place/Vin+Autism+Gallery/@-7.2950762,112.6521202,17z/data=!4m8!3m7!1s0x2dd7fdc112922645:0xc953059a61c6938!8m2!3d-7.2950762!4d112.6546951!9m1!1b1!16s%2Fg%2F11jr53fzzx?entry=ttu"
                                 class="btn_1 full-width mb_5 icon-maps">Review Google</a>
-                            <a href="/carrer" class="btn_1 full-width mb_5 icon-career">Sejarah & Karir</a>
-                            <a href="/information" class="btn_1 full-width mb_5 icon-contact">Informasi & Kontak</a>
+                            <a href="{{route('carrerhistory')}}" class="btn_1 full-width mb_5 icon-career">Sejarah & Karir</a>
+                            <a href="{{route('information')}}" class="btn_1 full-width mb_5 icon-contact">Informasi & Kontak</a>
                         </div>
                         <div class="main" style="margin-top: -30px;">
                             <p class="navigation-text">--------------- Aksi ---------------</p>
@@ -252,7 +252,7 @@
                         <div class="head">
                             <div class="title-2">
                                 <h3 class="back_btn_6">Pembelian Online</h3>
-                                <a href="/konversi-point" class="plus_icon"></a>
+                                <a href="{{route('struk')}}" class="plus_icon"></a>
                             </div>
                         </div>
                         <!-- /head -->

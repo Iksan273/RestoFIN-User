@@ -28,27 +28,27 @@ class ReviewController extends Controller
      */
     public function store(Request $request)
     {
-        // Validasi input
+        // Validate the request
         $validatedData = $request->validate([
-            'rating-input' => 'required|double',
+            'rating-input' => 'required|numeric', // Ensure numeric to accept doubles
             'name' => 'required|string|max:255',
             'title' => 'required|string|max:255',
             'description' => 'required|string',
         ]);
 
-        // Buat review baru
-        $review = new Review();
-        $review->rating = $validatedData['rating-input'];
+        // Convert the rating input to double
+        $rating = (double) $validatedData['rating-input'];
+
+        // Create a new review instance
+        $review = new Review;
+        $review->rating = $rating;
         $review->nama = $validatedData['name'];
         $review->title = $validatedData['title'];
         $review->description = $validatedData['description'];
+        $review->save();
 
-        // Simpan review
-        if ($review->save()) {
-            return response()->json(['success' => true, 'message' => 'Review berhasil disimpan']);
-        } else {
-            return response()->json(['success' => false, 'message' => 'Terjadi kesalahan saat menyimpan review'], 500);
-        }
+        // Return a success response
+        return response()->json(['success' => true, 'message' => 'Review berhasil dikirim']);
     }
 
     /**
