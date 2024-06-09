@@ -9,7 +9,9 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class RegisterController extends Controller
 {
@@ -129,49 +131,55 @@ class RegisterController extends Controller
 
     public function register2(Request $request)
     {
-        // Validasi data yang diterima dari formulir
-        $validatedData = $request->validate([
-            'first_name' => ['required', 'string', 'max:255'],
-            'last_name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
+        try {
+            // Validasi data yang diterima dari formulir
+            $validatedData = $request->validate([
+                'first_name' => ['required', 'string', 'max:255'],
+                'last_name' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'password' => ['required', 'string', 'min:8', 'confirmed'],
+            ]);
 
-        // Buat user baru
-        $user = User::create([
-            'firstname' => $validatedData['first_name'],
-            'lastname' => $validatedData['last_name'],
-            'email' => $validatedData['email'],
-            'password' => Hash::make($validatedData['password']),
-            'phone' => null,
-            'point' => 0, // Inisialisasi poin menjadi 0 saat pembuatan akun
-            'membership' => 1,
-            'birth_day' => null,
-            'birth_month' => null,
-            'instagram' => null,
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
-            'email_verify' => 'Belum',
-            'phone_verify' => 'Belum',
-        ]);
+            // Buat user baru
+            $user = User::create([
+                'firstname' => $validatedData['first_name'],
+                'lastname' => $validatedData['last_name'],
+                'email' => $validatedData['email'],
+                'password' => Hash::make($validatedData['password']),
+                'phone' => null,
+                'point' => 0, // Inisialisasi poin menjadi 0 saat pembuatan akun
+                'membership' => 1,
+                'birth_day' => null,
+                'birth_month' => null,
+                'instagram' => null,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                'email_verify' => 'Belum',
+                'phone_verify' => 'Belum',
+            ]);
 
-        // Ambil user_id dari user yang baru dibuat
-        $userId = $user->id;
+            // Ambil user_id dari user yang baru dibuat
+            $userId = $user->id;
 
-        // Tambahkan entri baru di tabel member_point menggunakan user_id
-        $memberPoint = MemberPoint::create([
-            'users_id' => $userId,
-            'point' => 100.00, // Berikan 100 poin untuk pengguna baru
-            'keterangan' => 'Bergabung menjadi Member', // Keterangan untuk pemberian poin
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
-        ]);
+            // Tambahkan entri baru di tabel member_point menggunakan user_id
+            $memberPoint = MemberPoint::create([
+                'users_id' => $userId,
+                'point' => 100.00, // Berikan 100 poin untuk pengguna baru
+                'keterangan' => 'Bergabung menjadi Member', // Keterangan untuk pemberian poin
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ]);
 
-        // Tambahkan poin dari member_point ke tabel users
-        $user->point += $memberPoint->point;
-        $user->save();
+            // Tambahkan poin dari member_point ke tabel users
+            $user->point += $memberPoint->point;
+            $user->save();
 
-        return redirect()->route('login-2')->with('success', 'Registration successful! Please login.');
+            Log::info('Pendaftaran berhasil! Silakan login.');
+            return redirect()->route('login-2')->with('success', 'Registration successful! Please login.');
+        } catch (Exception $e) {
+            Log::error('Error registering user: ' . $e->getMessage());
+            return redirect()->route('register-2')->with('error', 'Registration failed! Please try again.');
+        }
     }
 
     public function showRegistrationForm()
