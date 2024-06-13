@@ -35,7 +35,7 @@
                             </a>
                             <h3>Selamat Datang</h3>
                             <p>Vin Autism Gallery Resto</p>
-                            <form id="loginForm" action="{{ route('login') }}" method="POST">
+                            <form id="loginForm" action="{{ route('login') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
                                     <input type="email" name="email" class="form-control" placeholder="Email" required>
@@ -43,8 +43,8 @@
                                         required>
                                     <input type="checkbox" onclick="pass()" style="margin-top: 10px;"> Show
                                     Password
-                                    @error('email_password')
-                                        <span class="text-danger">{{ $message }}</span>
+                                    @error('password')
+                                        <p><span class="text-danger">{{ $message }}</span></p>
                                     @enderror
                                     <a href="{{ route('lupa-password') }}" class="forgot-password">Lupa Password</a>
                                     <button type="submit" class="btn_1 mt-2 mb-4">Masuk</button>

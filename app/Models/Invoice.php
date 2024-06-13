@@ -5,17 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Recommendation extends Model
+class Invoice extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'menus_id',
-        'description',
+        'orders_id',
+        'invoice_number'
+
     ];
 
-    public function menu()
+    public function order()
     {
-        return $this->belongsTo(Menu::class, 'menus_id');
+        return $this->belongsTo(Order::class, 'orders_id');
     }
 }

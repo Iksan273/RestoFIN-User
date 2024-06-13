@@ -22,20 +22,25 @@
 
         <div class="pattern_2">
             <div class="container margin_60_40" data-cue="slideInUp">
-                <div class="banner lazy" data-bg="url(img/banner_bg_recommendations.jpg)">
+                <div class="banner lazy" data-bg="url(img/banner_bg.jpg)">
                     <div class="wrapper d-flex align-items-center justify-content-between opacity-mask"
-                        data-opacity-mask="rgba(0, 0, 0, 0.6)">
+                        data-opacity-mask="rgba(0, 0, 0, 0.5)">
                         <div>
-                            <small>Voucher Saat Ini</small>
-                            <h3>Mix and Match Menu $20 only</h3>
-                            <p>Pizza, Pasta, Salad, Wine, Dessert</p>
-                            <a href="reservations.html" class="btn_1">Lihat Detail Voucher</a>
-                            <br><br>
-                            <a href="reservations.html" class="btn_1">Lihat Voucher Lainnya</a>
+                            <small>Tawaran Spesial</small>
+                            <h3>{{ $promo->title }}</h3>
+                            <p style="margin-bottom: 0px;">{{ $promo->description }}</p>
+                            <br>
+                            <p style="margin-bottom: 0px;">Promo Dimulai : {{ $promo->start_date }}</p>
+                            <p style="margin-bottom: 0px;">Promo Berakhir : {{ $promo->end_date }}</p>
+                            <p style="margin-bottom: 0px;">Point Digunakan : {{ $promo->point_digunakan }}</p>
+                            <p style="margin-bottom: 0px;">Minimal Point : {{ $promo->point_dibutuhkan }}</p>
+                            <br>
+                            <a href="{{ route('promo') }}" class="btn_1">Lihat Voucher Lainnya</a>
                         </div>
-                        <figure class="d-none d-lg-block"><img src="img/banner.svg" alt="" width="200"
-                                height="200" class="img-fluid"></figure>
+                        <figure class="d-none d-lg-block"><img src="{{ asset('resto/logo.png') }}" alt=""
+                                width="200" height="200" class="img-fluid"></figure>
                     </div>
+                    <!-- /wrapper -->
                 </div>
                 <!-- Tombol untuk membuka modal -->
                 <div class="tabs_menu add_bottom_25">
@@ -55,8 +60,9 @@
                                 aria-labelledby="tab-{{ $categoryIndex }}">
                                 <div class="card-header" role="tab" id="heading-{{ $categoryIndex }}">
                                     <h5>
-                                        <a class="collapsed" data-bs-toggle="collapse" href="#collapse-{{ $categoryIndex }}"
-                                            aria-expanded="false" aria-controls="collapse-{{ $categoryIndex }}"
+                                        <a class="collapsed" data-bs-toggle="collapse"
+                                            href="#collapse-{{ $categoryIndex }}" aria-expanded="false"
+                                            aria-controls="collapse-{{ $categoryIndex }}"
                                             data-bs-parent="#accordion-{{ $categoryIndex }}">
                                             {{ $category->title }}
                                         </a>
@@ -91,8 +97,11 @@
                                                                 <a href="{{ asset('' . $menu->imageUrl . '.jpg') }}"
                                                                     title="{{ $menu->title }}" data-effect="mfp-zoom-in">
                                                                     <img src="{{ asset('' . $menu->imageUrl . '.jpg') }}"
-                                                                        data-src="{{ asset('' . $menu->imageUrl . '.jpg') }}"
+                                                                        data-src="https://resto.bemubaya.com/menu/images/1716189320.png"
                                                                         class="lazy" alt="">
+                                                                    {{-- <img src="{{ asset('' . $menu->imageUrl . '.jpg') }}"
+                                                                        data-src="{{ asset('' . $menu->imageUrl . '.jpg') }}"
+                                                                        class="lazy" alt=""> --}}
                                                                 </a>
                                                             </figure>
                                                             <div class="menu_title">
@@ -144,26 +153,31 @@
                                     </div> --}}
                                     <!-- /banner -->
                                     <div class="row magnific-gallery">
-                                        @if (isset($recommendedMenus) && count($recommendedMenus) > 0)
-                                            @foreach ($recommendedMenus as $menu)
-                                                <div class="col-lg-6" data-cue="slideInUp">
-                                                    <div class="menu_item order">
-                                                        <figure>
-                                                            <a href="{{ asset('' . $menu->imageUrl . '.jpg') }}"
-                                                                title="{{ $menu->title }}" data-effect="mfp-zoom-in">
-                                                                <img src="{{ asset('' . $menu->imageUrl . '.jpg') }}"
-                                                                    data-src="{{ asset('' . $menu->imageUrl . '.jpg') }}"
-                                                                    class="lazy" alt="">
-                                                            </a>
-                                                        </figure>
-                                                        <div class="menu_title">
-                                                            <h3>{{ $menu->title }}</h3>
-                                                            <em>${{ $menu->price }}</em>
+                                        @if (isset($recmenu) && $recmenu->isNotEmpty())
+                                            @foreach ($recmenu as $menuGroup)
+                                                @if ($menuGroup->isNotEmpty())
+                                                    @php
+                                                        $menu = $menuGroup->first()->menu; // Ambil menu pertama dari grup
+                                                    @endphp
+                                                    <div class="col-lg-6" data-cue="slideInUp">
+                                                        <div class="menu_item order">
+                                                            <figure>
+                                                                <a href="{{ asset('' . $menu->imageUrl . '.jpg') }}"
+                                                                    title="{{ $menu->title }}" data-effect="mfp-zoom-in">
+                                                                    <img src="{{ asset('' . $menu->imageUrl . '.jpg') }}"
+                                                                        data-src="{{ asset('' . $menu->imageUrl . '.jpg') }}"
+                                                                        class="lazy" alt="">
+                                                                </a>
+                                                            </figure>
+                                                            <div class="menu_title">
+                                                                <h3>{{ $menu->title }}</h3>
+                                                                <em>${{ $menu->price }}</em>
+                                                            </div>
+                                                            <p>{{ $menu->description }}</p>
+                                                            <a class="add_to_cart">Add To Cart</a>
                                                         </div>
-                                                        <p>{{ $menu->description }}</p>
-                                                        <a href="#0" class="add_to_cart">Add To Cart</a>
                                                     </div>
-                                                </div>
+                                                @endif
                                             @endforeach
                                         @else
                                             <p>No recommendations available at the moment.</p>
@@ -193,7 +207,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <div class="d-flex align-items-center">
-                        <a href="{{route('index')}}" class="d-flex align-items-center">
+                        <a href="{{ route('index') }}" class="d-flex align-items-center">
                             <img src="{{ asset('resto/logo.png') }}" alt=""
                                 style="width: auto; height: auto; max-width: 140px; max-height: 35px; margin-right: 5px;">
                             <b><span>Vin Autism Gallery Resto</span></b>

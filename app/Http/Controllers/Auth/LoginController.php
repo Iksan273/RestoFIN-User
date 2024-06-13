@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Exception;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class LoginController extends Controller
 {
@@ -58,41 +60,52 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        $credentials = $request->validate([
-            'email' => 'required',
-            'password' => 'required',
-        ]);
+        try {
+            $credentials = $request->validate([
+                'email' => 'required',
+                'password' => 'required',
+            ]);
 
-        if (auth()->attempt($credentials)) {
-            $user = auth()->user();
+            if (auth()->attempt($credentials)) {
+                $user = auth()->user();
 
-            if ($user) {
-                session(['email' => $user->email]);
-                return redirect()->route('menu-order')->with('success', 'LOGIN SUCCESS');
+                if ($user) {
+                    session(['email' => $user->email]);
+
+                    return redirect()->route('menu-order')->with('success', 'LOGIN SUCCESS');
+                }
             }
+
+            return redirect()->back()->withInput()->withErrors([
+                'password' => 'Email atau Password salah, silahkan coba lagi.',
+            ]);
+        } catch (Exception $e) {
+            return redirect()->route('login')->with('error', 'Login gagal! Silahkan coba lagi.');
         }
-        return redirect()->back()->withInput()->withErrors([
-            'email_password' => 'Email atau Password salah, silahkan coba lagi.',
-        ]);
     }
 
     public function login2(Request $request)
     {
-        $credentials = $request->validate([
-            'email' => 'required',
-            'password' => 'required',
-        ]);
+        try {
+            $credentials = $request->validate([
+                'email' => 'required',
+                'password' => 'required',
+            ]);
 
-        if (auth()->attempt($credentials)) {
-            $user = auth()->user();
+            if (auth()->attempt($credentials)) {
+                $user = auth()->user();
 
-            if ($user) {
-                session(['email' => $user->email]);
-                return redirect()->route('index')->with('success', 'LOGIN SUCCESS');
+                if ($user) {
+                    session(['email' => $user->email]);
+                    return redirect()->route('index')->with('success', 'LOGIN SUCCESS');
+                }
             }
+
+            return redirect()->back()->withInput()->withErrors([
+                'password' => 'Email atau Password salah, silahkan coba lagi.',
+            ]);
+        } catch (Exception $e) {
+            return redirect()->route('login-2')->with('error', 'Login gagal! Silahkan coba lagi.');
         }
-        return redirect()->back()->withInput()->withErrors([
-            'email_password' => 'Email atau Password salah, silahkan coba lagi.',
-        ]);
     }
 }

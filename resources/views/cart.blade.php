@@ -42,115 +42,40 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>
-                                <div class="thumb_cart">
-                                    <img src="img/menu_items/menu_items_placeholder.png" data-src="img/menu_items/1.jpg"
-                                        class="lazy" alt="Image">
-                                </div>
-                                <div class="item_container">
-                                    <span class="item_cart">Enchiladas</span>
-                                    <a class="remove_row" onclick="removeRow(this)"></a>
-                                </div>
-                            </td>
-                            <td>
-                                <strong>Rp. 50.000</strong>
-                            </td>
-                            <td>
-                                <div class="numbers-row">
-                                    <input type="text" value="1" id="quantity_1" class="qty2" name="quantity_1" readonly>
-                                    <div class="inc button_inc">+</div>
-                                    <div class="dec button_inc">-</div>
-                                </div>
-                            </td>
-                            <td>
-                                <strong>Rp. 50.000</strong>
-                            </td>
-                            {{-- <td class="options">
-                                <a href="#"><i class="ti-trash"></i></a>
-                            </td> --}}
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="thumb_cart">
-                                    <img src="img/menu_items/menu_items_placeholder.png" data-src="img/menu_items/2.jpg"
-                                        class="lazy" alt="Image">
-                                </div>
-                                <div class="item_container">
-                                    <span class="item_cart">Burrito</span>
-                                    <a class="remove_row" onclick="removeRow(this)"></a>
-                                </div>
-                            </td>
-                            <td>
-                                <strong>Rp. 75.000</strong>
-                            </td>
-                            <td>
-                                <div class="numbers-row">
-                                    <input type="text" value="1" id="quantity_2" class="qty2" name="quantity_2" readonly>
-                                    <div class="inc button_inc">+</div>
-                                    <div class="dec button_inc">-</div>
-                                </div>
-                            </td>
-                            <td>
-                                <strong>Rp. 75.000</strong>
-                            </td>
-                            {{-- <td class="options">
-                                <a href="#"><i class="ti-trash"></i></a>
-                            </td> --}}
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="thumb_cart">
-                                    <img src="img/menu_items/menu_items_placeholder.png" data-src="img/menu_items/3.jpg"
-                                        class="lazy" alt="Image">
-                                </div>
-                                <div class="item_container">
-                                    <span class="item_cart">Chicken</span>
-                                    <a class="remove_row" onclick="removeRow(this)"></a>
-                                </div>
-                            </td>
-                            <td>
-                                <strong>Rp. 100.500</strong>
-                            </td>
-                            <td>
-                                <div class="numbers-row">
-                                    <input type="text" value="1" id="quantity_3" class="qty2" name="quantity_3" readonly>
-                                    <div class="inc button_inc">+</div>
-                                    <div class="dec button_inc">-</div>
-                                </div>
-                            </td>
-                            <td>
-                                <strong>Rp. 100.500</strong>
-                            </td>
-                            {{-- <td class="options">
-                                <a href="#"><i class="ti-trash"></i></a>
-                            </td> --}}
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="thumb_cart">
-                                    <img src="img/menu_items/menu_items_placeholder.png" data-src="img/menu_items/3.jpg"
-                                        class="lazy" alt="Image">
-                                </div>
-                                <div class="item_container">
-                                    <span class="item_cart">Pork Steak</span>
-                                    <a class="remove_row" onclick="removeRow(this)"></a>
-                                </div>
-                            </td>
-                            <td>
-                                <strong>Rp. 350.000</strong>
-                            </td>
-                            <td>
-                                <div class="numbers-row">
-                                    <input type="text" value="1" id="quantity_4" class="qty2" name="quantity_4" readonly>
-                                    <div class="inc button_inc">+</div>
-                                    <div class="dec button_inc">-</div>
-                                </div>
-                            </td>
-                            <td>
-                                <strong>Rp. 350.000</strong>
-                            </td>
-                        </tr>
+                        @if (isset($cart) && count($cart) > 0)
+                            @foreach ($cart as $id => $item)
+                                <tr data-id="{{ $id }}">
+                                    <td>
+                                        <div class="thumb_cart">
+                                            <img src="{{ asset('img/menu_items/' . $item['imageUrl'] . '.jpg') }}"
+                                                class="lazy" alt="Image">
+                                        </div>
+                                        <div class="item_container">
+                                            <span class="item_cart">{{ $item['title'] }}</span>
+                                            <a class="remove_row" onclick="removeRow2(this, '{{ $id }}')">
+                                                <i class="ti-trash"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <strong>Rp. {{ number_format($item['price'], 0, ',', '.') }}</strong>
+                                    </td>
+                                    <td>
+                                        <div class="numbers-row">
+                                            <input type="text" value="{{ $item['quantity'] }}" class="qty2"
+                                                name="quantity_{{ $id }}" readonly>
+                                            <div class="inc button_inc" onclick="incrementQuantity.call(this)">+</div>
+                                            <div class="dec button_inc" onclick="decrementQuantity.call(this)">-</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <strong>Rp.
+                                            {{ number_format($item['price'] * $item['quantity'], 0, ',', '.') }}</strong>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @else
+                        @endif
                     </tbody>
                 </table>
             </div>
@@ -172,7 +97,7 @@
                                 <span>Total</span><strong id="totalValue">Rp. 0</strong>
                             </li>
                         </ul>
-                        <a href="/checkout" class="btn_1 full-width cart">Proceed to Checkout</a>
+                        <a href="{{ route('checkout') }}" class="btn_1 full-width cart">Proceed to Checkout</a>
                     </div>
                 </div>
             </div>
@@ -240,19 +165,70 @@
             function incrementQuantity() {
                 var input = this.parentElement.querySelector('.qty2'); // Mendapatkan elemen input jumlah terkait
                 var currentValue = parseInt(input.value); // Mendapatkan nilai jumlah saat ini
-                input.value = currentValue + 1; // Menambahkan 1 ke jumlah saat ini
+                var newQuantity = currentValue + 1;
+                input.value = newQuantity; // Menambahkan 1 ke jumlah saat ini
+
                 updateSubtotal.call(input); // Memperbarui subtotal
                 updateTransaction();
+
+                var row = this.closest('tr');
+                var id = row.getAttribute('data-id'); // Mendapatkan ID dari atribut data-id
+
+                // Kirim permintaan AJAX ke server untuk mengupdate quantity di session
+                $.ajax({
+                    url: '{{ route('cart.update') }}',
+                    method: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        id: id,
+                        quantity: newQuantity
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            updateCartView(response.cart, response.cartItemCount);
+                        } else {
+                            alert(response.message);
+                        }
+                    },
+                    error: function() {
+                        alert('Terjadi kesalahan saat mengupdate quantity. Silakan coba lagi.');
+                    }
+                });
             }
 
-            // Fungsi untuk mengurangi jumlah barang
             function decrementQuantity() {
                 var input = this.parentElement.querySelector('.qty2'); // Mendapatkan elemen input jumlah terkait
                 var currentValue = parseInt(input.value); // Mendapatkan nilai jumlah saat ini
                 if (currentValue > 1) { // Pastikan jumlah tidak kurang dari 1
-                    input.value = currentValue - 1; // Mengurangi 1 dari jumlah saat ini
+                    var newQuantity = currentValue - 1;
+                    input.value = newQuantity; // Mengurangi 1 dari jumlah saat ini
+
                     updateSubtotal.call(input); // Memperbarui subtotal
                     updateTransaction();
+
+                    var row = this.closest('tr');
+                    var id = row.getAttribute('data-id'); // Mendapatkan ID dari atribut data-id
+
+                    // Kirim permintaan AJAX ke server untuk mengupdate quantity di session
+                    $.ajax({
+                        url: '{{ route('cart.update') }}',
+                        method: 'POST',
+                        data: {
+                            _token: '{{ csrf_token() }}',
+                            id: id,
+                            quantity: newQuantity
+                        },
+                        success: function(response) {
+                            if (response.success) {
+                                updateCartView(response.cart, response.cartItemCount);
+                            } else {
+                                alert(response.message);
+                            }
+                        },
+                        error: function() {
+                            alert('Terjadi kesalahan saat mengupdate quantity. Silakan coba lagi.');
+                        }
+                    });
                 }
             }
 
@@ -309,7 +285,7 @@
             updateTransaction();
         });
 
-        function removeRow(element) {
+        function removeRow2(element, id) {
             const row = element.closest('tr');
             const itemTotal = parseFloat(row.querySelector('td:nth-child(4) strong').innerText.replace('Rp. ', '').replace(
                 /\./g, '').replace(',', '.'));
@@ -320,10 +296,96 @@
 
             // Update transaksi
             transaksi = currentTransaction - itemTotal;
-            updateTransaction();
 
-            // Remove the row
-            row.parentNode.removeChild(row);
+            // Kirim permintaan AJAX ke server untuk menghapus item dari session
+            $.ajax({
+                url: '{{ route('cart.remove') }}',
+                method: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    id: id
+                },
+                success: function(response) {
+                    if (response.success) {
+                        // Hapus baris dari tabel
+                        row.parentNode.removeChild(row);
+                        updateTransaction();
+                        updateCartView(response.cart, response.cartItemCount);
+                    } else {
+                        alert(response.message);
+                    }
+                },
+                error: function() {
+                    alert('Terjadi kesalahan saat menghapus item dari keranjang. Silakan coba lagi.');
+                }
+            });
+        }
+
+        function updateCartView(cart, count) {
+            // Perbarui jumlah item di keranjang pada layout.user
+            var cartItemCount = count;
+            document.getElementById('cart-item-count').textContent = cartItemCount;
+
+            // Perbarui tampilan dropdown cart pada layout.user
+            var cartItemsList = document.getElementById('cart-items');
+            if (cartItemCount > 0) {
+                // Buat HTML baru berdasarkan item-item yang ada di keranjang
+                var newHTML = '';
+                var transaction = 0;
+
+                Object.keys(cart).forEach(function(id) {
+                    var item = cart[id];
+                    transaction += parseFloat(item.price) * parseInt(item.quantity);
+
+                    newHTML += '<li data-id="' + id + '">';
+                    newHTML += '<figure><img src="' + item.imageUrl +
+                        '" alt="" width="50" height="50" class="lazy"></figure>';
+                    newHTML += '<div class="item-details">';
+                    newHTML += '<strong>';
+                    newHTML += '<span>' + item.quantity + 'x</span>';
+                    newHTML += '<span class="title">' + item.title + '</span>';
+                    newHTML += '</strong>';
+                    newHTML += '<span class="price">Rp. ' + formatNumber(parseInt(parseFloat(item.price))) +
+                        '</span>';
+                    newHTML += '<a class="action" onclick="removeRow(this, \'' + id +
+                        '\')"><i class="icon_trash_alt"></i></a>';
+                    newHTML += '</div>'; // end .item-details
+                    newHTML += '</li>';
+                });
+
+                cartItemsList.innerHTML = newHTML;
+
+                // Hitung pajak
+                var tax = transaction * 0.10; // Pajak 10%
+
+                // Hitung total
+                var total = transaction + tax;
+
+                // Perbarui tampilan transaksi, pajak, dan total harga
+                document.getElementById('transaction').textContent = 'Rp. ' + formatNumber(transaction);
+                document.getElementById('tax').textContent = 'Rp. ' + formatNumber(tax);
+                document.getElementById('total').textContent = 'Rp. ' + formatNumber(total);
+            } else {
+                // Tampilkan pesan "Keranjang Kosong" jika tidak ada item di keranjang
+                cartItemsList.innerHTML =
+                `<li id="empty-cart">
+                    <div class="item-details">
+                        <strong>
+                            <span>Keranjang Kosong</span>
+                        </strong>
+                    </div>
+                </li>`;
+
+                // Jika keranjang kosong, set transaksi, pajak, dan total menjadi 0
+                document.getElementById('transaction').textContent = 'Rp. 0';
+                document.getElementById('tax').textContent = 'Rp. 0';
+                document.getElementById('total').textContent = 'Rp. 0';
+            }
+        }
+
+
+        function formatNumber(number) {
+            return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
         }
 
         function updateTransaction() {

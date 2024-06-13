@@ -1100,7 +1100,6 @@ ul#top_menu li a.profile_bt:before {
   border: none;
   min-width: 0;
   padding: 15px;
-  width: 260px;
   top: 100%;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
@@ -4006,7 +4005,6 @@ footer .copy {
   }
 }
 .pic h4 {
-  position: absolute;
   left: 95px;
   top: 18px;
   color: #fff;

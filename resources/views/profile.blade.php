@@ -3,18 +3,34 @@
 @section('content')
     <!-- main -->
     <main class="pattern_2" style="background-color: #CEBEA5">
-
         <div class="container margin_60_40">
+            @if (session('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('success') }}
+                    <button type="button" class="close-custom" onclick="this.parentElement.style.display='none';"
+                        aria-label="Close">
+                    </button>
+                </div>
+            @endif
+            @if (session('error'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ session('error') }}
+                    <button type="button" class="close-custom" onclick="this.parentElement.style.display='none';"
+                        aria-label="Close">
+                    </button>
+                </div>
+            @endif
+
             <div class="row justify-content-center">
                 <!-- /col -->
                 <div class="col-xl-4 col-lg-4" id="sidebar_fixed" style="margin-top: 20px">
                     <div class="box_booking box_booking_visible">
                         <div class="head" style="background-color: white">
                             <div class="name-cust" style="margin: 10px;">
-                                <h3>Nama User</h3>
+                                <h3>{{ $customer->firstname }} {{ $customer->lastname }}</h3>
                             </div>
                             <div class="email-cust" style="margin: 10px;">
-                                <h5>Email</h5>
+                                <h5>{{ $customer->email }}</h5>
                             </div>
                             <a href="#points" id="pointButton" class="btn_1 full-width mb_5 icon-points"
                                 style="margin-top: 20px" onclick="handleClick(this)">{{ $customer->point }} Points</a>
@@ -39,13 +55,15 @@
                             <p class="navigation-text">-------------- Navigasi -------------</p>
                             <a href="{{ route('index') }}" class="btn_1 full-width mb_5 icon-home">Beranda</a>
                             <a href="{{ route('list-menu') }}" class="btn_1 full-width mb_5 icon-menu">Daftar Menu</a>
-                            <a href="{{route('promo')}}" class="btn_1 full-width mb_5 icon-promo">Promo</a>
-                            <a href="{{route('gallery')}}" class="btn_1 full-width mb_5 icon-gallery">Galeri Makanan</a>
-                            <a href="{{route('review')}}" class="btn_1 full-width mb_5 icon-review">Kritik & Saran</a>
+                            <a href="{{ route('promo') }}" class="btn_1 full-width mb_5 icon-promo">Promo</a>
+                            <a href="{{ route('gallery') }}" class="btn_1 full-width mb_5 icon-gallery">Galeri Makanan</a>
+                            <a href="{{ route('review') }}" class="btn_1 full-width mb_5 icon-review">Kritik & Saran</a>
                             <a href="https://www.google.co.id/maps/place/Vin+Autism+Gallery/@-7.2950762,112.6521202,17z/data=!4m8!3m7!1s0x2dd7fdc112922645:0xc953059a61c6938!8m2!3d-7.2950762!4d112.6546951!9m1!1b1!16s%2Fg%2F11jr53fzzx?entry=ttu"
                                 class="btn_1 full-width mb_5 icon-maps">Review Google</a>
-                            <a href="{{route('carrerhistory')}}" class="btn_1 full-width mb_5 icon-career">Sejarah & Karir</a>
-                            <a href="{{route('information')}}" class="btn_1 full-width mb_5 icon-contact">Informasi & Kontak</a>
+                            <a href="{{ route('carrerhistory') }}" class="btn_1 full-width mb_5 icon-career">Sejarah &
+                                Karir</a>
+                            <a href="{{ route('information') }}" class="btn_1 full-width mb_5 icon-contact">Informasi &
+                                Kontak</a>
                         </div>
                         <div class="main" style="margin-top: -30px;">
                             <p class="navigation-text">--------------- Aksi ---------------</p>
@@ -65,7 +83,7 @@
                             </div>
                         </div>
                         <!-- /head -->
-                        <form id="profileForm" method="POST" action="{{ route('customer.update') }}">
+                        <form id="profileForm" method="POST" action="{{ route('customer.update') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="main">
                                 <div class="row">
@@ -86,9 +104,9 @@
                                     <div class="col-md-6">
                                         <div class="form-group d-flex justify-content-between align-items-center">
                                             <label>Email Address</label>
-                                            <label><a href="#verifyemail" id="verifyEmailBtn" class="ml-auto disabled-link"
+                                            {{-- <label><a href="#verifyemail" id="verifyEmailBtn" class="ml-auto disabled-link"
                                                     data-bs-toggle="modal"
-                                                    data-bs-target="#verificationEmailModal">Verify</a></label>
+                                                    data-bs-target="#verificationEmailModal">Verify</a></label> --}}
                                         </div>
                                         <input id="email" name="email" class="form-control"
                                             value="{{ $customer->email }}" placeholder="Value Email" disabled>
@@ -96,9 +114,9 @@
                                     <div class="col-md-6">
                                         <div class="form-group d-flex justify-content-between align-items-center">
                                             <label>Phone</label>
-                                            <label><a href="#verifyphone" id="verifyPhoneBtn"
+                                            {{-- <label><a href="#verifyphone" id="verifyPhoneBtn"
                                                     class="ml-auto disabled-link" data-bs-toggle="modal"
-                                                    data-bs-target="#verificationPhoneModal">Verify</a></label>
+                                                    data-bs-target="#verificationPhoneModal">Verify</a></label> --}}
                                         </div>
                                         <input id="phone" name="phone" class="form-control"
                                             value="{{ $customer->phone }}"
@@ -161,7 +179,7 @@
                             </div>
                         </div>
                         <!-- /head -->
-                        <form id="passwordForm" method="POST" action="{{ route('customer.password') }}">
+                        <form id="passwordForm" method="POST" action="{{ route('customer.password') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="main">
                                 <div class="form-group">
@@ -184,6 +202,9 @@
                                         name="confirmNewPassword" placeholder="Re-type Password Baru" disabled>
                                     <input type="checkbox" onclick="cfnPass()" style="margin-top: 10px;" disabled> Show
                                     Password
+                                    <div id="error-message" style="color: black;">
+                                        <p style="margin-bottom: -10px;">Password Minimal 8 Karakter</p>
+                                    </div>
                                 </div>
                             </div>
                             <div class="text-right-2">
@@ -201,15 +222,24 @@
                             </div>
                         </div>
                         <!-- /head -->
-                        <div class="promo">
-                            <a href="#detail-promo" class="btn_2 full-width mb_5 btn-with-img" data-bs-toggle="modal"
-                                data-bs-target="#promoModal">
-                                <div class="img-container">
-                                    <img src="{{ asset('desain/1.jpg') }}" alt="Promo Image" width="150"
-                                        height="50">
-                                </div>
-                            </a>
-                        </div>
+                        @foreach ($promo as $p)
+                            <div class="promo">
+                                <a href="#detail-promo" class="btn_2 full-width mb_5 btn-with-img" data-bs-toggle="modal"
+                                    data-bs-target="#promoModal"
+                                    data-title="{{ $p->title ? $p->title : 'Tidak ada nama promo' }}"
+                                    data-start="{{ $p->start_date ? $p->start_date : 'Tidak ada tanggal mulai' }}"
+                                    data-end="{{ $p->end_date ? $p->end_date : 'Tidak ada tanggal berakhir' }}"
+                                    data-point_digunakan="{{ $p->point_digunakan ? $p->point_digunakan : 'Tidak ada poin digunakan' }}"
+                                    data-point_dibutuhkan="{{ $p->point_dibutuhkan ? $p->point_dibutuhkan : 'Tidak ada poin dibutuhkan' }}"
+                                    onclick="showPromoDetail('{{ $p->title ? $p->title : 'Tidak ada nama promo' }}', '{{ $p->start_date ? $p->start_date : 'Tidak ada tanggal mulai' }}', '{{ $p->end_date ? $p->end_date : 'Tidak ada tanggal berakhir' }}', '{{ $p->point_digunakan ? $p->point_digunakan : 'Tidak ada poin digunakan' }}', '{{ $p->point_dibutuhkan ? $p->point_dibutuhkan : 'Tidak ada poin dibutuhkan' }}')">
+                                    <div class="img-container">
+                                        <img src="{{ asset('promo/images/' . $p->image_url) }}" alt="Promo Image"
+                                            width="150" height="50">
+                                    </div>
+                                </a>
+                            </div>
+                        @endforeach
+
                     </div>
 
                     <!-- Transaksi Saya -->
@@ -252,13 +282,20 @@
                         <div class="head">
                             <div class="title-2">
                                 <h3 class="back_btn_6">Pembelian Online</h3>
-                                <a href="{{route('struk')}}" class="plus_icon"></a>
+                                <a href="{{ route('struk') }}" class="plus_icon"></a>
                             </div>
                         </div>
                         <!-- /head -->
                         <div class="main">
-                            <a href="#detail-struk" class="btn_1 full-width mb_5" style="margin-top: 20px"
-                                data-bs-toggle="modal" data-bs-target="#strukModal">30 Mei 2024</a>
+                            @foreach ($strukOnline as $so)
+                                <a href="#detail-struk" class="btn_1 full-width mb_5" style="margin-top: 20px"
+                                    data-bs-toggle="modal" data-bs-target="#strukModal"
+                                    data-file="{{ $so->file ? $so->file : 'Tidak ada file foto' }}"
+                                    data-tanggal="{{ $so->created_at ? $so->created_at : 'Tidak ada tanggal upload' }}"
+                                    onclick="showStrukDetail('{{ $so->created_at ? $so->created_at : 'Tidak ada tanggal upload' }}', '{{ $so->file ? $so->file : 'Tidak ada file foto' }}')">
+                                    {{ $so->created_at }}
+                                </a>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -344,10 +381,11 @@
                 <div class="modal-body">
                     <div style="margin-bottom: 17px;">
                         <h2>Detail Promo</h2>
-                        <p>Deskripsi : </p>
-                        <p>Syarat Ketentuan : </p>
-                        <p>Mulai : </p>
-                        <p>Berakhir : </p>
+                        <p><strong>Deskripsi :</strong> <span id="promoTitle"></span></p>
+                        <p><strong>Tanggal Mulai :</strong> <span id="promoStart"></span></p>
+                        <p><strong>Tanggal Berakhir :</strong> <span id="promoEnd"></span></p>
+                        <p><strong>Points Digunakan :</strong> <span id="promoPointDigunakan"></span></p>
+                        <p><strong>Minimal Point :</strong> <span id="promoPointDibutuhkan"></span></p>
                     </div>
                 </div>
             </div>
@@ -375,7 +413,7 @@
                         <p id="pointDetail"></p>
                     </div>
                     <!-- History Transaksi -->
-                    <div style="margin-bottom: 17px;">
+                    {{-- <div style="margin-bottom: 17px;">
                         <h2>History Transaksi</h2>
                         <p><strong>ID Transaksi:</strong> TRX123456789</p>
                         <p><strong>Tanggal:</strong> 30 Mei 2024</p>
@@ -394,7 +432,7 @@
                         <p><strong>Total:</strong> Rp100.000</p>
                         <p><strong>Metode Pembayaran:</strong> QRIS</p>
                         <p><strong>Status:</strong> Berhasil</p>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
@@ -457,10 +495,12 @@
                 <div class="modal-body">
                     <div style="margin-bottom: 17px;">
                         <h2>Foto Struk Pembelian Online</h2>
-                        <p><strong>Tanggal : </strong>30 Mei 2024</p>
-                        <div class="img-container">
-                            <img src="{{ asset('resto/gallery.jpeg') }}" alt="Foto Struk Pembelian Online"
-                                style="width: 100%;" data-bs-toggle="modal" data-bs-target="#imageModal">
+                        <div style="display: inline-flex;"><strong>Tanggal Upload : </strong>
+                            <p id="tanggalDetail"></p>
+                        </div>
+                        <div class="img-container" style="margin-top: 10px;">
+                            <img id="fotoDetail" src="" alt="Foto Struk Pembelian Online"
+                                style="max-height: 300px;" data-bs-toggle="modal" data-bs-target="#imageModal">
                         </div>
                     </div>
                 </div>
@@ -473,9 +513,18 @@
     <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
+                <div class="modal-header">
+                    <div class="d-flex align-items-center">
+                        <a href="{{ route('index') }}" class="d-flex align-items-center">
+                            <b><span>Vin Autism Gallery Resto</span></b>
+                        </a>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
                 <div class="modal-body">
-                    <img id="modalImage" src="{{ asset('resto/gallery.jpeg') }}" alt="Foto Struk Pembelian Online"
-                        style="width: 100%;">
+                    <div class="img-modal-container">
+                        <img id="modalImage" src="" alt="Foto Struk Pembelian Online">
+                    </div>
                 </div>
             </div>
         </div>
@@ -724,17 +773,21 @@
             line-height: 1;
         }
 
-        a.btn_1::after,
-        a.btn_2::after {
+        a.btn_1::after {
             content: '\003E';
-            /* Unicode for the '>' character */
             position: absolute;
             right: 10px;
-            /* Position it 10px from the right edge */
+            line-height: 1.25;
             font-size: 16px;
-            /* Adjust size as needed */
-            line-height: 1;
-            /* Adjust to align with text */
+        }
+
+        a.btn_2::after {
+            content: '\003E';
+            position: absolute;
+            right: 10px;
+            font-size: 16px;
+            line-height: 1.25;
+            bottom: 50%;
         }
 
         a.icon-online::before {
@@ -928,6 +981,63 @@
 
         .promo {
             height: 180px;
+        }
+
+        /* style session success & error */
+        .close-custom {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #000;
+            cursor: pointer;
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 1rem 1rem;
+            line-height: 1;
+        }
+
+        .close-custom:before {
+            content: '\00d7';
+            /* Unicode for multiplication sign (×) */
+        }
+
+        /* struk online */
+        .img-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            /* Sesuaikan tinggi kontainer jika perlu */
+            width: 100%;
+            /* Sesuaikan lebar kontainer jika perlu */
+        }
+
+        .img-container img {
+            max-height: 300px;
+            /* Sesuaikan tinggi maksimum gambar */
+            max-width: 100%;
+            /* Pastikan gambar tidak melebihi lebar kontainer */
+            object-fit: contain;
+            /* Pertahankan aspek rasio gambar */
+        }
+
+        .img-modal-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            /* Optional: To ensure the container does not exceed the modal body */
+        }
+
+        .img-modal-container img {
+            max-height: 450px;
+            max-width: 100%;
+            object-fit: contain;
+            /* Ensures the image keeps its aspect ratio */
         }
     </style>
     <!-- /style -->
@@ -1698,7 +1808,7 @@
                 input.disabled = !input.disabled;
             });
 
-            enableVerifyButton();
+            // enableVerifyButton();
 
             // Ganti tombol "Ubah Profile" dengan tombol "Save" dan "Cancel"
             var buttonContainer = document.querySelector('.text-right');
@@ -1709,38 +1819,9 @@
         }
 
         function saveProfile() {
+            event.preventDefault(); // Mencegah submit form otomatis
             var form = document.getElementById('profileForm');
-            var formData = new FormData(form);
-
-            fetch('{{ route('customer.update') }}', {
-                    method: 'POST',
-                    headers: {
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                    },
-                    body: formData,
-                })
-                .then(response => {
-                    if (response.ok) {
-                        return response.json();
-                    } else {
-                        throw new Error('Network response was not ok.');
-                    }
-                })
-                .then(data => {
-                    if (data.success) {
-                        window.location.href = '{{ route('profile') }}'; // Mengarahkan ke halaman profil
-                        alert('Profil berhasil tersimpan');
-                    } else {
-                        window.location.href = '{{ route('profile') }}'; // Mengarahkan ke halaman profil
-                        alert('Profil gagal tersimpan');
-                    }
-                    resetProfileForm();
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert('Profil gagal tersimpan');
-                    resetProfileForm();
-                });
+            form.submit();
         }
 
         function cancelProfile() {
@@ -1765,7 +1846,7 @@
                 input.disabled = true;
             });
 
-            disableVerifyButton();
+            // disableVerifyButton();
 
             // Kembalikan tombol "Ubah Profile"
             var buttonContainer = document.querySelector('.text-right');
@@ -1825,44 +1906,32 @@
         }
 
         function savePassword() {
+            event.preventDefault(); // Mencegah submit form otomatis
+
             var currentPassword = document.getElementById('currentPassword').value;
             var newPassword = document.getElementById('newPassword').value;
             var confirmNewPassword = document.getElementById('confirmNewPassword').value;
+            var errorMessage = document.getElementById('error-message');
 
-            // Periksa apakah password baru dan re-type password baru sesuai
-            if (newPassword !== confirmNewPassword) {
-                alert('Password baru dan re-type password baru tidak cocok.');
-                return; // Hentikan eksekusi fungsi jika password tidak cocok
+            // Reset pesan kesalahan
+            errorMessage.textContent = '';
+
+            if (newPassword.length < 8) {
+                errorMessage.textContent = 'Password baru harus memiliki minimal 8 karakter.';
+                errorMessage.style.color = 'red';
             }
 
-            var formData = new FormData();
-            formData.append('currentPassword', currentPassword);
-            formData.append('newPassword', newPassword);
-            formData.append('confirmNewPassword', confirmNewPassword);
-
-            fetch('{{ route('customer.password') }}', {
-                    method: 'POST',
-                    headers: {
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                    },
-                    body: formData,
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        window.location.href = '{{ route('profile') }}'; // Mengarahkan ke halaman profil
-                        alert('Password berhasil diubah');
-                    } else {
-                        window.location.href = '{{ route('profile') }}'; // Mengarahkan ke halaman profil
-                        alert(data.message); // Menampilkan pesan error jika gagal
-                    }
-                    resetPasswordForm();
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert('Terjadi kesalahan. Silakan coba lagi.');
-                    resetPasswordForm();
-                });
+            // Periksa apakah password baru dan re-type password baru sesuai
+            if (newPassword.length < 8) {
+                errorMessage.textContent = 'Password baru harus memiliki minimal 8 karakter.';
+                errorMessage.style.color = 'red';
+            } else if (newPassword !== confirmNewPassword) {
+                errorMessage.textContent = 'Password baru dan re-type password baru tidak cocok.';
+                errorMessage.style.color = 'red';
+            } else {
+                var form = document.getElementById('passwordForm');
+                form.submit();
+            }
         }
 
 
@@ -1876,6 +1945,10 @@
             document.getElementById('currentPassword').value = '';
             document.getElementById('newPassword').value = '';
             document.getElementById('confirmNewPassword').value = '';
+
+            var errorMessage = document.getElementById('error-message');
+            errorMessage.textContent = 'Password Minimal 8 Karakter';
+            errorMessage.style = 'color: black;'
 
             var inputs = document.querySelectorAll('.form-control');
             inputs.forEach(function(input) {
@@ -1891,7 +1964,7 @@
             // Kembalikan tombol "Ubah Profile"
             var buttonContainer = document.querySelector('.text-right-2');
             buttonContainer.innerHTML = `
-        <button class="btn btn-primary" onclick="ubahPassword()">Ubah Profile</button>
+        <button class="btn btn-primary" onclick="ubahPassword()">Ubah Password</button>
     `;
         }
 
@@ -1928,6 +2001,34 @@
         function showPointDetail(keterangan) {
             var pointDetail = document.getElementById('pointDetail');
             pointDetail.textContent = keterangan;
+        }
+
+        function showStrukDetail(tanggal, file) {
+            var tanggalDetail = document.getElementById('tanggalDetail');
+            var imageElement = document.getElementById('fotoDetail');
+
+            tanggalDetail.textContent = tanggal;
+
+            if (file && file !== 'Tidak ada file foto') {
+                imageElement.src = '{{ asset('strukonline') }}/' + file;
+                imageElement.style.display = 'block';
+            } else {
+                imageElement.style.display = 'none';
+            }
+
+            // Add event listener to update the modal image
+            imageElement.addEventListener('click', function() {
+                var modalImageElement = document.getElementById('modalImage');
+                modalImageElement.src = imageElement.src;
+            });
+        }
+
+        function showPromoDetail(title, start, end, pointDigunakan, pointDibutuhkan) {
+            document.getElementById('promoTitle').textContent = title;
+            document.getElementById('promoStart').textContent = start;
+            document.getElementById('promoEnd').textContent = end;
+            document.getElementById('promoPointDigunakan').textContent = pointDigunakan;
+            document.getElementById('promoPointDibutuhkan').textContent = pointDibutuhkan;
         }
     </script>
 @endsection

@@ -28,11 +28,11 @@
                 <div class="col-md-7">
                     <div class="content">
                         <div class="wrapper">
-                            <a href="{{route('index')}}">
+                            <a href="{{ route('index') }}">
                                 <img src="{{ asset('resto/logo.png') }}" alt=""
                                     style="width: auto; height: auto; max-width: 140px; max-height: 35px;">
                             </a><br><br>
-                            <form id="registrationForm" action="{{ route('register-2') }}" method="POST">
+                            <form id="registrationForm" action="{{ route('register-2') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
                                     <input type="text" name="first_name" class="form-control" placeholder="First Name"
@@ -46,8 +46,13 @@
                                     <input type="email" name="email" class="form-control" placeholder="Email" required>
                                 </div>
                                 <div class="form-group">
-                                    <input id="new-pass" type="password" name="password" class="form-control" placeholder="Password"
-                                        required>
+                                    <input id="new-pass" type="password" name="password" class="form-control"
+                                        placeholder="Password" required>
+                                    @error('password')
+                                        <p><span class="text-danger">{{ $message }}</span></p>
+                                    @else
+                                        <p style="margin-bottom: -10px;">Password Minimal 8 Karakter</p>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <input id="re-pass" type="password" name="password_confirmation" class="form-control"
@@ -56,7 +61,8 @@
                                     Password
                                 </div>
                                 <button type="submit" class="btn_1 mt-2 mb-4">Daftar</button>
-                                <p>Sudah menjadi Membership? <a href="{{route('login-2')}}" class="login-member">Login</a></p>
+                                <p>Sudah menjadi Membership? <a href="{{ route('login-2') }}" class="login-member">Login</a>
+                                </p>
                             </form>
                         </div>
                     </div>
@@ -69,7 +75,8 @@
 
     <!-- Style -->
     <style>
-        .login-member, .guest {
+        .login-member,
+        .guest {
             display: block;
             margin-top: 5px;
             color: #007bff;
@@ -77,7 +84,8 @@
             text-decoration: none;
         }
 
-        .login-member:hover, .guest:hover {
+        .login-member:hover,
+        .guest:hover {
             text-decoration: underline;
         }
     </style>
@@ -90,7 +98,7 @@
             var backToLogin = document.querySelector('.back-to-login');
 
             backToLogin.addEventListener('click', function() {
-                window.location.href = '{{route('login-2')}}'; // Arahkan kembali ke halaman login
+                window.location.href = '{{ route('login-2') }}'; // Arahkan kembali ke halaman login
             });
         });
 

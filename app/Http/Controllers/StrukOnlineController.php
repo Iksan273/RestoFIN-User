@@ -30,40 +30,43 @@ class StrukOnlineController extends Controller
      */
     public function store(Request $request)
     {
-        // Validasi input
-        $request->validate([
-            'user' => 'required',
-            'foto' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
+        try {
+            // Validasi input
+            $request->validate([
+                'user' => 'required|email',
+                'foto' => 'required|image|mimes:jpeg,png,jpg|max:100824',
+            ]);
 
-        // Ambil email pengguna dari session
-        $userEmail = $request->session()->get('email');
+            // Ambil email pengguna dari session
+            $userEmail = $request->session()->get('email');
 
-        // Cek apakah email dari user cocok dengan email pengguna yang sedang login
-        $user = User::where('email', $userEmail)->first();
+            // Cek apakah email dari user cocok dengan email pengguna yang sedang login
+            $user = User::where('email', $userEmail)->first();
 
-        if ($user && $user->email === $request->user || $user && $user->phone === $request->user) {
-            $struk = new StrukOnline();
-            $struk->users_id = $user->id;
-            $struk->status = "Pending";
-            $struk->point = 0;
+            if ($user && ($user->email === $request->user)) {
+                $struk = new StrukOnline();
+                $struk->users_id = $user->id;
+                $struk->status = "Pending";
+                $struk->point = 0;
 
-            // Handle file upload
-            if ($request->hasFile('foto')) {
-                $file = $request->file('foto');
-                $filename = time() . '.' . $file->getClientOriginalExtension();
-                $file->move(public_path('strukonline'), $filename);
-                $struk->file = $filename;
+                // Handle file upload
+                if ($request->hasFile('foto')) {
+                    $file = $request->file('foto');
+                    $filename = time() . '.' . $file->getClientOriginalExtension();
+                    $file->move(public_path('strukonline'), $filename);
+                    $struk->file = $filename;
+                }
+
+                $struk->save();
+                return redirect()->route('struk')->with('success', 'Struk Online berhasil dikirim.');
+            } else {
+                return redirect()->route('struk')->with('error', 'Struk Online gagal dikirim.');
             }
-
-            $struk->save();
-            return response()->json(['success' => true, 'message' => 'Review berhasil dikirim']);
-        } else {
-            return redirect()->back()->with('error', 'Email tidak sesuai dengan pengguna yang sedang login.');
+        } catch (\Exception $e) {
+            return back()->with('error', 'Struk Online gagal dikirim: ' . $e->getMessage());
         }
-
-        return redirect()->back()->with('error', 'Terjadi kesalahan saat menyimpan data.');
     }
+
 
     /**
      * Display the specified resource.

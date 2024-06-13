@@ -32,7 +32,7 @@
                                 <img src="{{ asset('resto/logo.png') }}" alt=""
                                     style="width: auto; height: auto; max-width: 140px; max-height: 35px;">
                             </a><br><br>
-                            <form id="registrationForm" action="{{ route('register') }}" method="POST">
+                            <form id="registrationForm" action="{{ route('register') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
                                     <input type="text" name="first_name" class="form-control" placeholder="First Name"
@@ -47,7 +47,7 @@
                                 </div>
                                 <div class="form-group">
                                     <input id="new-pass" type="password" name="password" class="form-control"
-                                        placeholder="Password" required>
+                                        placeholder="Password (Minimal 8 Karakter)" required>
                                 </div>
                                 <div class="form-group">
                                     <input id="re-pass" type="password" name="password_confirmation" class="form-control"

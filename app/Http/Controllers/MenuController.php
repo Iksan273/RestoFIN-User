@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Menu;
+use App\Models\Promo;
+use App\Models\Recommendation;
 use Illuminate\Http\Request;
 
 class MenuController extends Controller
@@ -14,15 +16,22 @@ class MenuController extends Controller
     public function index()
     {
         $categories = Category::all();
+        $recommendation = Recommendation::all();
         $menus = Menu::all()->groupBy('categories_id');
-        return view('menu', compact('categories', 'menus'));
+        $promo = Promo::latest()->first();
+        $recmenu = Recommendation::all()->groupBy('menus_id');
+
+        return view('menu', compact('categories', 'menus', 'recommendation', 'recmenu', 'promo'));
     }
 
     public function menulist()
     {
         $categories = Category::all();
+        $recommendation = Recommendation::all();
         $menus = Menu::all()->groupBy('categories_id');
-        return view('menulist', compact('categories', 'menus'));
+        $recmenu = Recommendation::all()->groupBy('menus_id');
+        $promo = Promo::latest()->first();
+        return view('menulist', compact('categories', 'menus', 'recommendation', 'recmenu', 'promo'));
     }
 
     /**

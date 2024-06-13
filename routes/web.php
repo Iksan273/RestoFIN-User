@@ -39,7 +39,7 @@ Auth::routes();
 
 
 // Halaman Utama
-Route::get('/', [HomeController::class, 'index'])->name('index');
+Route::get('/', [HomeController::class, 'indexHome'])->name('index');
 
 
 // Nomor Meja, Simpan Session, Hapus Session
@@ -50,10 +50,10 @@ Route::get('/', [HomeController::class, 'index'])->name('index');
 
 // Halaman Login
 // Halaman Login Menuju Order
-Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::get('/login', [HomeController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login'])->name('login-post');
 // Halaman Login Menuju Halaman Utama
-Route::get('/login-2', [LoginController::class, 'showLoginForm2'])->name('login-2');
+Route::get('/login-2', [HomeController::class, 'showLoginForm2'])->name('login-2');
 Route::post('/login-2', [LoginController::class, 'login2'])->name('login-post-2');
 
 
@@ -77,44 +77,48 @@ Route::get('/pass-baru', [ForgotPasswordController::class, 'showNewPassForm'])->
 
 
 // Halaman Order
-Route::get('/menu-order', [MenuController::class, 'index'])->name('menu-order');
+Route::get('/menu-order', [HomeController::class, 'indexMenuOrder'])->name('menu-order');
 
 
 // Halaman Daftar Menu
-Route::get('/list-menu', [MenuController::class, 'menulist'])->name('list-menu');
+Route::get('/list-menu', [HomeController::class, 'indexMenuList'])->name('list-menu');
 
 
 // Halaman Cart
-Route::get('/cart', [CartController::class, 'index'])->name('cart');
+Route::get('/cart', [HomeController::class, 'indexCart'])->name('cart');
+Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('cart.add');
+Route::post('/cart-remove', [CartController::class, 'removeFromCart'])->name('cart.remove');
+Route::post('/cart-update', [CartController::class, 'updateCartQuantity'])->name('cart.update');
 
 
 // Halaman Checkout
-Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
+Route::get('/checkout', [HomeController::class, 'indexCheckout'])->name('checkout');
+Route::post('/order', [CheckoutController::class, 'store'])->name('checkout.order');
 
 
 // Halaman Reservasi
-Route::get('/reservation', [ReservationController::class, 'index'])->name('reservation');
+Route::get('/reservation', [HomeController::class, 'indexReserve'])->name('reservation');
 Route::post('/new-reservation', [ReservationController::class, 'store'])->name('reservation.store');
 
 
 // Halaman Promo
-Route::get('/promo', [PromoController::class, 'index'])->name('promo');
+Route::get('/promo', [HomeController::class, 'indexPromo'])->name('promo');
 
 
 // Halaman Information & Contact
-Route::get('/information', [InformationController::class, 'index'])->name('information');
+Route::get('/information', [HomeController::class, 'indexInformation'])->name('information');
 
 
 // Halaman Carrer & History
-Route::get('/carrerhistory', [CarrerHistoryController::class, 'index'])->name('carrerhistory');
+Route::get('/carrerhistory', [HomeController::class, 'indexCarrerHistory'])->name('carrerhistory');
 
 
 // Halaman Gallery Makanan
-Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery');
+Route::get('/gallery', [HomeController::class, 'indexGallery'])->name('gallery');
 
 
 // Halaman Review
-Route::get('/review', [ReviewController::class, 'index'])->name('review');
+Route::get('/review', [HomeController::class, 'indexReview'])->name('review');
 Route::post('/new-review', [ReviewController::class, 'store'])->name('review.store');
 
 
@@ -123,14 +127,18 @@ Route::get('/change-password', function () {
     return view('auth.changepass');
 });
 
+
+// Halaman Confirm Order
+Route::get('/confirm', [HomeController::class, 'indexConfirm'])->name('confirm');
+
 Route::middleware(['can:customer'])->group(function () {
     // Halaman Struk Online
-    Route::get('/konversi-point', [StrukOnlineController::class, 'index'])->name('struk');
+    Route::get('/konversi-point', [HomeController::class, 'indexStruk'])->name('struk');
     Route::post('/new-struk', [StrukOnlineController::class, 'store'])->name('struk.store');
 
 
     // Halaman Profile
-    Route::get('/profile', [UserController::class, 'index'])->name('profile');
+    Route::get('/profile', [HomeController::class, 'indexProfile'])->name('profile');
     Route::post('/profile/update-profile', [UserController::class, 'update'])->name('customer.update');
     Route::post('/profile/update-password', [UserController::class, 'updatePassword'])->name('customer.password');
 });

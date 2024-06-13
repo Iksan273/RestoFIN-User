@@ -3,21 +3,39 @@
 @section('content')
     <main class="pattern_2">
         <div class="container margin_60_40">
+            @if (session('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-bottom: -10px;">
+                    {{ session('success') }}
+                    <button type="button" class="close-custom" onclick="this.parentElement.style.display='none';"
+                        aria-label="Close">
+                    </button>
+                </div>
+            @endif
+            @if (session('error'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-bottom: -10px;">
+                    {{ session('error') }}
+                    <button type="button" class="close-custom" onclick="this.parentElement.style.display='none';"
+                        aria-label="Close">
+                    </button>
+                </div>
+            @endif
+
             <div class="row justify-content-center">
                 <div class="col-lg-8" style="margin-top: 20px">
-                    <form id="strukForm" method="POST" action="{{ route('struk.store') }}">
+                    <form id="strukForm" method="POST" action="{{ route('struk.store') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="write_review">
                             <h1>Struk Pembelian Online</h1>
                             <br>
                             <div class="form-group">
-                                <label>Masukkan Nomor Telepon atau Email Anda</label>
+                                <label for="contactInfo">Masukkan Email Anda</label>
                                 <input class="form-control" type="text" id="contactInfo"
-                                    placeholder="Nomor Telepon atau Email" name="user">
+                                    placeholder="Masukkan Email Anda" name="user" required>
                             </div>
                             <div class="form-group mb-5">
-                                <label>Upload Gambar Anda</label>
-                                <input type="file" class="form-control" id="imageUpload" accept="image/*" name="foto">
+                                <label for="imageUpload">Upload Gambar Anda</label>
+                                <input type="file" class="form-control" id="imageUpload" accept="image/*" name="foto"
+                                    required>
                                 <div id="imagePreview" style="margin-top: 10px; text-align: center;">
                                     <p>Pilih gambar untuk melihat pratinjau di sini</p>
                                     <br>
@@ -60,6 +78,27 @@
     </div>
     <!-- /Modal Pembelian Online -->
 
+    <style>
+        .close-custom {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #000;
+            cursor: pointer;
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 1rem 1rem;
+            line-height: 1;
+        }
+
+        .close-custom:before {
+            content: '\00d7';
+            /* Unicode for multiplication sign (×) */
+        }
+    </style>
+
     <!-- script -->
     <script>
         document.getElementById('imageUpload').addEventListener('change', function(event) {
@@ -90,39 +129,29 @@
         });
 
         function kirim() {
+            event.preventDefault(); // Mencegah submit form otomatis
             var form = document.getElementById('strukForm');
-            var formData = new FormData(form);
 
-            fetch('{{ route('struk.store') }}', {
-                    method: 'POST',
-                    headers: {
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                        'Accept': 'application/json',
-                    },
-                    body: formData,
-                })
-                .then(response => {
-                    const contentType = response.headers.get('content-type');
-                    if (contentType && contentType.includes('application/json')) {
-                        return response.json();
-                    } else {
-                        return response.text().then(text => {
-                            throw new Error(text);
-                        });
-                    }
-                })
-                .then(data => {
-                    if (data.success) {
-                        alert('Struk berhasil dikirim');
-                        window.location.href = '{{ route('struk') }}';
-                    } else {
-                        alert(data.message);
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert('Terjadi kesalahan. Silakan coba lagi.');
-                });
+            // Periksa apakah input email dan file tidak kosong
+            var emailInput = document.getElementById('contactInfo');
+            var fileInput = document.getElementById('imageUpload');
+
+            if (!emailInput.value.trim() || !fileInput.value.trim()) {
+                alert('Harap lengkapi semua kolom sebelum mengirimkan formulir.');
+                return;
+            }
+
+            // Periksa tipe file yang dipilih
+            var file = fileInput.files[0];
+            var fileType = file.type;
+
+            // Validasi tipe file
+            if (!fileType.startsWith('image/')) {
+                alert('Harap pilih file gambar.');
+                return;
+            }
+
+            form.submit();
         }
     </script>
     <!-- /script -->

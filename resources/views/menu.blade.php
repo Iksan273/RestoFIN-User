@@ -20,20 +20,25 @@
 
         <div class="pattern_2">
             <div class="container margin_60_40" data-cue="slideInUp">
-                <div class="banner lazy" data-bg="url(img/banner_bg_recommendations.jpg)">
+                <div class="banner lazy" data-bg="url(img/banner_bg.jpg)">
                     <div class="wrapper d-flex align-items-center justify-content-between opacity-mask"
-                        data-opacity-mask="rgba(0, 0, 0, 0.6)">
+                        data-opacity-mask="rgba(0, 0, 0, 0.5)">
                         <div>
-                            <small>Voucher Saat Ini</small>
-                            <h3>Mix and Match Menu $20 only</h3>
-                            <p>Pizza, Pasta, Salad, Wine, Dessert</p>
-                            <a href="reservations.html" class="btn_1">Lihat Detail Voucher</a>
-                            <br><br>
-                            <a href="reservations.html" class="btn_1">Lihat Daftar Voucher</a>
+                            <small>Tawaran Spesial</small>
+                            <h3>{{ $promo->title }}</h3>
+                            <p style="margin-bottom: 0px;">{{ $promo->description }}</p>
+                            <br>
+                            <p style="margin-bottom: 0px;">Promo Dimulai : {{ $promo->start_date }}</p>
+                            <p style="margin-bottom: 0px;">Promo Berakhir : {{ $promo->end_date }}</p>
+                            <p style="margin-bottom: 0px;">Point Digunakan : {{ $promo->point_digunakan }}</p>
+                            <p style="margin-bottom: 0px;">Minimal Point : {{ $promo->point_dibutuhkan }}</p>
+                            <br>
+                            <a href="{{ route('promo') }}" class="btn_1">Lihat Voucher Lainnya</a>
                         </div>
-                        <figure class="d-none d-lg-block"><img src="img/banner.svg" alt="" width="200"
-                                height="200" class="img-fluid"></figure>
+                        <figure class="d-none d-lg-block"><img src="{{ asset('resto/logo.png') }}" alt=""
+                                width="200" height="200" class="img-fluid"></figure>
                     </div>
+                    <!-- /wrapper -->
                 </div>
                 <div class="tabs_menu add_bottom_25">
                     <ul class="nav nav-tabs" role="tablist">
@@ -57,8 +62,9 @@
                                 aria-labelledby="tab-{{ $categoryIndex }}">
                                 <div class="card-header" role="tab" id="heading-{{ $categoryIndex }}">
                                     <h5>
-                                        <a class="collapsed" data-bs-toggle="collapse" href="#collapse-{{ $categoryIndex }}"
-                                            aria-expanded="false" aria-controls="collapse-{{ $categoryIndex }}"
+                                        <a class="collapsed" data-bs-toggle="collapse"
+                                            href="#collapse-{{ $categoryIndex }}" aria-expanded="false"
+                                            aria-controls="collapse-{{ $categoryIndex }}"
                                             data-bs-parent="#accordion-{{ $categoryIndex }}">
                                             {{ $category->title }}
                                         </a>
@@ -69,26 +75,14 @@
                                     aria-labelledby="heading-{{ $categoryIndex }}"
                                     data-bs-parent="#accordion-{{ $categoryIndex }}">
                                     <div class="card-body">
-                                        {{-- <div class="banner lazy" data-bg="url(img/banner_bg_{{ $categoryIndex + 1 }}.jpg)">
-                                            <div class="wrapper d-flex align-items-center justify-content-between opacity-mask"
-                                                data-opacity-mask="rgba(0, 0, 0, 0.6)">
-                                                <div>
-                                                    <small>{{ $category->title }} Special Offer</small>
-                                                    <h3>Mix {{ $category->title }} Menu $18 only</h3>
-                                                    <p>Hamburgher, Chips, Mix Sausages, Beer, Muffin</p>
-                                                    <a href="reservations.html" class="btn_1">Reserve now</a>
-                                                </div>
-                                                <figure class="d-none d-lg-block"><img src="img/banner.svg" alt=""
-                                                        width="200" height="200" class="img-fluid"></figure>
-                                            </div>
-                                            <!-- /wrapper -->
-                                        </div> --}}
-                                        <!-- /banner -->
                                         <div class="row magnific-gallery">
                                             @if (isset($menus[$categoryIndex + 1]))
                                                 @foreach ($menus[$categoryIndex + 1] as $menu)
                                                     <div class="col-lg-6">
-                                                        <div class="menu_item order">
+                                                        <div class="menu_item order" data-id="{{ $menu->id }}"
+                                                            data-title="{{ $menu->title }}"
+                                                            data-price="{{ $menu->price }}"
+                                                            data-image="{{ $menu->imageUrl }}" onclick="addToCart(this)">
                                                             <figure>
                                                                 <a href="{{ asset('' . $menu->imageUrl . '.jpg') }}"
                                                                     title="{{ $menu->title }}" data-effect="mfp-zoom-in">
@@ -99,10 +93,10 @@
                                                             </figure>
                                                             <div class="menu_title">
                                                                 <h3>{{ $menu->title }}</h3>
-                                                                <em>${{ $menu->price }}</em>
+                                                                <em>{{ $menu->price }}</em>
                                                             </div>
                                                             <p>{{ $menu->description }}</p>
-                                                            <a href="#0" class="add_to_cart">Add To Cart</a>
+                                                            <a class="add_to_cart">Add To Cart</a>
                                                         </div>
                                                     </div>
                                                 @endforeach
@@ -131,42 +125,37 @@
                             <div id="collapse-recommendations" class="collapse" role="tabpanel"
                                 aria-labelledby="heading-recommendations" data-bs-parent="#accordion-recommendations">
                                 <div class="card-body">
-                                    {{-- <div class="banner lazy" data-bg="url(img/banner_bg_recommendations.jpg)">
-                                        <div class="wrapper d-flex align-items-center justify-content-between opacity-mask"
-                                            data-opacity-mask="rgba(0, 0, 0, 0.6)">
-                                            <div>
-                                                <small>Special Recommendations</small>
-                                                <h3>Mix and Match Menu $20 only</h3>
-                                                <p>Pizza, Pasta, Salad, Wine, Dessert</p>
-                                                <a href="reservations.html" class="btn_1">Reserve now</a>
-                                            </div>
-                                            <figure class="d-none d-lg-block"><img src="img/banner.svg" alt=""
-                                                    width="200" height="200" class="img-fluid"></figure>
-                                        </div>
-                                        <!-- /wrapper -->
-                                    </div> --}}
                                     <!-- /banner -->
                                     <div class="row magnific-gallery add_top_30">
-                                        @if (isset($recommendedMenus) && count($recommendedMenus) > 0)
-                                            @foreach ($recommendedMenus as $menu)
-                                                <div class="col-lg-6" data-cue="slideInUp">
-                                                    <div class="menu_item order">
-                                                        <figure>
-                                                            <a href="{{ asset('' . $menu->imageUrl . '.jpg') }}"
-                                                                title="{{ $menu->title }}" data-effect="mfp-zoom-in">
-                                                                <img src="{{ asset('' . $menu->imageUrl . '.jpg') }}"
-                                                                    data-src="{{ asset('' . $menu->imageUrl . '.jpg') }}"
-                                                                    class="lazy" alt="">
-                                                            </a>
-                                                        </figure>
-                                                        <div class="menu_title">
-                                                            <h3>{{ $menu->title }}</h3>
-                                                            <em>${{ $menu->price }}</em>
+                                        @if (isset($recmenu) && $recmenu->isNotEmpty())
+                                            @foreach ($recmenu as $menuGroup)
+                                                @if ($menuGroup->isNotEmpty())
+                                                    @php
+                                                        $menu = $menuGroup->first()->menu; // Ambil menu pertama dari grup
+                                                    @endphp
+                                                    <div class="col-lg-6" data-cue="slideInUp">
+                                                        <div class="menu_item order" data-id="{{ $menu->id }}"
+                                                            data-title="{{ $menu->title }}"
+                                                            data-price="{{ $menu->price }}"
+                                                            data-image="{{ $menu->imageUrl }}" onclick="addToCart(this)">
+                                                            <figure>
+                                                                <a href="{{ asset('' . $menu->imageUrl . '.jpg') }}"
+                                                                    title="{{ $menu->title }}"
+                                                                    data-effect="mfp-zoom-in">
+                                                                    <img src="{{ asset('' . $menu->imageUrl . '.jpg') }}"
+                                                                        data-src="{{ asset('' . $menu->imageUrl . '.jpg') }}"
+                                                                        class="lazy" alt="">
+                                                                </a>
+                                                            </figure>
+                                                            <div class="menu_title">
+                                                                <h3>{{ $menu->title }}</h3>
+                                                                <em>{{ $menu->price }}</em>
+                                                            </div>
+                                                            <p>{{ $menu->description }}</p>
+                                                            <a class="add_to_cart">Add To Cart</a>
                                                         </div>
-                                                        <p>{{ $menu->description }}</p>
-                                                        <a href="#0" class="add_to_cart">Add To Cart</a>
                                                     </div>
-                                                </div>
+                                                @endif
                                             @endforeach
                                         @else
                                             <p>No recommendations available at the moment.</p>
@@ -205,6 +194,101 @@
 
         function formatRupiah(number) {
             return 'Rp ' + number.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+        }
+
+        function addToCart(element) {
+            var menuId = $(element).data('id');
+            var menuTitle = $(element).data('title');
+            var menuPrice = $(element).data('price');
+            var menuImageUrl = $(element).data('image');
+
+            $.ajax({
+                url: '{{ route('cart.add') }}',
+                method: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    id: menuId,
+                    title: menuTitle,
+                    price: menuPrice,
+                    imageUrl: menuImageUrl
+                },
+                success: function(response) {
+                    if (response.success) {
+                        updateCartView(response.cart, response.cartItemCount);
+                    }
+                },
+                error: function(response) {
+                    alert('Terjadi kesalahan saat menambahkan ke dalam keranjang. Silakan coba lagi.');
+                }
+            });
+        }
+
+        function updateCartView(cart, count) {
+            // Perbarui jumlah item di keranjang pada layout.user
+            var cartItemCount = count;
+            document.getElementById('cart-item-count').textContent = cartItemCount;
+
+            // Perbarui tampilan dropdown cart pada layout.user
+            var cartItemsList = document.getElementById('cart-items');
+            if (cartItemCount > 0) {
+                // Buat HTML baru berdasarkan item-item yang ada di keranjang
+                var newHTML = '';
+                var transaction = 0;
+
+                Object.keys(cart).forEach(function(id) {
+                    var item = cart[id];
+                    transaction += parseFloat(item.price) * parseInt(item.quantity);
+
+                    newHTML += '<li data-id="' + id + '">';
+                    newHTML += '<figure><img src="' + item.imageUrl +
+                        '" alt="" width="50" height="50" class="lazy"></figure>';
+                    newHTML += '<div class="item-details">';
+                    newHTML += '<strong>';
+                    newHTML += '<span>' + item.quantity + 'x</span>';
+                    newHTML += '<span class="title">' + item.title + '</span>';
+                    newHTML += '</strong>';
+                    newHTML += '<span class="price">Rp. ' + formatNumber(parseInt(parseFloat(item.price))) +
+                        '</span>';
+                    newHTML += '<a class="action" onclick="removeRow(this, \'' + id +
+                        '\')"><i class="icon_trash_alt"></i></a>';
+                    newHTML += '</div>'; // end .item-details
+                    newHTML += '</li>';
+                });
+
+                cartItemsList.innerHTML = newHTML;
+
+                // Hitung pajak
+                var tax = transaction * 0.10; // Pajak 10%
+
+                // Hitung total
+                var total = transaction + tax;
+
+                // Perbarui tampilan transaksi, pajak, dan total harga
+                document.getElementById('transaction').textContent = 'Rp. ' + formatNumber(transaction);
+                document.getElementById('tax').textContent = 'Rp. ' + formatNumber(tax);
+                document.getElementById('total').textContent = 'Rp. ' + formatNumber(total);
+            } else {
+                // Tampilkan pesan "Keranjang Kosong" jika tidak ada item di keranjang
+                cartItemsList.innerHTML =
+                `<li id="empty-cart">
+                    <div class="item-details">
+                        <strong>
+                            <span>Keranjang Kosong</span>
+                        </strong>
+                    </div>
+                </li>`;
+
+                // Jika keranjang kosong, set transaksi, pajak, dan total menjadi 0
+                document.getElementById('transaction').textContent = 'Rp. 0';
+                document.getElementById('tax').textContent = 'Rp. 0';
+                document.getElementById('total').textContent = 'Rp. 0';
+            }
+        }
+
+
+
+        function formatNumber(number) {
+            return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
         }
     </script>
     <!-- /script -->

@@ -3,9 +3,26 @@
 @section('content')
     <main class="pattern_2">
         <div class="container margin_60_40">
+            @if (session('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-bottom: -10px;">
+                    {{ session('success') }}
+                    <button type="button" class="close-custom" onclick="this.parentElement.style.display='none';"
+                        aria-label="Close">
+                    </button>
+                </div>
+            @endif
+            @if (session('error'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-bottom: -10px;">
+                    {{ session('error') }}
+                    <button type="button" class="close-custom" onclick="this.parentElement.style.display='none';"
+                        aria-label="Close">
+                    </button>
+                </div>
+            @endif
+            
             <div class="row justify-content-center">
                 <div class="col-lg-8" style="margin-top: 20px">
-                    <form id="reviewForm" method="POST" action="{{ route('review.store') }}">
+                    <form id="reviewForm" method="POST" action="{{ route('review.store') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="write_review">
                             <h1>Kritik dan Saran</h1>
@@ -51,41 +68,62 @@
         <!-- /container -->
     </main>
 
+    <style>
+        .close-custom {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #000;
+            cursor: pointer;
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 1rem 1rem;
+            line-height: 1;
+        }
+
+        .close-custom:before {
+            content: '\00d7';
+            /* Unicode for multiplication sign (×) */
+        }
+    </style>
+
     <!-- script -->
     <script>
         function kirim() {
-            var form = document.getElementById('reviewForm');
-            var formData = new FormData(form);
+            event.preventDefault(); // Mencegah submit form otomatis
 
-            fetch('{{ route('review.store') }}', {
-                    method: 'POST',
-                    headers: {
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                    },
-                    body: formData,
-                })
-                .then(response => {
-                    const contentType = response.headers.get('content-type');
-                    if (contentType && contentType.includes('application/json')) {
-                        return response.json();
-                    } else {
-                        return response.text().then(text => {
-                            throw new Error(text);
-                        });
-                    }
-                })
-                .then(data => {
-                    if (data.success) {
-                        alert('Review berhasil dikirim');
-                        window.location.href = '{{ route('review') }}';
-                    } else {
-                        alert(data.message);
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert('Terjadi kesalahan. Silakan coba lagi.');
-                });
+            // Mengambil nilai input
+            var ratingInput = document.querySelector('input[name="rating-input"]:checked');
+            var nameInput = document.querySelector('input[name="name"]');
+            var titleInput = document.querySelector('input[name="title"]');
+            var descriptionInput = document.querySelector('textarea[name="description"]');
+
+            // Memeriksa apakah nilai input sudah terisi
+            if (!ratingInput) {
+                alert('Silakan beri rating untuk restoran.');
+                return; // Menghentikan eksekusi fungsi jika rating belum terisi
+            }
+
+            if (!nameInput.value.trim()) {
+                alert('Silakan masukkan nama Anda.');
+                return;
+            }
+
+            if (!titleInput.value.trim()) {
+                alert('Silakan masukkan judul kritik & saran Anda.');
+                return;
+            }
+
+            if (!descriptionInput.value.trim()) {
+                alert('Silakan masukkan isi kritik & saran Anda.');
+                return;
+            }
+
+            // Jika semua validasi terpenuhi, kirim formulir
+            var form = document.getElementById('reviewForm');
+            form.submit();
         }
     </script>
     <!-- /script -->

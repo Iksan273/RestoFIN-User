@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Reservation;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -30,35 +31,38 @@ class ReservationController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'reservation_date' => 'required|date_format:Y-m-d H:i:s',
-            'name_reserve' => 'required|string|max:255',
-            'email_reserve' => 'required|email',
-            'telephone_reserve' => 'required|string|max:15',
-            'people' => 'required|integer|min:1',
-            'terms' => 'required'
-            // Additional validation rules as necessary
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json(['success' => false, 'message' => $validator->errors()->first()], 400);
-        }
-
         try {
-            // Save the reservation to the database
-            $reservation = new Reservation();
-            $reservation->reservation_date = $request->reservation_date;
-            $reservation->nama = $request->name_reserve;
-            $reservation->email = $request->email_reserve;
-            $reservation->phone = $request->telephone_reserve;
-            $reservation->person = $request->people;
-            $reservation->status = "Pending";
-            $reservation->keterangan = $request->opt_message_reserve ?? null;
-            $reservation->save();
+            $validator = Validator::make($request->all(), [
+                'reservation_date' => 'required|date_format:Y-m-d H:i:s',
+                'name_reserve' => 'required|string|max:255',
+                'email_reserve' => 'required|email',
+                'telephone_reserve' => 'required|string|max:15',
+                'people' => 'required|integer|min:1',
+                'terms' => 'required'
+                // Additional validation rules as necessary
+            ]);
 
-            return response()->json(['success' => true, 'message' => 'Reservation saved successfully!']);
-        } catch (\Exception $e) {
-            return response()->json(['success' => false, 'message' => 'Failed to save reservation.'], 500);
+            if ($validator->fails()) {
+                return redirect()->route('reservation')->with('error', 'Reservasi gagal dilakukan. Pastikan seluruh kolom sudah terisi.');
+            }
+
+            try {
+                // Save the reservation to the database
+                $reservation = new Reservation();
+                $reservation->reservation_date = $request->reservation_date;
+                $reservation->nama = $request->name_reserve;
+                $reservation->email = $request->email_reserve;
+                $reservation->phone = $request->telephone_reserve;
+                $reservation->person = $request->people;
+                $reservation->status = "Pending";
+                $reservation->keterangan = $request->opt_message_reserve ?? null;
+                $reservation->save();
+
+                return redirect()->route('reservation')->with('success', 'Reservasi berhasil dilakukan');
+            } catch (\Exception $e) {
+                return back()->with('error', 'Gagal melakukan reservasi: ' . $e->getMessage());
+            }
+        } catch (Exception $e) {
         }
     }
 

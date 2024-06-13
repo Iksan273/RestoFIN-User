@@ -2,24 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CarrerHistory;
-use App\Models\Review;
+use App\Models\OrderItem;
 use Illuminate\Http\Request;
 
-class CarrerHistoryController extends Controller
+class OrderItemController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $kritiksaran = Review::where('rating', 5)
-            ->orderBy('created_at', 'desc')
-            ->limit(3)
-            ->get();
-        return view('carrerhistory', compact('kritiksaran'));
+        //
     }
-
 
     /**
      * Show the form for creating a new resource.
@@ -40,7 +34,7 @@ class CarrerHistoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(CarrerHistory $carrerHistory)
+    public function show(OrderItem $orderItem)
     {
         //
     }
@@ -48,7 +42,7 @@ class CarrerHistoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(CarrerHistory $carrerHistory)
+    public function edit(OrderItem $orderItem)
     {
         //
     }
@@ -56,7 +50,7 @@ class CarrerHistoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, CarrerHistory $carrerHistory)
+    public function update(Request $request, OrderItem $orderItem)
     {
         //
     }
@@ -64,7 +58,7 @@ class CarrerHistoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(CarrerHistory $carrerHistory)
+    public function destroy(OrderItem $orderItem)
     {
         //
     }

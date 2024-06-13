@@ -102,48 +102,19 @@
                     <div class="col-lg-8">
                         <h3 style="color: black;">Apa kata Pembeli</h3>
                         <div class="carousel_testimonials owl-carousel owl-theme">
-                            <div>
-                                <div class="box_overlay">
-                                    <div class="pic">
-                                        <figure><img src="img/testimonial_1.jpg" alt="" class="img-circle">
-                                        </figure>
-                                        <h4>Roberta<small>12 Oct</small></h4>
+                            @foreach($kritiksaran as $review)
+                                <div>
+                                    <div class="box_overlay">
+                                        <div class="pic">
+                                            <h4>{{ $review->nama }}<small>{{ $review->created_at->format('d M') }}</small></h4>
+                                        </div>
+                                        <div class="comment">
+                                            "{{ $review->description }}"
+                                        </div>
                                     </div>
-                                    <div class="comment">
-                                        "Mea ad postea meliore fuisset. Timeam repudiare id eum, ex paulo dictas elaboraret
-                                        sed, mel cu unum nostrud."
-                                    </div>
+                                    <!-- End box_overlay -->
                                 </div>
-                                <!-- End box_overlay -->
-                            </div>
-                            <div>
-                                <div class="box_overlay">
-                                    <div class="pic">
-                                        <figure><img src="img/testimonial_1.jpg" alt="" class="img-circle">
-                                        </figure>
-                                        <h4>Roberta<small>2 Nov</small></h4>
-                                    </div>
-                                    <div class="comment">
-                                        "No nam indoctum accommodare, vix ei discere civibus philosophia. Vis ea dicant
-                                        diceret ocurreret."
-                                    </div>
-                                </div>
-                                <!-- End box_overlay -->
-                            </div>
-                            <div>
-                                <div class="box_overlay">
-                                    <div class="pic">
-                                        <figure><img src="img/testimonial_1.jpg" alt="" class="img-circle">
-                                        </figure>
-                                        <h4>Roberta<small>3 Dec</small></h4>
-                                    </div>
-                                    <div class="comment">
-                                        "No nam indoctum accommodare, vix ei discere civibus philosophia. Vis ea dicant
-                                        diceret ocurreret."
-                                    </div>
-                                </div>
-                                <!-- End box_overlay -->
-                            </div>
+                            @endforeach
                         </div>
                         <!-- End carousel_testimonials -->
                     </div>

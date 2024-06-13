@@ -3,7 +3,7 @@
 @section('content')
     <main>
 
-        <div class="hero_single inner_pages background-image" data-background="url(img/hero_reservation.jpg)">
+        <div class="hero_single inner_pages background-image" data-background="url({{ asset('resto/gallery6.jpg') }})">
             <div class="opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.6)">
                 <div class="container">
                     <div class="row justify-content-center">
@@ -20,6 +20,22 @@
         <!-- /hero_single -->
 
         <div class="pattern_2">
+            @if (session('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-bottom: -30px;">
+                    {{ session('success') }}
+                    <button type="button" class="close-custom" onclick="this.parentElement.style.display='none';"
+                        aria-label="Close">
+                    </button>
+                </div>
+            @endif
+            @if (session('error'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-bottom: -30px;">
+                    {{ session('error') }}
+                    <button type="button" class="close-custom" onclick="this.parentElement.style.display='none';"
+                        aria-label="Close">
+                    </button>
+                </div>
+            @endif
             <div class="container margin_120_100 pb-0">
                 <div class="row justify-content-center">
                     <div class="col-lg-6 text-center d-none d-lg-block" data-cue="slideInUp">
@@ -32,7 +48,7 @@
                             <p class="reservasi-link">atau Hubungi Kami 08xxxxxx</p>
                         </div>
                         <div id="wizard_container">
-                            <form id="wrapped" method="POST" action="{{ route('reservation.store') }}">
+                            <form id="reserveForm" method="POST" action="{{ route('reservation.store') }}" enctype="multipart/form-data">
                                 @csrf
                                 <input id="website" name="website" type="text" value="">
                                 <!-- Leave for security protection, read docs for details -->
@@ -88,18 +104,18 @@
                                                         <label for="time_7">12:00</label>
                                                     </li>
                                                     <li>
-                                                        <input type="radio" id="time_8" name="time" value="12:30"
-                                                            class="required">
+                                                        <input type="radio" id="time_8" name="time"
+                                                            value="12:30" class="required">
                                                         <label for="time_8">12:30</label>
                                                     </li>
                                                     <li>
-                                                        <input type="radio" id="time_9" name="time" value="13:00"
-                                                            class="required">
+                                                        <input type="radio" id="time_9" name="time"
+                                                            value="13:00" class="required">
                                                         <label for="time_9">13:00</label>
                                                     </li>
                                                     <li>
-                                                        <input type="radio" id="time_10" name="time" value="13:30"
-                                                            class="required">
+                                                        <input type="radio" id="time_10" name="time"
+                                                            value="13:30" class="required">
                                                         <label for="time_10">13:30</label>
                                                     </li>
                                                     <li>
@@ -306,7 +322,8 @@
                                             <label class="container_check">Mohon terima <a href="#"
                                                     data-bs-toggle="modal" data-bs-target="#skModal">Syarat dan
                                                     Ketentuan kami.</a>
-                                                <input type="checkbox" name="terms" value="Yes" class="required">
+                                                <input id="termsCheckbox" type="checkbox" name="terms" value="Yes"
+                                                    class="required">
                                                 <span class="checkmark"></span>
                                             </label>
                                         </div>
@@ -378,6 +395,26 @@
             margin-top: 10px;
             margin-bottom: -20px;
         }
+
+        /* style session success & error */
+        .close-custom {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #000;
+            cursor: pointer;
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 1rem 1rem;
+            line-height: 1;
+        }
+
+        .close-custom:before {
+            content: '\00d7';
+            /* Unicode for multiplication sign (×) */
+        }
     </style>
     <!-- /style -->
 
@@ -389,6 +426,15 @@
 
 
         function kirim() {
+            event.preventDefault(); // Mencegah submit form otomatis
+
+            // Periksa apakah checkbox syarat ketentuan telah dicentang
+            var termsCheckbox = document.getElementById('termsCheckbox');
+            if (!termsCheckbox.checked) {
+                alert('Anda harus menerima Syarat dan Ketentuan kami.');
+                return;
+            }
+
             var date = document.getElementById('datepicker_field').value;
             var time = document.querySelector('input[name="time"]:checked').value;
 
@@ -450,40 +496,10 @@
             hiddenInput.name = 'reservation_date';
             hiddenInput.value = formattedDateTime;
 
-            document.getElementById('wrapped').appendChild(hiddenInput);
+            document.getElementById('reserveForm').appendChild(hiddenInput);
 
-            var formData = new FormData(document.getElementById('wrapped'));
-
-            fetch('{{ route('reservation.store') }}', {
-                    method: 'POST',
-                    headers: {
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                    },
-                    body: formData,
-                })
-                .then(response => {
-                    console.log(response); // Log the raw response
-                    const contentType = response.headers.get('content-type');
-                    if (contentType && contentType.includes('application/json')) {
-                        return response.json();
-                    } else {
-                        return response.text().then(text => {
-                            throw new Error(text);
-                        });
-                    }
-                })
-                .then(data => {
-                    if (data.success) {
-                        alert('Reservasi berhasil disimpan');
-                        window.location.href = '{{ route('reservation') }}';
-                    } else {
-                        alert(data.message);
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert('Terjadi kesalahan. Silakan coba lagi.');
-                });
+            var formData = document.getElementById('reserveForm');
+            formData.submit();
         }
     </script>
     <!-- /script -->
