@@ -51,7 +51,6 @@ class CartController extends Controller
             $cartItemCount = count($cart);
 
             session()->put('cart', $cart);
-            session()->flash('success', 'Berhasil dimasukkan ke dalam keranjang');
 
             // Mengembalikan data keranjang dan jumlah item sebagai respons JSON
             return response()->json([

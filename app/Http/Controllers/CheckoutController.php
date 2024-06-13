@@ -43,10 +43,15 @@ class CheckoutController extends Controller
                 'nomor_meja' => 'required|integer|min:1|max:30',
             ]);
 
-            // Replace customer_name with "Guest" if it is null
-            if (is_null($validatedData['customer_name'])) {
-                $validatedData['customer_name'] = 'Guest';
+            // Find user by email
+            $user = null;
+            if (auth()->check()) {
+                $user = auth()->user();
             }
+
+            // Determine user_id or guest name
+            $userId = $user ? $user->id : null;
+            $guest = $user ? null : ($validatedData['customer_name'] ?? 'Guest');
 
             // Retrieve the session cart
             $cart = session('cart', []);
@@ -58,16 +63,6 @@ class CheckoutController extends Controller
             }
             $tax = $subtotal * 0.10; // 10% tax
             $totalPrice = $subtotal + $tax;
-
-            // Find user by email, name, or phone
-            $user = User::where('email', $validatedData['customer_email'])
-                ->orWhere('firstname', $validatedData['customer_name'])
-                ->orWhere('phone', $validatedData['customer_phone'])
-                ->first();
-
-            // Determine user_id or guest name
-            $userId = $user ? $user->id : null;
-            $guest = $user ? null : $validatedData['customer_name'];
 
             // Transaction block
             DB::transaction(function () use ($validatedData, $cart, $userId, $guest, $totalPrice) {
@@ -108,6 +103,7 @@ class CheckoutController extends Controller
             return back()->with('error', 'Gagal melakukan order: ' . $e->getMessage());
         }
     }
+
 
     /**
      * Display the specified resource.
