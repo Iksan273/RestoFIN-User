@@ -84,10 +84,10 @@
                                                             data-price="{{ $menu->price }}"
                                                             data-image="{{ $menu->imageUrl }}" onclick="addToCart(this)">
                                                             <figure>
-                                                                <a href="{{ asset('' . $menu->imageUrl . '.jpg') }}"
+                                                                <a href="https://resto.bemubaya.com/menu/images/{{ $menu->imageUrl }}"
                                                                     title="{{ $menu->title }}" data-effect="mfp-zoom-in">
-                                                                    <img src="{{ asset('' . $menu->imageUrl . '.jpg') }}"
-                                                                        data-src="{{ asset('' . $menu->imageUrl . '.jpg') }}"
+                                                                    <img src="https://resto.bemubaya.com/menu/images/{{ $menu->imageUrl }}"
+                                                                        data-src="https://resto.bemubaya.com/menu/images/{{ $menu->imageUrl }}"
                                                                         class="lazy" alt="">
                                                                 </a>
                                                             </figure>
@@ -139,11 +139,11 @@
                                                             data-price="{{ $menu->price }}"
                                                             data-image="{{ $menu->imageUrl }}" onclick="addToCart(this)">
                                                             <figure>
-                                                                <a href="{{ asset('' . $menu->imageUrl . '.jpg') }}"
+                                                                <a href="https://resto.bemubaya.com/menu/images/{{ $menu->imageUrl }}}"
                                                                     title="{{ $menu->title }}"
                                                                     data-effect="mfp-zoom-in">
-                                                                    <img src="{{ asset('' . $menu->imageUrl . '.jpg') }}"
-                                                                        data-src="{{ asset('' . $menu->imageUrl . '.jpg') }}"
+                                                                    <img src="https://resto.bemubaya.com/menu/images/{{ $menu->imageUrl }}"
+                                                                        data-src="https://resto.bemubaya.com/menu/images/{{ $menu->imageUrl }}"
                                                                         class="lazy" alt="">
                                                                 </a>
                                                             </figure>
@@ -240,7 +240,7 @@
                     transaction += parseFloat(item.price) * parseInt(item.quantity);
 
                     newHTML += '<li data-id="' + id + '">';
-                    newHTML += '<figure><img src="' + item.imageUrl +
+                    newHTML += '<figure><img src="https://resto.bemubaya.com/menu/images/' + item.imageUrl +
                         '" alt="" width="50" height="50" class="lazy"></figure>';
                     newHTML += '<div class="item-details">';
                     newHTML += '<strong>';

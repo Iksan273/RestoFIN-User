@@ -35,7 +35,7 @@
                             <div class="main">
                                 <div class="form-group">
                                     <label>Name</label>
-                                    <input class="form-control" placeholder="(Optional)" name="customer_name"
+                                    <input required class="form-control" placeholder="Masukkan Nama Anda" name="customer_name"
                                         value="{{ auth()->user() ? auth()->user()->firstname . ' ' . auth()->user()->lastname : '' }}"
                                         @if (auth()->check()) readonly @endif>
                                 </div>
@@ -71,19 +71,19 @@
                                 <!--End row -->
                                 <div class="payment_select">
                                     <label class="container_radio">Bayar dengan Cash
-                                        <input type="radio" value="Bayar dengan Cash" name="payment_method">
+                                        <input type="radio" value="Cash" name="payment_method">
                                         <span class="checkmark"></span>
                                     </label>
                                 </div>
                                 <div class="payment_select">
                                     <label class="container_radio">Bayar dengan Debit Card
-                                        <input type="radio" value="Bayar dengan Debit Card" name="payment_method">
+                                        <input type="radio" value="Debit" name="payment_method">
                                         <span class="checkmark"></span>
                                     </label>
                                 </div>
                                 <div class="payment_select">
                                     <label class="container_radio">Bayar dengan QRIS
-                                        <input type="radio" value="Bayar dengan QRIS" name="payment_method">
+                                        <input type="radio" value="QRIS" name="payment_method">
                                         <span class="checkmark"></span>
                                     </label>
                                 </div>

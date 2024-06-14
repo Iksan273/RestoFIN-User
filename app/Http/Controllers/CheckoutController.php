@@ -36,7 +36,7 @@ class CheckoutController extends Controller
         try {
             // Validate the form data
             $validatedData = $request->validate([
-                'customer_name' => 'nullable|string|max:255',
+                'customer_name' => 'required|string|max:255',
                 'customer_email' => 'nullable|string|max:255',
                 'customer_phone' => 'nullable|string|max:16',
                 'payment_method' => 'required|string',
@@ -94,6 +94,7 @@ class CheckoutController extends Controller
                     'payment_method' => $validatedData['payment_method'],
                     'total_amount' => $totalPrice,
                     'status' => 'Belum Bayar',
+                    'order_date' => now(),
                 ]);
             });
 

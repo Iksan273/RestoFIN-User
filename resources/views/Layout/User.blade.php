@@ -75,7 +75,7 @@
                                     @foreach ($cart as $id => $item)
                                         <li data-id="{{ $id }}">
                                             <figure>
-                                                <img src="{{ asset('img/menu_items/' . $item['imageUrl'] . '.jpg') }}"
+                                                <img src="https://resto.bemubaya.com/menu/images/{{ $item['imageUrl'] }}"
                                                     alt="" width="50" height="50" class="lazy">
                                             </figure>
                                             <div class="item-details">

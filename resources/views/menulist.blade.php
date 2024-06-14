@@ -52,6 +52,11 @@
                                     role="tab">{{ $category->title }}</a>
                             </li>
                         @endforeach
+                        <!-- Add tab for Recommendations -->
+                        <li class="nav-item">
+                            <a id="tab-recommendations" href="#pane-recommendations" class="nav-link" data-bs-toggle="tab"
+                                role="tab">Recommendations</a>
+                        </li>
                     </ul>
                     <div class="tab-content add_bottom_25" role="tablist">
                         @foreach ($categories as $categoryIndex => $category)
@@ -94,15 +99,13 @@
                                                     <div class="col-lg-6">
                                                         <div class="menu_item order">
                                                             <figure>
-                                                                <a href="{{ asset('' . $menu->imageUrl . '.jpg') }}"
+                                                                <a href="https://resto.bemubaya.com/menu/images/{{ $menu->imageUrl }}"
                                                                     title="{{ $menu->title }}" data-effect="mfp-zoom-in">
-                                                                    <img src="{{ asset('' . $menu->imageUrl . '.jpg') }}"
-                                                                        data-src="https://resto.bemubaya.com/menu/images/1716189320.png"
+                                                                    <img src="https://resto.bemubaya.com/menu/images/{{ $menu->imageUrl }}"
+                                                                        data-src="https://resto.bemubaya.com/menu/images/{{ $menu->imageUrl }}"
                                                                         class="lazy" alt="">
-                                                                    {{-- <img src="{{ asset('' . $menu->imageUrl . '.jpg') }}"
-                                                                        data-src="{{ asset('' . $menu->imageUrl . '.jpg') }}"
-                                                                        class="lazy" alt=""> --}}
                                                                 </a>
+                                                            </figure>
                                                             </figure>
                                                             <div class="menu_title">
                                                                 <h3>{{ $menu->title }}</h3>
@@ -137,20 +140,6 @@
                             <div id="collapse-recommendations" class="collapse" role="tabpanel"
                                 aria-labelledby="heading-recommendations" data-bs-parent="#accordion-recommendations">
                                 <div class="card-body">
-                                    {{-- <div class="banner lazy" data-bg="url(img/banner_bg_recommendations.jpg)">
-                                        <div class="wrapper d-flex align-items-center justify-content-between opacity-mask"
-                                            data-opacity-mask="rgba(0, 0, 0, 0.6)">
-                                            <div>
-                                                <small>Special Recommendations</small>
-                                                <h3>Mix and Match Menu $20 only</h3>
-                                                <p>Pizza, Pasta, Salad, Wine, Dessert</p>
-                                                <a href="reservations.html" class="btn_1">Reserve now</a>
-                                            </div>
-                                            <figure class="d-none d-lg-block"><img src="img/banner.svg" alt=""
-                                                    width="200" height="200" class="img-fluid"></figure>
-                                        </div>
-                                        <!-- /wrapper -->
-                                    </div> --}}
                                     <!-- /banner -->
                                     <div class="row magnific-gallery">
                                         @if (isset($recmenu) && $recmenu->isNotEmpty())
@@ -162,10 +151,10 @@
                                                     <div class="col-lg-6" data-cue="slideInUp">
                                                         <div class="menu_item order">
                                                             <figure>
-                                                                <a href="{{ asset('' . $menu->imageUrl . '.jpg') }}"
+                                                                <a href="https://resto.bemubaya.com/menu/images/{{ $menu->imageUrl }}"
                                                                     title="{{ $menu->title }}" data-effect="mfp-zoom-in">
-                                                                    <img src="{{ asset('' . $menu->imageUrl . '.jpg') }}"
-                                                                        data-src="{{ asset('' . $menu->imageUrl . '.jpg') }}"
+                                                                    <img src="https://resto.bemubaya.com/menu/images/{{ $menu->imageUrl }}"
+                                                                        data-src="https://resto.bemubaya.com/menu/images/{{ $menu->imageUrl }}"
                                                                         class="lazy" alt="">
                                                                 </a>
                                                             </figure>
@@ -174,7 +163,6 @@
                                                                 <em>${{ $menu->price }}</em>
                                                             </div>
                                                             <p>{{ $menu->description }}</p>
-                                                            <a class="add_to_cart">Add To Cart</a>
                                                         </div>
                                                     </div>
                                                 @endif

@@ -47,7 +47,7 @@
                                 <tr data-id="{{ $id }}">
                                     <td>
                                         <div class="thumb_cart">
-                                            <img src="{{ asset('img/menu_items/' . $item['imageUrl'] . '.jpg') }}"
+                                            <img src="https://resto.bemubaya.com/menu/images/{{ $item['imageUrl'] }}"
                                                 class="lazy" alt="Image">
                                         </div>
                                         <div class="item_container">
@@ -338,7 +338,7 @@
                     transaction += parseFloat(item.price) * parseInt(item.quantity);
 
                     newHTML += '<li data-id="' + id + '">';
-                    newHTML += '<figure><img src="' + item.imageUrl +
+                    newHTML += '<figure><img src="https://resto.bemubaya.com/menu/images/' + item.imageUrl +
                         '" alt="" width="50" height="50" class="lazy"></figure>';
                     newHTML += '<div class="item-details">';
                     newHTML += '<strong>';
