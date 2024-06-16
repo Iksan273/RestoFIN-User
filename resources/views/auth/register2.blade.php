@@ -44,12 +44,15 @@
                                 </div>
                                 <div class="form-group">
                                     <input type="email" name="email" class="form-control" placeholder="Email" required>
+                                    @error('email')
+                                        <p style="margin-bottom: -10px;"><span class="text-danger">{{ $message }}</span></p>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <input id="new-pass" type="password" name="password" class="form-control"
                                         placeholder="Password" required>
                                     @error('password')
-                                        <p><span class="text-danger">{{ $message }}</span></p>
+                                        <p style="margin-bottom: -10px;"><span class="text-danger">{{ $message }}</span></p>
                                     @else
                                         <p style="margin-bottom: -10px;">Password Minimal 8 Karakter</p>
                                     @enderror

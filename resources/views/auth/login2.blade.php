@@ -44,7 +44,7 @@
                                     <input type="checkbox" onclick="pass()" style="margin-top: 10px;"> Show
                                     Password
                                     @error('password')
-                                        <p><span class="text-danger">{{ $message }}</span></p>
+                                        <p style="margin-bottom: 10px;"><span class="text-danger">{{ $message }}</span></p>
                                     @enderror
                                     <a href="{{ route('lupa-password') }}" class="forgot-password">Lupa Password</a>
                                     <button type="submit" class="btn_1 mt-2 mb-4">Masuk</button>

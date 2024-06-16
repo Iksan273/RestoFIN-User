@@ -15,6 +15,7 @@ use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\StrukOnlineController;
 use App\Http\Controllers\TableController;
+use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
@@ -94,6 +95,7 @@ Route::post('/cart-update', [CartController::class, 'updateCartQuantity'])->name
 // Halaman Checkout
 Route::get('/checkout', [HomeController::class, 'indexCheckout'])->name('checkout');
 Route::post('/order', [CheckoutController::class, 'store'])->name('checkout.order');
+Route::get('/transaction/{orderId}', [TransactionController::class, 'getTransactionDetail'])->name('transaction.detail');
 
 
 // Halaman Reservasi

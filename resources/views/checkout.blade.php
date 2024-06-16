@@ -35,7 +35,8 @@
                             <div class="main">
                                 <div class="form-group">
                                     <label>Name</label>
-                                    <input required class="form-control" placeholder="Masukkan Nama Anda" name="customer_name"
+                                    <input required class="form-control" placeholder="Masukkan Nama Anda"
+                                        name="customer_name"
                                         value="{{ auth()->user() ? auth()->user()->firstname . ' ' . auth()->user()->lastname : '' }}"
                                         @if (auth()->check()) readonly @endif>
                                 </div>
@@ -100,11 +101,11 @@
                             <!-- /head -->
                             <div class="main">
                                 @if (isset($cart) && count($cart) > 0)
-                                    <ul class="clearfix">
+                                    <ul class="clearfix scrollable-cart">
                                         @foreach ($cart as $id => $item)
                                             <li>
-                                                <a>{{ $item['quantity'] }}x {{ $item['title'] }}</a>
-                                                <div class="price" style="text-align: end;"><strong>Rp.
+                                                <a style="margin-top: 2px;">{{ $item['quantity'] }}x {{ $item['title'] }}</a>
+                                                <div class="price" style="text-align: end; margin-right: 20px;"><strong>Rp.
                                                         {{ number_format($item['price'], 0, ',', '.') }}</strong></div>
                                             </li>
                                         @endforeach
@@ -168,6 +169,12 @@
         .close-custom:before {
             content: '\00d7';
             /* Unicode for multiplication sign (×) */
+        }
+
+        .scrollable-cart {
+            max-height: 215px;
+            /* Sesuaikan dengan tinggi yang diinginkan */
+            overflow-y: auto;
         }
     </style>
     <!-- /style -->

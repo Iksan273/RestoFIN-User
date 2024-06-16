@@ -21,4 +21,8 @@ class Transaction extends Model
     {
         return $this->belongsTo(Order::class, 'orders_id');
     }
+    public function orderItems()
+    {
+        return $this->hasMany(OrderItem::class, 'orders_id');
+    }
 }

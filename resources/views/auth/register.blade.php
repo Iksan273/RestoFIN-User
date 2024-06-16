@@ -32,7 +32,8 @@
                                 <img src="{{ asset('resto/logo.png') }}" alt=""
                                     style="width: auto; height: auto; max-width: 140px; max-height: 35px;">
                             </a><br><br>
-                            <form id="registrationForm" action="{{ route('register') }}" method="POST" enctype="multipart/form-data">
+                            <form id="registrationForm" action="{{ route('register') }}" method="POST"
+                                enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
                                     <input type="text" name="first_name" class="form-control" placeholder="First Name"
@@ -44,10 +45,18 @@
                                 </div>
                                 <div class="form-group">
                                     <input type="email" name="email" class="form-control" placeholder="Email" required>
+                                    @error('email')
+                                        <p style="margin-bottom: -10px;"><span class="text-danger">{{ $message }}</span></p>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <input id="new-pass" type="password" name="password" class="form-control"
-                                        placeholder="Password (Minimal 8 Karakter)" required>
+                                        placeholder="Password" required>
+                                    @error('password')
+                                        <p style="margin-bottom: -10px;"><span class="text-danger">{{ $message }}</span></p>
+                                    @else
+                                        <p style="margin-bottom: -10px;">Password Minimal 8 Karakter</p>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <input id="re-pass" type="password" name="password_confirmation" class="form-control"

@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\MemberPoint;
 use App\Models\Menu;
+use App\Models\Order;
 use App\Models\Promo;
 use App\Models\Recommendation;
 use App\Models\Review;
 use App\Models\StrukOnline;
+use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -273,8 +275,13 @@ class HomeController extends Controller
         $tax = $transaction * 0.10; // Pajak 10%
         $total = $transaction + $tax;
 
+        // Mengambil transaksi
+        $transactions = Order::where('users_id', $customer->id)
+        ->with(['orderItems.menu'])
+        ->get();
+
         // Kirim data customer, daftar bulan, dan memberPoints ke view
-        return view('profile', compact('customer', 'months', 'memberPoints', 'strukOnline', 'promo', 'cart', 'transaction', 'tax', 'total'));
+        return view('profile', compact('customer', 'months', 'memberPoints', 'strukOnline', 'promo', 'cart', 'transaction', 'tax', 'total', 'transactions'));
     }
 
     public function showLoginForm()

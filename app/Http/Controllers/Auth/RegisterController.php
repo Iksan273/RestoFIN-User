@@ -89,7 +89,7 @@ class RegisterController extends Controller
             $validatedData = $request->validate([
                 'first_name' => ['required', 'string', 'max:255'],
                 'last_name' => ['required', 'string', 'max:255'],
-                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
                 'password' => ['required', 'string', 'min:8', 'confirmed'],
             ]);
 
@@ -127,11 +127,26 @@ class RegisterController extends Controller
             $user->point += $memberPoint->point;
             $user->save();
 
-            return redirect()->route('login')->with('success', 'Registration successful! Please login.');
+            return redirect()->route('login')->with('success', 'Pendaftaran berhasil! Silakan login.');
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            // Jika validasi gagal, kirim kembali ke halaman register dengan pesan kesalahan khusus
+            $errors = $e->validator->errors();
+
+            if ($errors->has('email')) {
+                return redirect()->route('register')->with('error', 'Email sudah digunakan')->withErrors($errors)->withInput();
+            }
+
+            if ($errors->has('password')) {
+                return redirect()->route('register')->with('error', 'Password minimal 8 karakter')->withErrors($errors)->withInput();
+            }
+
+            return redirect()->route('register')->with('error', 'Pendaftaran gagal! Silakan coba lagi.')->withErrors($errors)->withInput();
         } catch (Exception $e) {
-            return redirect()->route('register')->with('error', 'Registration failed! Please try again.');
+            return redirect()->route('register')->with('error', 'Pendaftaran gagal! Silakan coba lagi.');
         }
     }
+
+
 
     public function register2(Request $request)
     {
@@ -140,7 +155,7 @@ class RegisterController extends Controller
             $validatedData = $request->validate([
                 'first_name' => ['required', 'string', 'max:255'],
                 'last_name' => ['required', 'string', 'max:255'],
-                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
                 'password' => ['required', 'string', 'min:8', 'confirmed'],
             ]);
 
@@ -178,11 +193,25 @@ class RegisterController extends Controller
             $user->point += $memberPoint->point;
             $user->save();
 
-            return redirect()->route('login-2')->with('success', 'Registration successful! Please login.');
+            return redirect()->route('login-2')->with('success', 'Pendaftaran berhasil! Silakan login.');
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            // Jika validasi gagal, kirim kembali ke halaman register dengan pesan kesalahan khusus
+            $errors = $e->validator->errors();
+
+            if ($errors->has('email')) {
+                return redirect()->route('register-2')->with('error', 'Email sudah digunakan')->withErrors($errors)->withInput();
+            }
+
+            if ($errors->has('password')) {
+                return redirect()->route('register-2')->with('error', 'Password minimal 8 karakter')->withErrors($errors)->withInput();
+            }
+
+            return redirect()->route('register-2')->with('error', 'Pendaftaran gagal! Silakan coba lagi.')->withErrors($errors)->withInput();
         } catch (Exception $e) {
-            return redirect()->route('register-2')->with('error', 'Registration failed! Please try again.');
+            return redirect()->route('register-2')->with('error', 'Pendaftaran gagal! Silakan coba lagi.');
         }
     }
+
 
     public function showRegistrationForm()
     {

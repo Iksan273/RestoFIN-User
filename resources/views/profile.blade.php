@@ -83,7 +83,8 @@
                             </div>
                         </div>
                         <!-- /head -->
-                        <form id="profileForm" method="POST" action="{{ route('customer.update') }}" enctype="multipart/form-data">
+                        <form id="profileForm" method="POST" action="{{ route('customer.update') }}"
+                            enctype="multipart/form-data">
                             @csrf
                             <div class="main">
                                 <div class="row">
@@ -179,7 +180,8 @@
                             </div>
                         </div>
                         <!-- /head -->
-                        <form id="passwordForm" method="POST" action="{{ route('customer.password') }}" enctype="multipart/form-data">
+                        <form id="passwordForm" method="POST" action="{{ route('customer.password') }}"
+                            enctype="multipart/form-data">
                             @csrf
                             <div class="main">
                                 <div class="form-group">
@@ -250,10 +252,21 @@
                             </div>
                         </div>
                         <!-- /head -->
-                        <div class="main">
-                            <a href="#detail-point" class="btn_1 full-width mb_5" style="margin-top: 20px"
-                                data-bs-toggle="modal" data-bs-target="#transaksiModal">30 Mei 2024 - Rp. 100.000</a>
-                        </div>
+                        @if ($transactions->isEmpty())
+                            <div class="main">
+                                <p>Tidak ada transaksi yang ditemukan.</p>
+                            </div>
+                        @else
+                            @foreach ($transactions as $t)
+                                <div class="main">
+                                    <a href="#detail-transaction" class="btn_1 full-width mb_5" data-bs-toggle="modal"
+                                        data-bs-target="#transaksiModal" data-order-id="{{ $t->id }}"
+                                        onclick="showTransactionDetail({{ $t->id }})">
+                                        {{ $t->order_date }}
+                                    </a>
+                                </div>
+                            @endforeach
+                        @endif
                     </div>
 
                     <!-- Points -->
@@ -456,28 +469,23 @@
                     <!-- History Transaksi -->
                     <div style="margin-bottom: 17px;">
                         <h2>History Transaksi</h2>
-                        <p><strong>ID Transaksi:</strong> TRX123456789</p>
-                        <p><strong>Tanggal:</strong> 30 Mei 2024</p>
-                        <p><strong>Pelanggan:</strong> John Doe</p>
+                        <p><strong>ID Transaksi:</strong> <span id="trx-id"></span></p>
+                        <p><strong>Tanggal:</strong> <span id="trx-date"></span></p>
                         <p><strong>Items:</strong></p>
-                        <div style="max-height: 100px; overflow-y: auto;">
-                            <ul>
-                                <li>Item 1 - Rp50.000</li>
-                                <li>Item 2 - Rp30.000</li>
-                                <li>Item 3 - Rp20.000</li>
-                                <li>Item 4 - Rp40.000</li>
-                                <li>Item 5 - Rp25.000</li>
-                                <!-- Tambahkan lebih banyak item jika diperlukan -->
+                        <div style="max-height: 200px; overflow-y: auto;">
+                            <ul id="trx-items">
+                                <!-- Daftar item transaksi akan dimasukkan di sini -->
                             </ul>
                         </div>
-                        <p><strong>Total:</strong> Rp100.000</p>
-                        <p><strong>Metode Pembayaran:</strong> QRIS</p>
-                        <p><strong>Status:</strong> Berhasil</p>
+                        <p><strong>Total:</strong> Rp <span id="trx-total"></span></p>
+                        <p><strong>Metode Pembayaran:</strong> <span id="trx-payment-method"></span></p>
+                        <p><strong>Status:</strong> <span id="trx-status"></span></p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
     <!-- /Modal Transaksi -->
 
     <!-- Modal Struk Pembelian Online -->
@@ -1038,6 +1046,13 @@
             max-width: 100%;
             object-fit: contain;
             /* Ensures the image keeps its aspect ratio */
+        }
+
+        .main, .promo {
+            max-height: 600px;
+            /* Atur tinggi maksimum */
+            overflow-y: auto;
+            /* Aktifkan overflow untuk bilah gulir vertikal jika melebihi tinggi maksimum */
         }
     </style>
     <!-- /style -->
@@ -2029,6 +2044,48 @@
             document.getElementById('promoEnd').textContent = end;
             document.getElementById('promoPointDigunakan').textContent = pointDigunakan;
             document.getElementById('promoPointDibutuhkan').textContent = pointDibutuhkan;
+        }
+
+        function showTransactionDetail(orderId) {
+            // Menggunakan AJAX untuk mengambil detail transaksi
+            fetch(`/transaction/${orderId}`)
+                .then(response => response.json())
+                .then(data => {
+                    // Mengisi detail transaksi ke dalam modal
+                    document.getElementById('trx-id').textContent = data.id_transaksi;
+                    document.getElementById('trx-date').textContent = data.tanggal;
+                    document.getElementById('trx-total').textContent = formatNumber(data.total);
+                    document.getElementById('trx-payment-method').textContent = data.metode_pembayaran;
+                    document.getElementById('trx-status').textContent = data.status;
+
+                    // Menghapus daftar item yang sebelumnya
+                    const trxItems = document.getElementById('trx-items');
+                    trxItems.innerHTML = '';
+
+                    // Menambahkan daftar item baru
+                    data.items.forEach(item => {
+                        const li = document.createElement('li');
+                        const title = document.createElement('div');
+                        title.textContent = item.title;
+                        const price = document.createElement('div');
+                        price.textContent = `${formatNumber(item.price)}`;
+                        li.appendChild(title);
+                        li.appendChild(price);
+                        trxItems.appendChild(li);
+                    });
+
+                    // Menampilkan modal
+                    $('#transaksiModal').modal('show');
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        // Fungsi untuk memformat angka menjadi format mata uang atau ribuan
+        function formatNumber(number) {
+            return Number(number).toLocaleString('id-ID', {
+                style: 'currency',
+                currency: 'IDR'
+            });
         }
     </script>
 @endsection
