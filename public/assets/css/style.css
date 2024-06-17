@@ -1992,8 +1992,6 @@ ul#banners_grid li a.img_container .short_info p {
 }
 .menu_item.order a.add_to_cart {
   position: absolute;
-  left: 2px;
-  top: 65px;
   background-color: #978667;
   color: #fff;
   font-size: 11px;
@@ -2005,7 +2003,7 @@ ul#banners_grid li a.img_container .short_info p {
   line-height: 1;
   padding: 6px 8px;
   font-weight: 600;
-  opacity: 0;
+  opacity: 1;
 }
 @media (max-width: 991px) {
   .menu_item.order a.add_to_cart {
@@ -2018,10 +2016,9 @@ ul#banners_grid li a.img_container .short_info p {
   filter: brightness(115%);
   opacity: 1;
 }
-.menu_item.order:hover a.add_to_cart {
+/* .menu_item.order:hover a.add_to_cart {
   opacity: 1;
-  left: -2px;
-}
+} */
 
 .menu_item figure a:hover img {
   -moz-transition: all 0.3s ease;

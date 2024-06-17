@@ -91,8 +91,12 @@
                                         </li>
                                     @endforeach
                                 @else
-                                    <li>
-                                        <strong><span>Keranjang Kosong</span></strong>
+                                    <li id="empty-cart">
+                                        <div class="item-details">
+                                            <strong>
+                                                <span>Keranjang Kosong</span>
+                                            </strong>
+                                        </div>
                                     </li>
                                 @endif
                             </ul>
@@ -330,7 +334,7 @@
                         // Periksa apakah keranjang kosong
                         if (response.cartItemCount === 0) {
                             cartItems.innerHTML =
-                            `<li id="empty-cart">
+                                `<li id="empty-cart">
                                 <div class="item-details">
                                     <strong><span>Keranjang Kosong</span></strong>
                                 </div>

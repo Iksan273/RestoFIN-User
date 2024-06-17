@@ -83,15 +83,12 @@
                                                             data-title="{{ $menu->title }}"
                                                             data-price="{{ $menu->price }}"
                                                             data-image="{{ $menu->imageUrl }}" onclick="addToCart(this)">
-                                                            <figure>
-                                                                <a href="https://resto.bemubaya.com/menu/images/{{ $menu->imageUrl }}"
-                                                                    title="{{ $menu->title }}" data-effect="mfp-zoom-in">
+                                                            <div class="menu_title">
+                                                                <figure>
                                                                     <img src="https://resto.bemubaya.com/menu/images/{{ $menu->imageUrl }}"
                                                                         data-src="https://resto.bemubaya.com/menu/images/{{ $menu->imageUrl }}"
                                                                         class="lazy" alt="">
-                                                                </a>
-                                                            </figure>
-                                                            <div class="menu_title">
+                                                                </figure>
                                                                 <h3>{{ $menu->title }}</h3>
                                                                 <em>{{ $menu->price }}</em>
                                                             </div>
@@ -138,16 +135,12 @@
                                                             data-title="{{ $menu->title }}"
                                                             data-price="{{ $menu->price }}"
                                                             data-image="{{ $menu->imageUrl }}" onclick="addToCart(this)">
-                                                            <figure>
-                                                                <a href="https://resto.bemubaya.com/menu/images/{{ $menu->imageUrl }}}"
-                                                                    title="{{ $menu->title }}"
-                                                                    data-effect="mfp-zoom-in">
+                                                            <div class="menu_title">
+                                                                <figure>
                                                                     <img src="https://resto.bemubaya.com/menu/images/{{ $menu->imageUrl }}"
                                                                         data-src="https://resto.bemubaya.com/menu/images/{{ $menu->imageUrl }}"
                                                                         class="lazy" alt="">
-                                                                </a>
-                                                            </figure>
-                                                            <div class="menu_title">
+                                                                </figure>
                                                                 <h3>{{ $menu->title }}</h3>
                                                                 <em>{{ $menu->price }}</em>
                                                             </div>
@@ -270,7 +263,7 @@
             } else {
                 // Tampilkan pesan "Keranjang Kosong" jika tidak ada item di keranjang
                 cartItemsList.innerHTML =
-                `<li id="empty-cart">
+                    `<li id="empty-cart">
                     <div class="item-details">
                         <strong>
                             <span>Keranjang Kosong</span>

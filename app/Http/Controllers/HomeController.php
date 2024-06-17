@@ -119,9 +119,8 @@ class HomeController extends Controller
 
         $tax = $transaction * 0.10; // Pajak 10%
         $total = $transaction + $tax;
-        $subtotal = $total + $tax;
 
-        return view('checkout', compact('cart', 'transaction', 'tax', 'total', 'subtotal'));
+        return view('checkout', compact('cart', 'transaction', 'tax', 'total'));
     }
 
     public function indexReserve()

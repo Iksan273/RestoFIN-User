@@ -112,7 +112,7 @@
                                     </ul>
                                     <ul class="clearfix">
                                         <li>Subtotal<span><strong>Rp.
-                                                    {{ number_format($subtotal, 0, ',', '.') }}</strong></span></li>
+                                                    {{ number_format($transaction, 0, ',', '.') }}</strong></span></li>
                                         <li>Pajak - 10%<span><strong>Rp.
                                                     {{ number_format($tax, 0, ',', '.') }}</strong></span>
                                         </li>

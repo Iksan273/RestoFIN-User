@@ -78,20 +78,6 @@
                                     aria-labelledby="heading-{{ $categoryIndex }}"
                                     data-bs-parent="#accordion-{{ $categoryIndex }}">
                                     <div class="card-body">
-                                        {{-- <div class="banner lazy" data-bg="url(img/banner_bg_{{ $categoryIndex + 1 }}.jpg)">
-                                            <div class="wrapper d-flex align-items-center justify-content-between opacity-mask"
-                                                data-opacity-mask="rgba(0, 0, 0, 0.6)">
-                                                <div>
-                                                    <small>{{ $category->title }} Special Offer</small>
-                                                    <h3>Mix {{ $category->title }} Menu $18 only</h3>
-                                                    <p>Hamburgher, Chips, Mix Sausages, Beer, Muffin</p>
-                                                    <a href="reservations.html" class="btn_1">Reserve now</a>
-                                                </div>
-                                                <figure class="d-none d-lg-block"><img src="img/banner.svg" alt=""
-                                                        width="200" height="200" class="img-fluid"></figure>
-                                            </div>
-                                            <!-- /wrapper -->
-                                        </div> --}}
                                         <!-- /banner -->
                                         <div class="row magnific-gallery add_top_10">
                                             @if (isset($menus[$categoryIndex + 1]))
@@ -99,12 +85,9 @@
                                                     <div class="col-lg-6">
                                                         <div class="menu_item order">
                                                             <figure>
-                                                                <a href="https://resto.bemubaya.com/menu/images/{{ $menu->imageUrl }}"
-                                                                    title="{{ $menu->title }}" data-effect="mfp-zoom-in">
-                                                                    <img src="https://resto.bemubaya.com/menu/images/{{ $menu->imageUrl }}"
-                                                                        data-src="https://resto.bemubaya.com/menu/images/{{ $menu->imageUrl }}"
-                                                                        class="lazy" alt="">
-                                                                </a>
+                                                                <img src="https://resto.bemubaya.com/menu/images/{{ $menu->imageUrl }}"
+                                                                    data-src="https://resto.bemubaya.com/menu/images/{{ $menu->imageUrl }}"
+                                                                    class="lazy" alt="">
                                                             </figure>
                                                             </figure>
                                                             <div class="menu_title">
@@ -151,12 +134,9 @@
                                                     <div class="col-lg-6" data-cue="slideInUp">
                                                         <div class="menu_item order">
                                                             <figure>
-                                                                <a href="https://resto.bemubaya.com/menu/images/{{ $menu->imageUrl }}"
-                                                                    title="{{ $menu->title }}" data-effect="mfp-zoom-in">
-                                                                    <img src="https://resto.bemubaya.com/menu/images/{{ $menu->imageUrl }}"
-                                                                        data-src="https://resto.bemubaya.com/menu/images/{{ $menu->imageUrl }}"
-                                                                        class="lazy" alt="">
-                                                                </a>
+                                                                <img src="https://resto.bemubaya.com/menu/images/{{ $menu->imageUrl }}"
+                                                                    data-src="https://resto.bemubaya.com/menu/images/{{ $menu->imageUrl }}"
+                                                                    class="lazy" alt="">
                                                             </figure>
                                                             <div class="menu_title">
                                                                 <h3>{{ $menu->title }}</h3>
