@@ -396,13 +396,14 @@
 
         .cart-items-list .item-details .title {
             display: block;
-            max-width: 100%;
+            width: 250px;
             overflow: hidden;
             text-overflow: ellipsis;
         }
 
         .cart-items-list .price {
             color: #666;
+            margin-top: -5px;
         }
 
         .cart-items-list .action {
