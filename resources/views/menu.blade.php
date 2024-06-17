@@ -93,7 +93,7 @@
                                                                 <em>{{ $menu->price }}</em>
                                                             </div>
                                                             <p>{{ $menu->description }}</p>
-                                                            <a class="add_to_cart">Add To Cart</a>
+                                                            <a class="add_cart">Add To Cart</a>
                                                         </div>
                                                     </div>
                                                 @endforeach
@@ -145,7 +145,7 @@
                                                                 <em>{{ $menu->price }}</em>
                                                             </div>
                                                             <p>{{ $menu->description }}</p>
-                                                            <a class="add_to_cart">Add To Cart</a>
+                                                            <a class="add_cart">Add To Cart</a>
                                                         </div>
                                                     </div>
                                                 @endif

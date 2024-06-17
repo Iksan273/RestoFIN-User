@@ -1990,7 +1990,7 @@ ul#banners_grid li a.img_container .short_info p {
   -ms-transition: all 0.1s ease;
   transition: all 0.1s ease;
 }
-.menu_item.order a.add_to_cart {
+.menu_item.order a.add_cart {
   position: absolute;
   background-color: #978667;
   color: #fff;
@@ -2006,12 +2006,12 @@ ul#banners_grid li a.img_container .short_info p {
   opacity: 1;
 }
 @media (max-width: 991px) {
-  .menu_item.order a.add_to_cart {
+  .menu_item.order a.add_cart {
     opacity: 1;
     left: -2px;
   }
 }
-.menu_item.order a.add_to_cart:hover {
+.menu_item.order a.add_cart:hover {
   -webkit-filter: brightness(115%);
   filter: brightness(115%);
   opacity: 1;
