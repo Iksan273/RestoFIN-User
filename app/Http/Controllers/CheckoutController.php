@@ -7,6 +7,7 @@ use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Transaction;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -72,7 +73,7 @@ class CheckoutController extends Controller
                     'order_number' => $orderNumber . str_pad($orderCount + 1, 4, '0', STR_PAD_LEFT),
                     'total_price' => $totalPrice,
                     'payment_method' => $validatedData['payment_method'],
-                    'order_date' => now(),
+                    'order_date' => Carbon::now(),
                     'status_pembayaran' => 'Belum Bayar',
                     'no_meja' => $validatedData['nomor_meja'],
                     'guest' => $guest,
@@ -94,7 +95,7 @@ class CheckoutController extends Controller
                     'payment_method' => $validatedData['payment_method'],
                     'total_amount' => $totalPrice,
                     'status' => 'Belum Bayar',
-                    'order_date' => now(),
+                    'order_date' => Carbon::now(),
                 ]);
             });
 
