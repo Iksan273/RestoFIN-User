@@ -2016,9 +2016,6 @@ ul#banners_grid li a.img_container .short_info p {
   filter: brightness(115%);
   opacity: 1;
 }
-/* .menu_item.order:hover a.add_to_cart {
-  opacity: 1;
-} */
 
 .menu_item figure a:hover img {
   -moz-transition: all 0.3s ease;
