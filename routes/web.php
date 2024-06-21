@@ -9,6 +9,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InformationController;
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\PromoController;
 use App\Http\Controllers\ReservationController;
@@ -69,6 +70,14 @@ Route::post('/register', [RegisterController::class, 'register'])->name('registe
 // Halaman Register Menuju Login (Index)
 Route::get('/register-2', [RegisterController::class, 'showRegistrationForm2'])->name('register-2');
 Route::post('/register-2', [RegisterController::class, 'register2'])->name('register-post-2');
+
+
+// Halaman Verification Email
+Route::get('/reg-verif', [MailController::class, 'index'])->name('reg-verif');
+Route::middleware(['web'])->group(function () {
+    Route::post('/verify-reg', [MailController::class, 'verify'])->name('verif-reg');
+    // Route::post('/update-email', [ProfileController::class, 'verify'])->name('profile.verify');
+});
 
 
 // Halaman Lupa Password

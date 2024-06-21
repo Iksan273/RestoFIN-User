@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Mail\MyMail;
 use App\Models\MemberPoint;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -12,6 +13,7 @@ use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class RegisterController extends Controller
 {
@@ -86,48 +88,34 @@ class RegisterController extends Controller
     {
         try {
             // Validasi data yang diterima dari formulir
-            $validatedData = $request->validate([
+            $request->validate([
                 'first_name' => ['required', 'string', 'max:255'],
                 'last_name' => ['required', 'string', 'max:255'],
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
                 'password' => ['required', 'string', 'min:8', 'confirmed'],
             ]);
 
-            // Buat user baru
-            $user = User::create([
-                'firstname' => $validatedData['first_name'],
-                'lastname' => $validatedData['last_name'],
-                'email' => $validatedData['email'],
-                'password' => Hash::make($validatedData['password']),
-                'phone' => null,
-                'point' => 0, // Inisialisasi poin menjadi 0 saat pembuatan akun
-                'membership' => 1,
-                'birth_day' => null,
-                'birth_month' => null,
-                'instagram' => null,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-                'email_verify' => 'Belum',
-                'phone_verify' => 'Belum',
-            ]);
+            $firstname = $request->input('first_name');
+            $lastname = $request->input('last_name');
+            $email = $request->input('email');
+            $password = $request->input('password');
+            $verificationCode = str_pad(mt_rand(0, 9999), 4, '0', STR_PAD_LEFT);
 
-            // Ambil user_id dari user yang baru dibuat
-            $userId = $user->id;
+            $request->session()->put('verification_code', $verificationCode);
+            $request->session()->put('firstname', $firstname);
+            $request->session()->put('lastname', $lastname);
+            $request->session()->put('email', $email);
+            $request->session()->put('password', $password);
 
-            // Tambahkan entri baru di tabel member_point menggunakan user_id
-            $memberPoint = MemberPoint::create([
-                'users_id' => $userId,
-                'point' => 100.00, // Berikan 100 poin untuk pengguna baru
-                'keterangan' => 'Bergabung menjadi Member', // Keterangan untuk pemberian poin
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ]);
+            $details = [
+                'title' => 'Verifikasi Email dari Vinautism Art & Resto',
+                'body' => 'Kode verifikasi Anda: ' . $verificationCode,
+                'logo' => public_path('resto/logo.png'),
+            ];
 
-            // Tambahkan poin dari member_point ke tabel users
-            $user->point += $memberPoint->point;
-            $user->save();
+            Mail::to($email)->send(new MyMail($details));
 
-            return redirect()->route('login')->with('success', 'Pendaftaran berhasil! Silakan login.');
+            return redirect()->route('reg-verif')->with('message', 'Verifikasi Email Anda.');
         } catch (\Illuminate\Validation\ValidationException $e) {
             // Jika validasi gagal, kirim kembali ke halaman register dengan pesan kesalahan khusus
             $errors = $e->validator->errors();
@@ -145,7 +133,6 @@ class RegisterController extends Controller
             return redirect()->route('register')->with('error', 'Pendaftaran gagal! Silakan coba lagi.');
         }
     }
-
 
 
     public function register2(Request $request)
