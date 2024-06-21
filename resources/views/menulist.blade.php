@@ -178,7 +178,7 @@
                         <a href="{{ route('index') }}" class="d-flex align-items-center">
                             <img src="{{ asset('resto/logo.png') }}" alt=""
                                 style="width: auto; height: auto; max-width: 140px; max-height: 35px; margin-right: 5px;">
-                            <b><span>Vin Autism Gallery Resto</span></b>
+                            <b><span>Vinautism Art & Resto</span></b>
                         </a>
                     </div>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

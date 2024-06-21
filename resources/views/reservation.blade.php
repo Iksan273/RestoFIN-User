@@ -357,7 +357,7 @@
                 <div class="modal-header">
                     <div class="d-flex align-items-center">
                         <a href="{{ route('index') }}" class="d-flex align-items-center">
-                            <b><span>Vin Autism Gallery Resto</span></b>
+                            <b><span>Vinautism Art & Resto</span></b>
                         </a>
                     </div>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

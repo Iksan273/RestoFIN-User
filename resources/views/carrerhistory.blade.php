@@ -26,14 +26,24 @@
                         <div class="main_title center">
                             <span><em></em></span>
                             <h2>Our Story</h2>
-                            <p>Cum doctus civibus efficiantur in ex paulo elaboraret.</p>
+                            <p>Vinautism Art & Resto</p>
                         </div>
-                        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                            mollit anim id est laborum consectetur adipiscing elit.</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                            laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        <p>Vin Gallery Art & Resto adalah tempat yang artistik dan menarik, yang lahir dari visi dan cinta
+                            mendalam terhadap seni sejak tahun 2018. Mulai tahun 2024 mengembangkan galeri seni dengan
+                            kuliner yang menarik. Pemilik Vin Gallery Art & Resto ingin menciptakan tempat di mana seni
+                            dapat disatukan dengan pengalaman bersantap yang Istimewa.</p>
+                        <p>Konsep ini muncul dari pengalaman pribadi yang terinspirasi dari perjalanan mereka di dunia seni
+                            dan kuliner. Pemilik telah melihat bagaimana seni dapat meningkatkan pengalaman makan, atau
+                            bagaimana makanan dapat menjadi medium untuk mengekspresikan kreativitas.</p>
+                        <p>Dengan membawa konsep kuliner dengan konsep rumahan, Vin Gallery Art & Resto menjadi lebih dari
+                            sekedar tempat makan biasa, karena akan menjadi ruang di mana seni dan makanan bertemu dalam
+                            harmoni, dan menciptakan pengalaman yang memanjakan indra dan jiwa.</p>
+                        <p>Dengan berfokus pada keunikan konsep, visi yang kuat, dan komitmen terhadap kualitas, Vin Gallery
+                            Art & Resto menjadi tempat yang dicintai oleh komunitas seni dan pecinta kuliner, khususnya
+                            Yammie dan Ramen.</p>
+                        <p>Dengan pencapaian awal yang mengesankan dan kontribusi yang berkelanjutan terhadap seni dan
+                            kuliner, maka tempat ini bisa menjadi seni dan kuliner Bersatu, keindahan dan kenikmatan
+                            harmonis.</p>
                         <p><img src="{{ asset('resto/logo.png') }}" width="140" height="auto" alt=""
                                 class="mt-3"></p>
                     </div>
@@ -51,7 +61,7 @@
                         <div class="intro_txt" data-cue="slideInUp" data-delay="500">
                             <div class="main_title">
                                 <span><em></em></span>
-                                <h2>Kenapa memilih Vin Autism Gallery Resto</h2>
+                                <h2>Kenapa memilih Vinautism Art & Resto</h2>
                             </div>
                             <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed imperdiet libero
                                 id nisi euismod, sed porta est consectetur deserunt.</p>
@@ -102,11 +112,12 @@
                     <div class="col-lg-8">
                         <h3 style="color: black;">Apa kata Pembeli</h3>
                         <div class="carousel_testimonials owl-carousel owl-theme">
-                            @foreach($kritiksaran as $review)
+                            @foreach ($kritiksaran as $review)
                                 <div>
                                     <div class="box_overlay">
                                         <div class="pic">
-                                            <h4>{{ $review->nama }}<small>{{ $review->created_at->format('d M') }}</small></h4>
+                                            <h4>{{ $review->nama }}<small>{{ $review->created_at->format('d M') }}</small>
+                                            </h4>
                                         </div>
                                         <div class="comment">
                                             "{{ $review->description }}"
@@ -127,7 +138,7 @@
             <div class="container margin_120_100">
                 <div class="main_title center mb-5">
                     <span><em></em></span>
-                    <h2>Staff Vin Autism Gallery Resto</h2>
+                    <h2>Staff Vinautism Art & Resto</h2>
                 </div>
                 <div id="staff" class="owl-carousel owl-theme">
                     <div class="item">
@@ -182,7 +193,7 @@
                 <div class="modal-header">
                     <div class="d-flex align-items-center">
                         <a href="{{ route('index') }}" class="d-flex align-items-center">
-                            <b><span>Vin Autism Gallery Resto</span></b>
+                            <b><span>Vinautism Art & Resto</span></b>
                         </a>
                     </div>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

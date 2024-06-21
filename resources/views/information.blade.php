@@ -10,7 +10,7 @@
 					<div class="row justify-content-center">
 						<div class="col-xl-9 col-lg-10 col-md-8">
 							<h1>Information & Contact</h1>
-							<p>Vin Autism Gallery Resto</p>
+							<p>Vinautism Art & Resto</p>
 						</div>
 					</div>
 					<!-- /row -->
@@ -26,7 +26,7 @@
 		            <div class="col-lg-4">
 		                <div class="box_contacts">
 		                    <i class="icon_tag_alt"></i>
-		                    <h2>Reservations</h2>
+		                    <h2>Reservasi</h2>
 		                    <a href="#0">+94 423-23-221</a> - <a href="#0">reserve@.com</a>
 		                    <small>- <a href="/reservation">atau melalui Form berikut</a> -</small>
 		                </div>
@@ -35,7 +35,9 @@
 		                <div class="box_contacts">
 		                    <i class="icon_pin_alt"></i>
 		                    <h2>Alamat</h2>
-		                    <div>G Walk, Junction TL 6 Jl. Citraland Surabaya No.11, Sambikerep, Kec. Sambikerep, Surabaya, Jawa Timur 60217</div>
+		                    <div>G Walk, Junction TL 6</div>
+                            <div>Jl. Citraland Surabaya No.11, Sambikerep, Kec. Sambikerep, Surabaya, Jawa Timur 60217</div>
+                            <br>
 		                    <small>- <a href="https://maps.app.goo.gl/Tamxt7FJ142nxLbk8">Lihat Petunjuk</a> -</small>
 		                </div>
 		            </div>
@@ -43,8 +45,9 @@
 		                <div class="box_contacts">
 		                    <i class="icon_clock_alt"></i>
 		                    <h2>Jam Buka</h2>
-		                    <div>Senin sampai Rabu 09:00 - 20:00 | Kamis sampai Sabtu 09:00 - 19:00 | Minggu 11:00 - 19:00</div>
-		                    <small>- Pemberitahuan Lebih Lanjut -</small>
+		                    <div>Senin sampai Rabu 09:00 - 20:00</div>
+                            <div>Kamis sampai Sabtu 09:00 - 19:00</div>
+                            <div>Minggu 11:00 - 19:00</div>
 		                </div>
 		            </div>
 		        </div>
@@ -55,19 +58,19 @@
 		<!-- /bg_gray -->
 
 		<div class="container margin_60_40">
-		    <h5 class="mb_5">Drop Us a Line</h5>
+		    <h5 class="mb_5">Kirimkan Pesan Anda</h5>
 		    <div class="row">
 		        <div class="col-lg-4 col-md-6 add_bottom_25">
 		            <div id="message-contact"></div>
 		            <form method="post" action="phpmailer/contact_template_email.php" id="contactform" autocomplete="off">
 		                <div class="form-group">
-		                    <input class="form-control" type="text" placeholder="Name" id="name_contact" name="name_contact">
+		                    <input class="form-control" type="text" placeholder="Nama" id="name_contact" name="name_contact">
 		                </div>
 		                <div class="form-group">
 		                    <input class="form-control" type="email" placeholder="Email" id="email_contact" name="email_contact">
 		                </div>
 		                <div class="form-group">
-		                    <textarea class="form-control" style="height: 150px;" placeholder="Message" id="message_contact" name="message_contact"></textarea>
+		                    <textarea class="form-control" style="height: 150px;" placeholder="Pesan" id="message_contact" name="message_contact"></textarea>
 		                </div>
 		                <div class="form-group">
 		                    <input class="form-control" type="text" id="verify_contact" name="verify_contact" placeholder="Are you human? 3 + 1 =">

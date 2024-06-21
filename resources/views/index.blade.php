@@ -7,7 +7,7 @@
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-xl-9 col-lg-10 col-md-8">
-                            <h3>Vin Autism Gallery</h3>
+                            <h3>Vinautism Art & Resto</h3>
                             <p><span class="element"></span></p>
                             <a href="#reserve" class="btn_1 add_top_30" data-bs-toggle="modal"
                                 data-bs-target="#reservationModal">Pesan Makanan Sekarang</a>
@@ -143,7 +143,7 @@
                 <div class="modal-header">
                     <div class="d-flex align-items-center">
                         <a href="{{ route('index') }}" class="d-flex align-items-center">
-                            <b><span>Vin Autism Gallery Resto</span></b>
+                            <b><span>Vinautism Art & Resto</span></b>
                         </a>
                     </div>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

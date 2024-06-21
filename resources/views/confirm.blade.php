@@ -14,7 +14,7 @@
                                         style="width: auto; height: auto; max-width: 140px; max-height: 35px; margin-top: -5px">
                                 </a>
                             </div>
-                            <h3 style="font-size: 16px; margin-top: 10px;">Vin Autism Gallery Resto</h3>
+                            <h3 style="font-size: 16px; margin-top: 10px;">Vinautism Art & Resto</h3>
                         </div>
                         <!-- /head -->
                         <div class="main">

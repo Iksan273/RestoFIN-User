@@ -34,11 +34,11 @@
                                     style="width: auto; height: auto; max-width: 140px; max-height: 35px;">
                             </a>
                             <h3>Selamat Datang</h3>
-                            <p>Vin Autism Gallery Resto</p>
+                            <p>Vinautism Art & Resto</p>
                             <form id="loginForm" action="{{ route('login') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
-                                    <input type="email" name="email" class="form-control" placeholder="Email" required>
+                                    <input type="email" name="email" class="form-control" placeholder="Email" required style="margin-bottom: 1rem;">
                                     <input id="password" type="password" name="password" class="form-control" placeholder="Password"
                                         required>
                                     <input type="checkbox" onclick="pass()" style="margin-top: 10px;"> Show

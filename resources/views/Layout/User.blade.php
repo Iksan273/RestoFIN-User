@@ -217,7 +217,7 @@
             <hr>
             <div class="row">
                 <div class="col-sm-5">
-                    <p class="copy">© Vin Autism Gallery Restaurant - All rights reserved</p>
+                    <p class="copy">© Vinautism Art & Resto - All rights reserved</p>
                 </div>
                 <div class="col-sm-7">
                     <div class="follow_us">
@@ -277,7 +277,7 @@
     <script src="{{ asset('js/specific_shop.js') }}"></script>
     <script>
         var typed = new Typed('.element', {
-            strings: ["Delicious Food", "Nice Ambient", "Affordable Prices"],
+            strings: ["Rumah Imajinasi"],
             startDelay: 10,
             loop: true,
             backDelay: 2000,
