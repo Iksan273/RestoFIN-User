@@ -10,16 +10,18 @@
                         aria-label="Close">
                     </button>
                 </div>
-            @endif
-            @if (session('error'))
+            @elseif (session('error'))
                 <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-bottom: -10px;">
                     {{ session('error') }}
                     <button type="button" class="close-custom" onclick="this.parentElement.style.display='none';"
                         aria-label="Close">
                     </button>
                 </div>
+            @else
+                <div id="formErrors">
+                </div>
             @endif
-            
+
             <div class="row justify-content-center">
                 <div class="col-lg-8" style="margin-top: 20px">
                     <form id="reviewForm" method="POST" action="{{ route('review.store') }}" enctype="multipart/form-data">
@@ -102,28 +104,42 @@
 
             // Memeriksa apakah nilai input sudah terisi
             if (!ratingInput) {
-                alert('Silakan beri rating untuk restoran.');
+                showError('Silakan beri rating untuk restoran.');
                 return; // Menghentikan eksekusi fungsi jika rating belum terisi
             }
 
             if (!nameInput.value.trim()) {
-                alert('Silakan masukkan nama Anda.');
+                showError('Silakan masukkan nama Anda.');
                 return;
             }
 
             if (!titleInput.value.trim()) {
-                alert('Silakan masukkan judul kritik & saran Anda.');
+                showError('Silakan masukkan judul kritik & saran Anda.');
                 return;
             }
 
             if (!descriptionInput.value.trim()) {
-                alert('Silakan masukkan isi kritik & saran Anda.');
+                showError('Silakan masukkan isi kritik & saran Anda.');
                 return;
             }
 
             // Jika semua validasi terpenuhi, kirim formulir
             var form = document.getElementById('reviewForm');
             form.submit();
+        }
+
+        function showError(message) {
+            var errorDiv = document.createElement('div');
+            errorDiv.className = 'alert alert-danger alert-dismissible fade show';
+            errorDiv.setAttribute('role', 'alert');
+            errorDiv.style.marginBottom = '-10px'; // Sesuaikan jika diperlukan
+            errorDiv.innerHTML = message +
+                '<button type="button" class="close-custom" onclick="this.parentElement.style.display=\'none\';" aria-label="Close"></button>';
+
+            // Menyisipkan errorDiv di atas form
+            var form = document.getElementById('formErrors');
+            form.parentNode.insertBefore(errorDiv, form
+                .nextSibling); // Menyisipkan setelah form, bisa disesuaikan sesuai struktur HTML
         }
     </script>
     <!-- /script -->

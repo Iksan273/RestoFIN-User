@@ -31,8 +31,16 @@
                             <a href="{{ route('index') }}">
                                 <img src="{{ asset('resto/logo.png') }}" alt=""
                                     style="width: auto; height: auto; max-width: 140px; max-height: 35px;">
-                            </a><br><br>
-                            <form id="registrationForm" action="{{ route('register-2') }}" method="POST" enctype="multipart/form-data">
+                            </a>
+                            @if (session('error'))
+                                <div class="alert alert-danger" role="alert">
+                                    {{ session('error') }}
+                                </div>
+                            @else
+                                <br><br>
+                            @endif
+                            <form id="registrationForm" action="{{ route('register-2') }}" method="POST"
+                                enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
                                     <input type="text" name="first_name" class="form-control" placeholder="First Name"
@@ -45,26 +53,29 @@
                                 <div class="form-group">
                                     <input type="email" name="email" class="form-control" placeholder="Email" required>
                                     @error('email')
-                                        <p style="margin-bottom: -10px;"><span class="text-danger">{{ $message }}</span></p>
+                                        <p style="margin-bottom: -10px;"><span class="text-danger">{{ $message }}</span>
+                                        </p>
                                     @enderror
                                 </div>
                                 <div class="form-group">
                                     <input id="new-pass" type="password" name="password" class="form-control"
                                         placeholder="Password" required>
                                     @error('password')
-                                        <p style="margin-bottom: -10px;"><span class="text-danger">{{ $message }}</span></p>
+                                        <p style="margin-bottom: -10px;"><span class="text-danger">{{ $message }}</span>
+                                        </p>
                                     @else
                                         <p style="margin-bottom: -10px;">Password Minimal 8 Karakter</p>
                                     @enderror
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group" style="margin-bottom: 10px;">
                                     <input id="re-pass" type="password" name="password_confirmation" class="form-control"
                                         placeholder="Re-type Password" required>
                                     <input type="checkbox" onclick="pass()" style="margin-top: 10px;"> Show
                                     Password
                                 </div>
                                 <button type="submit" class="btn_1 mt-2 mb-4">Daftar</button>
-                                <p>Sudah menjadi Membership? <a href="{{ route('login-2') }}" class="login-member">Login</a>
+                                <p style="margin-bottom: 10px;">Sudah menjadi Membership? <a href="{{ route('login-2') }}"
+                                        class="login-member">Login</a>
                                 </p>
                             </form>
                         </div>
@@ -111,7 +122,19 @@
             var passwordConfirmation = document.querySelector('input[name="password_confirmation"]').value;
 
             if (password !== passwordConfirmation) {
-                alert('Password dan Re-type Password tidak sama.');
+                var errorDiv = document.createElement('div');
+                errorDiv.className = 'alert alert-danger';
+                errorDiv.setAttribute('role', 'alert');
+                errorDiv.style.padding = '0px';
+                errorDiv.style.marginTop = '-10px';
+                errorDiv.style.marginBottom = '10px';
+                errorDiv.style.fontSize = '12px';
+                errorDiv.textContent = 'Password dan Re-type Password tidak sama.';
+
+                // Menyisipkan errorDiv di atas form
+                var form = document.getElementById('registrationForm');
+                form.parentNode.insertBefore(errorDiv, form);
+
                 event.preventDefault(); // Mencegah form submit
             }
         });

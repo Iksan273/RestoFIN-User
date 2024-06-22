@@ -74,16 +74,23 @@ Route::post('/register-2', [RegisterController::class, 'register2'])->name('regi
 
 // Halaman Verification Email
 Route::get('/reg-verif', [MailController::class, 'index'])->name('reg-verif');
+Route::get('/reg-verif-2', [MailController::class, 'index2'])->name('reg-verif-2');
 Route::middleware(['web'])->group(function () {
     Route::post('/verify-reg', [MailController::class, 'verify'])->name('verif-reg');
+    Route::post('/verify-reg-2', [MailController::class, 'verify2'])->name('verif-reg-2');
+    Route::post('/session-clear', [MailController::class, 'clear'])->name('session-clear');
+    Route::post('/resend-verification', [MailController::class, 'resendVerification'])->name('resend-verification');
+    Route::post('/clear-verification-session', [MailController::class, 'clearCode'])->name('clear-verification-session');
     // Route::post('/update-email', [ProfileController::class, 'verify'])->name('profile.verify');
 });
 
 
 // Halaman Lupa Password
 Route::get('/lupa-password', [ForgotPasswordController::class, 'showForgotForm'])->name('lupa-password');
-Route::get('/kode-verif-lupa', [ForgotPasswordController::class, 'showVerifForm'])->name('kode-verif-lupa');
-Route::get('/pass-baru', [ForgotPasswordController::class, 'showNewPassForm'])->name('pass-baru');
+Route::get('/lupa-password-2', [ForgotPasswordController::class, 'showForgotForm2'])->name('lupa-password-2');
+Route::middleware(['web'])->group(function () {
+    Route::get('/pass-baru', [ForgotPasswordController::class, 'showNewPassForm'])->name('pass-baru');
+});
 
 
 // Halaman Order

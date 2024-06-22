@@ -62,6 +62,17 @@ class StrukOnlineController extends Controller
             } else {
                 return redirect()->route('struk')->with('error', 'Struk Online gagal dikirim.');
             }
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            // Jika validasi gagal, kirim kembali ke halaman register dengan pesan kesalahan khusus
+            $errors = $e->validator->errors();
+
+            if ($errors->has('user')) {
+                return back()->with('error', 'Email salah. Silahkan coba lagi.')->withErrors($errors)->withInput();
+            }
+
+            if ($errors->has('file')) {
+                return back()->with('error', 'File berupa Gambar. Silahkan coba lagi.')->withErrors($errors)->withInput();
+            }
         } catch (\Exception $e) {
             return back()->with('error', 'Struk Online gagal dikirim: ' . $e->getMessage());
         }

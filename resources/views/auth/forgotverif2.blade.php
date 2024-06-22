@@ -17,7 +17,7 @@
     </main>
     <!-- /main -->
 
-    <!-- Modal Forgot -->
+    <!-- Modal Register -->
     <div class="popup_wrapper">
         <div class="popup_content newsletter_c">
             <span class="popup_close back-to-login"><i class="icon_close"></i></span>
@@ -32,16 +32,16 @@
                                 <img src="{{ asset('resto/logo.png') }}" alt=""
                                     style="width: auto; height: auto; max-width: 140px; max-height: 35px;">
                             </a>
-                            <h3>Lupa Password</h3><br>
-                            <form id="forgotForm" action="{{ route('register') }}" method="POST">
+                            <h3>Lupa Password</h3>
+                            <p>Masukkan Kode Verifikasi yang telah di kirim ke Email Anda</p>
+                            <form id="registrationForm" action="{{ route('lupa-password') }}" method="POST">
                                 @csrf
                                 <div class="form-group">
-                                    <input type="email" name="email" class="form-control" placeholder="Email" required>
+                                    <input type="text" name="email" class="form-control" placeholder="Kode Verifikasi" required>
                                 </div>
                                 <button type="submit" class="btn_1 mt-2 mb-4">Submit</button>
-                                <button type="button" class="btn_1 mt-2 mb-4" onclick="window.location.href='{{route('login')}}'">Batalkan</button>
-                                <p style="margin-bottom: 10px;">Sudah menjadi Membership? <a href="{{route('login')}}" class="login-member">Login</a></p>
-                                <a href="{{route('menu-order')}}" class="guest">Masuk sebagai Guest</a>
+                                <button type="button" class="btn_1 mt-2 mb-4" onclick="window.location.href='{{route('login-2')}}'">Batalkan</button>
+                                <p>Sudah menjadi Membership? <a href="{{route('login-2')}}" class="login-member">Login</a></p>
                             </form>
                         </div>
                     </div>
@@ -50,7 +50,7 @@
             <!-- row -->
         </div>
     </div>
-    <!-- /Modal Forgot -->
+    <!-- /Modal Register -->
 
     <!-- Style -->
     <style>
@@ -70,6 +70,25 @@
 
     <!-- script -->
     <script>
+        // Untuk masuk ke Halaman Login
+        document.addEventListener('DOMContentLoaded', function() {
+            var backToLogin = document.querySelector('.back-to-login');
+
+            backToLogin.addEventListener('click', function() {
+                window.location.href = '{{route('login')}}'; // Arahkan kembali ke halaman login
+            });
+        });
+
+        // Untuk melakukan verifikasi Password dan Re-Password
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+            var password = document.querySelector('input[name="password"]').value;
+            var passwordConfirmation = document.querySelector('input[name="password_confirmation"]').value;
+
+            if (password !== passwordConfirmation) {
+                alert('Password dan Re-type Password tidak sama.');
+                event.preventDefault(); // Mencegah form submit
+            }
+        });
     </script>
     <!-- /script -->
 @endsection

@@ -10,14 +10,15 @@
                         aria-label="Close">
                     </button>
                 </div>
-            @endif
-            @if (session('error'))
+            @elseif (session('error'))
                 <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-bottom: -10px;">
                     {{ session('error') }}
                     <button type="button" class="close-custom" onclick="this.parentElement.style.display='none';"
                         aria-label="Close">
                     </button>
                 </div>
+            @else
+                <div id="formError"></div>
             @endif
 
             <div class="row justify-content-center">
@@ -29,7 +30,7 @@
                             <br>
                             <div class="form-group">
                                 <label for="contactInfo">Masukkan Email Anda</label>
-                                <input class="form-control" type="text" id="contactInfo"
+                                <input class="form-control" type="email" id="contactInfo"
                                     placeholder="Masukkan Email Anda" name="user" required>
                             </div>
                             <div class="form-group mb-5">
@@ -137,7 +138,8 @@
             var fileInput = document.getElementById('imageUpload');
 
             if (!emailInput.value.trim() || !fileInput.value.trim()) {
-                alert('Harap lengkapi semua kolom sebelum mengirimkan formulir.');
+                showError('Harap lengkapi semua kolom sebelum mengirimkan formulir.');
+                closeModal();
                 return;
             }
 
@@ -147,11 +149,30 @@
 
             // Validasi tipe file
             if (!fileType.startsWith('image/')) {
-                alert('Harap pilih file gambar.');
+                showError('Harap pilih file gambar.');
+                closeModal();
                 return;
             }
 
             form.submit();
+        }
+
+        function showError(message) {
+            var errorDiv = document.createElement('div');
+            errorDiv.className = 'alert alert-danger alert-dismissible fade show';
+            errorDiv.setAttribute('role', 'alert');
+            errorDiv.style.marginBottom = '-10px'; // Sesuaikan jika diperlukan
+            errorDiv.innerHTML = message +
+                '<button type="button" class="close-custom" onclick="this.parentElement.style.display=\'none\';" aria-label="Close"></button>';
+
+            // Menyisipkan errorDiv di atas formErrors
+            var formErrors = document.getElementById('formError');
+            formErrors.innerHTML = ''; // Hapus pesan error sebelumnya (jika ada)
+            formErrors.appendChild(errorDiv);
+        }
+
+        function closeModal() {
+            $('#pembelianOnlineModal').modal('hide');
         }
     </script>
     <!-- /script -->

@@ -35,6 +35,12 @@
                             </a>
                             <h3>Selamat Datang</h3>
                             <p>Vinautism Art & Resto</p>
+                            @if (session('success'))
+                                <div class="alert alert-success" role="alert"
+                                    style="padding: 0px; margin-top: 10px; margin-bottom: 10px; font-size: 12px;">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
                             <form id="loginForm" action="{{ route('login') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
@@ -48,7 +54,7 @@
                                     @enderror
                                     <a href="{{ route('lupa-password') }}" class="forgot-password">Lupa Password</a>
                                     <button type="submit" class="btn_1 mt-2 mb-4">Masuk</button>
-                                    <p>Belum menjadi Membership? <a href="{{ route('register') }}"
+                                    <p style="margin-bottom: 10px;">Belum menjadi Membership? <a href="{{ route('register') }}"
                                             class="regist-member">Buat
                                             Membership</a></p>
                                     <a href="{{ route('menu-order') }}" class="guest">Masuk sebagai Guest</a>

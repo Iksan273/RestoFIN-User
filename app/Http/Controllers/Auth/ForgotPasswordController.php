@@ -40,9 +40,9 @@ class ForgotPasswordController extends Controller
     {
         return view('auth.forgot');
     }
-    public function showVerifForm()
+    public function showForgotForm2()
     {
-        return view('auth.forgotverif');
+        return view('auth.forgot2');
     }
     public function showNewPassForm()
     {

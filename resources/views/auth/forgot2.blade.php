@@ -41,7 +41,6 @@
                                 <button type="submit" class="btn_1 mt-2 mb-4">Submit</button>
                                 <button type="button" class="btn_1 mt-2 mb-4" onclick="window.location.href='{{route('login')}}'">Batalkan</button>
                                 <p style="margin-bottom: 10px;">Sudah menjadi Membership? <a href="{{route('login')}}" class="login-member">Login</a></p>
-                                <a href="{{route('menu-order')}}" class="guest">Masuk sebagai Guest</a>
                             </form>
                         </div>
                     </div>

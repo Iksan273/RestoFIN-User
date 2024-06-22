@@ -34,7 +34,7 @@
                             </a>
                             <h3>Verifikasi Email Registrasi</h3>
                             <p>Masukkan Kode Verifikasi yang telah di kirim ke Email Anda</p>
-                            <form id="emailRegistForm" action="{{ route('verif-reg') }}" method="POST">
+                            <form id="emailRegistForm" action="{{ route('verif-reg-2') }}" method="POST">
                                 @csrf
                                 <p id="timerTextEmail" style="text-align: center; margin-bottom: 10px;">
                                     Timer</p>
@@ -45,11 +45,9 @@
                                 </div>
                                 <button type="submit" class="btn_1 mt-2 mb-4">Submit</button>
                                 <button id="cancel-button" type="button" class="btn_1 mt-2 mb-4"
-                                    onclick="window.location.href='{{ route('register') }}'">Batalkan</button>
-                                <p style="margin-bottom: 10px;">Sudah menjadi Membership? <a href="{{ route('login') }}"
+                                    onclick="window.location.href='{{ route('register-2') }}'">Batalkan</button>
+                                <p style="margin-bottom: 10px;">Sudah menjadi Membership? <a href="{{ route('login-2') }}"
                                         class="login-member">Login</a>
-                                </p>
-                                <a href="{{ route('menu-order') }}" class="guest">Masuk sebagai Guest</a>
                             </form>
                         </div>
                     </div>
@@ -150,7 +148,7 @@
                 xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
                 xhr.onload = function() {
                     if (xhr.status === 200) {
-                        window.location.href = '{{ route('register') }}';
+                        window.location.href = '{{ route('register-2') }}';
                     } else {
                         console.error('Gagal menghapus session');
                     }

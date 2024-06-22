@@ -27,12 +27,19 @@
                         aria-label="Close">
                     </button>
                 </div>
-            @endif
-            @if (session('error'))
+            @elseif (session('error'))
                 <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-bottom: -30px;">
                     {{ session('error') }}
                     <button type="button" class="close-custom" onclick="this.parentElement.style.display='none';"
                         aria-label="Close">
+                    </button>
+                </div>
+            @else
+                <div id="termsError" class="alert alert-danger alert-dismissible fade show" role="alert"
+                    style="display: none; margin-bottom: -30px;">
+                    Anda harus menerima Syarat dan Ketentuan kami.
+                    <button type="button" class="close-custom"
+                        onclick="document.getElementById('termsError').style.display = 'none';" aria-label="Close">
                     </button>
                 </div>
             @endif
@@ -48,7 +55,8 @@
                             <p class="reservasi-link">atau Hubungi Kami 08xxxxxx</p>
                         </div>
                         <div id="wizard_container">
-                            <form id="reserveForm" method="POST" action="{{ route('reservation.store') }}" enctype="multipart/form-data">
+                            <form id="reserveForm" method="POST" action="{{ route('reservation.store') }}"
+                                enctype="multipart/form-data">
                                 @csrf
                                 <input id="website" name="website" type="text" value="">
                                 <!-- Leave for security protection, read docs for details -->
@@ -99,8 +107,8 @@
                                                         <label for="time_6">11:30</label>
                                                     </li>
                                                     <li>
-                                                        <input type="radio" id="time_7" name="time" value="12:00"
-                                                            class="required">
+                                                        <input type="radio" id="time_7" name="time"
+                                                            value="12:00" class="required">
                                                         <label for="time_7">12:00</label>
                                                     </li>
                                                     <li>
@@ -431,7 +439,7 @@
             // Periksa apakah checkbox syarat ketentuan telah dicentang
             var termsCheckbox = document.getElementById('termsCheckbox');
             if (!termsCheckbox.checked) {
-                alert('Anda harus menerima Syarat dan Ketentuan kami.');
+                termsError.style.display = 'block';
                 return;
             }
 
