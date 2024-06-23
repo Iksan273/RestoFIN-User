@@ -99,8 +99,19 @@
             var backToLogin = document.querySelector('.back-to-lupa-pass');
 
             backToLogin.addEventListener('click', function() {
-                window.location.href =
-                    '{{ route('lupa-password') }}'; // Arahkan kembali ke halaman lupa password
+                // Kirim permintaan AJAX untuk menghapus session
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', '{{ route('session-clear-forgot') }}', true);
+                xhr.setRequestHeader('X-CSRF-TOKEN', '{{ csrf_token() }}');
+                xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+                xhr.onload = function() {
+                    if (xhr.status === 200) {
+                        window.location.href = '{{ route('lupa-password') }}';
+                    } else {
+                        console.error('Gagal menghapus session');
+                    }
+                };
+                xhr.send();
             });
         });
 
