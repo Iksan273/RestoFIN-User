@@ -276,8 +276,8 @@ class HomeController extends Controller
 
         // Mengambil transaksi
         $transactions = Order::where('users_id', $customer->id)
-        ->with(['orderItems.menu'])
-        ->get();
+            ->with(['orderItems.menu'])
+            ->get();
 
         // Kirim data customer, daftar bulan, dan memberPoints ke view
         return view('profile', compact('customer', 'months', 'memberPoints', 'strukOnline', 'promo', 'cart', 'transaction', 'tax', 'total', 'transactions'));
@@ -339,6 +339,79 @@ class HomeController extends Controller
         return view('auth.register2', compact('cart', 'transaction', 'tax', 'total'));
     }
 
+    public function showForgotForm()
+    {
+        $cart = session()->get('cart', []);
+
+        $transaction = array_sum(array_map(function ($item) {
+            return $item['price'] * $item['quantity'];
+        }, $cart));
+
+        $tax = $transaction * 0.10; // Pajak 10%
+        $total = $transaction + $tax;
+        return view('auth.forgot', compact('cart', 'transaction', 'tax', 'total'));
+    }
+    public function showForgotForm2()
+    {
+        $cart = session()->get('cart', []);
+
+        $transaction = array_sum(array_map(function ($item) {
+            return $item['price'] * $item['quantity'];
+        }, $cart));
+
+        $tax = $transaction * 0.10; // Pajak 10%
+        $total = $transaction + $tax;
+        return view('auth.forgot2', compact('cart', 'transaction', 'tax', 'total'));
+    }
+    public function showVerifNewPassForm()
+    {
+        $cart = session()->get('cart', []);
+
+        $transaction = array_sum(array_map(function ($item) {
+            return $item['price'] * $item['quantity'];
+        }, $cart));
+
+        $tax = $transaction * 0.10; // Pajak 10%
+        $total = $transaction + $tax;
+        return view('auth.passwordverif', compact('cart', 'transaction', 'tax', 'total'));
+    }
+    public function showVerifNewPassForm2()
+    {
+        $cart = session()->get('cart', []);
+
+        $transaction = array_sum(array_map(function ($item) {
+            return $item['price'] * $item['quantity'];
+        }, $cart));
+
+        $tax = $transaction * 0.10; // Pajak 10%
+        $total = $transaction + $tax;
+        return view('auth.passwordverif2', compact('cart', 'transaction', 'tax', 'total'));
+    }
+    public function showNewPassForm()
+    {
+        $cart = session()->get('cart', []);
+
+        $transaction = array_sum(array_map(function ($item) {
+            return $item['price'] * $item['quantity'];
+        }, $cart));
+
+        $tax = $transaction * 0.10; // Pajak 10%
+        $total = $transaction + $tax;
+        return view('auth.newpass', compact('cart', 'transaction', 'tax', 'total'));
+    }
+    public function showNewPassForm2()
+    {
+        $cart = session()->get('cart', []);
+
+        $transaction = array_sum(array_map(function ($item) {
+            return $item['price'] * $item['quantity'];
+        }, $cart));
+
+        $tax = $transaction * 0.10; // Pajak 10%
+        $total = $transaction + $tax;
+        return view('auth.newpass2', compact('cart', 'transaction', 'tax', 'total'));
+    }
+
     public function indexConfirm()
     {
         $cart = session()->get('cart', []);
@@ -351,5 +424,31 @@ class HomeController extends Controller
         $total = $transaction + $tax;
 
         return view('confirm', compact('cart', 'transaction', 'tax', 'total'));
+    }
+
+    public function indexVerif()
+    {
+        $cart = session()->get('cart', []);
+
+        $transaction = array_sum(array_map(function ($item) {
+            return $item['price'] * $item['quantity'];
+        }, $cart));
+
+        $tax = $transaction * 0.10; // Pajak 10%
+        $total = $transaction + $tax;
+        return view('auth.emailverif', compact('cart', 'transaction', 'tax', 'total'));
+    }
+
+    public function indexVerif2()
+    {
+        $cart = session()->get('cart', []);
+
+        $transaction = array_sum(array_map(function ($item) {
+            return $item['price'] * $item['quantity'];
+        }, $cart));
+
+        $tax = $transaction * 0.10; // Pajak 10%
+        $total = $transaction + $tax;
+        return view('auth.emailverif2', compact('cart', 'transaction', 'tax', 'total'));
     }
 }

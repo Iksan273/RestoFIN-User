@@ -40,7 +40,7 @@
                                     {{ session('error') }}
                                 </div>
                             @endif
-                            <form id="newPassForm" action="{{ route('new-pass-submit') }}" method="POST">
+                            <form id="newPassForm" action="{{ route('new-pass-submit-2') }}" method="POST">
                                 @csrf
                                 <div class="form-group">
                                     <input id="new-pass" type="password" name="password" class="form-control"
@@ -60,10 +60,9 @@
                                 </div>
                                 <button type="submit" class="btn_1 mt-2 mb-4">Submit</button>
                                 <button type="button" class="btn_1 mt-2 mb-4 back-to-lupa-pass"
-                                    onclick="window.location.href='{{ route('lupa-password') }}'">Batalkan</button>
-                                <p>Sudah menjadi Membership? <a href="{{ route('login') }}" class="login-member">Login</a>
+                                    onclick="window.location.href='{{ route('lupa-password-2') }}'">Batalkan</button>
+                                <p>Sudah menjadi Membership? <a href="{{ route('login-2') }}" class="login-member">Login</a>
                                 </p>
-                                <a href="{{ route('menu-order') }}" class="guest">Masuk sebagai Guest</a>
                             </form>
                         </div>
                     </div>
@@ -100,7 +99,7 @@
 
             backToLogin.addEventListener('click', function() {
                 window.location.href =
-                    '{{ route('lupa-password') }}'; // Arahkan kembali ke halaman lupa password
+                    '{{ route('lupa-password-2') }}'; // Arahkan kembali ke halaman lupa password
             });
         });
 

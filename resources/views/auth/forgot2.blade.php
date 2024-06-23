@@ -32,15 +32,24 @@
                                 <img src="{{ asset('resto/logo.png') }}" alt=""
                                     style="width: auto; height: auto; max-width: 140px; max-height: 35px;">
                             </a>
-                            <h3>Lupa Password</h3><br>
-                            <form id="forgotForm" action="{{ route('register') }}" method="POST">
+                            <h3>Lupa Password</h3>
+                            @if (session('error'))
+                                <div class="alert alert-danger" role="alert"
+                                    style="padding: 0px; margin-top: 30px; margin-bottom: 10px; font-size: 12px;">
+                                    {{ session('error') }}
+                                </div>
+                            @else
+                                <br>
+                            @endif
+                            <form id="forgotForm" action="{{ route('verif-forgot-2') }}" method="POST">
                                 @csrf
                                 <div class="form-group">
+                                    <p style="text-align: center; margin-bottom: 5px; ">Masukkan Email Anda</p>
                                     <input type="email" name="email" class="form-control" placeholder="Email" required>
                                 </div>
                                 <button type="submit" class="btn_1 mt-2 mb-4">Submit</button>
-                                <button type="button" class="btn_1 mt-2 mb-4" onclick="window.location.href='{{route('login')}}'">Batalkan</button>
-                                <p style="margin-bottom: 10px;">Sudah menjadi Membership? <a href="{{route('login')}}" class="login-member">Login</a></p>
+                                <button type="button" class="btn_1 mt-2 mb-4" onclick="window.location.href='{{route('login-2')}}'">Batalkan</button>
+                                <p style="margin-bottom: 10px;">Sudah menjadi Membership? <a href="{{route('login-2')}}" class="login-member">Login</a></p>
                             </form>
                         </div>
                     </div>
@@ -69,6 +78,14 @@
 
     <!-- script -->
     <script>
+        // Untuk masuk ke Halaman Login
+        document.addEventListener('DOMContentLoaded', function() {
+            var backToLogin = document.querySelector('.back-to-login');
+
+            backToLogin.addEventListener('click', function() {
+                window.location.href = '{{ route('login-2') }}'; // Arahkan kembali ke halaman login
+            });
+        });
     </script>
     <!-- /script -->
 @endsection

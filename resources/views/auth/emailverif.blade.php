@@ -17,10 +17,10 @@
     </main>
     <!-- /main -->
 
-    <!-- Modal Register -->
+    <!-- Modal Email Verif -->
     <div class="popup_wrapper">
         <div class="popup_content newsletter_c">
-            <span class="popup_close back-to-login"><i class="icon_close"></i></span>
+            <span class="popup_close back-to-register"><i class="icon_close"></i></span>
             <div class="row g-0">
                 <div class="col-md-5 d-none d-md-flex align-items-center justify-content-center">
                     <figure><img src="{{ asset('resto/gallery2.jpeg') }}" alt=""></figure>
@@ -34,6 +34,14 @@
                             </a>
                             <h3>Verifikasi Email Registrasi</h3>
                             <p>Masukkan Kode Verifikasi yang telah di kirim ke Email Anda</p>
+                            <div id="codeError" class="alert alert-danger alert-dismissible fade show" role="alert"
+                                style="display: none; margin-bottom: 10px; padding-left: 0px; padding-right: 30px;">
+                                Kode Verifikasi salah, silahkan coba lagi.
+                                <button type="button" class="close-custom"
+                                    onclick="document.getElementById('codeError').style.display = 'none';"
+                                    aria-label="Close">
+                                </button>
+                            </div>
                             <form id="emailRegistForm" action="{{ route('verif-reg') }}" method="POST">
                                 @csrf
                                 <p id="timerTextEmail" style="text-align: center; margin-bottom: 10px;">
@@ -58,7 +66,7 @@
             <!-- row -->
         </div>
     </div>
-    <!-- /Modal Register -->
+    <!-- /Modal Email Verif -->
 
     <!-- Style -->
     <style>
@@ -75,11 +83,70 @@
         .guest:hover {
             text-decoration: underline;
         }
+
+        /* style session success & error */
+        .close-custom {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #000;
+            cursor: pointer;
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 1rem 1rem;
+            line-height: 1;
+        }
+
+        .close-custom:before {
+            content: '\00d7';
+            /* Unicode for multiplication sign (×) */
+        }
     </style>
     <!-- /Style -->
 
     <!-- script -->
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('emailRegistForm').addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent the default form submission
+
+                // Get the form element
+                const form = event.target;
+
+                // Create a FormData object from the form
+                const formData = new FormData(form);
+
+                // Send the form data using fetch
+                fetch(form.action, {
+                        method: form.method,
+                        headers: {
+                            'X-CSRF-TOKEN': form.querySelector('input[name="_token"]')
+                                .value, // CSRF token
+                            'Accept': 'application/json',
+                            'X-Requested-With': 'XMLHttpRequest'
+                        },
+                        body: formData
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            window.location.href = '{{ route('login') }}'; // Example redirect
+
+                            // Set session message
+                            sessionStorage.setItem('success', 'Pendaftaran berhasil, silahkan login.');
+                        } else {
+                            document.getElementById('codeError').style.display = 'block';
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        document.getElementById('codeError').style.display = 'block';
+                    });
+            });
+        });
+
         // Timer //
         document.addEventListener('DOMContentLoaded', function() {
             // Initialize the timer
@@ -102,7 +169,7 @@
                         const resendForm = document.createElement('form');
                         resendForm.method = 'POST';
                         resendForm.action =
-                        '{{ route('resend-verification') }}'; // Ubah dengan route yang sesuai
+                            '{{ route('resend-verification') }}'; // Ubah dengan route yang sesuai
 
                         const csrfToken = document.querySelector('input[name="_token"]').value;
                         const csrfInput = document.createElement('input');
@@ -138,9 +205,9 @@
             });
         });
 
-        // Untuk masuk ke Halaman Login
+        // Untuk masuk ke Halaman Register
         document.addEventListener('DOMContentLoaded', function() {
-            var backToLogin = document.querySelector('.back-to-login');
+            var backToLogin = document.querySelector('.back-to-register');
 
             backToLogin.addEventListener('click', function() {
                 // Kirim permintaan AJAX untuk menghapus session

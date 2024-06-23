@@ -65,31 +65,46 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // Halaman Register
 // Halaman Register Menuju Login (Order)
-Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+Route::get('/register', [HomeController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [RegisterController::class, 'register'])->name('register-post');
 // Halaman Register Menuju Login (Index)
-Route::get('/register-2', [RegisterController::class, 'showRegistrationForm2'])->name('register-2');
+Route::get('/register-2', [HomeController::class, 'showRegistrationForm2'])->name('register-2');
 Route::post('/register-2', [RegisterController::class, 'register2'])->name('register-post-2');
 
 
 // Halaman Verification Email
-Route::get('/reg-verif', [MailController::class, 'index'])->name('reg-verif');
-Route::get('/reg-verif-2', [MailController::class, 'index2'])->name('reg-verif-2');
+Route::get('/reg-verif', [HomeController::class, 'indexVerif'])->name('reg-verif');
+Route::get('/reg-verif-2', [HomeController::class, 'indexVerif2'])->name('reg-verif-2');
 Route::middleware(['web'])->group(function () {
     Route::post('/verify-reg', [MailController::class, 'verify'])->name('verif-reg');
     Route::post('/verify-reg-2', [MailController::class, 'verify2'])->name('verif-reg-2');
     Route::post('/session-clear', [MailController::class, 'clear'])->name('session-clear');
     Route::post('/resend-verification', [MailController::class, 'resendVerification'])->name('resend-verification');
+    Route::post('/resend-verification-profile', [MailController::class, 'resendVerificationProfile'])->name('resend-verification-profile');
     Route::post('/clear-verification-session', [MailController::class, 'clearCode'])->name('clear-verification-session');
+    Route::post('/send-verification-email', [MailController::class, 'sendVerificationEmail'])->name('send-verification-email');
+    Route::post('/verify-email-code', [MailController::class, 'verifyEmailCode'])->name('verify-email-code');
+    Route::post('/clear-profile-sessions', [MailController::class, 'clearProfileSessions'])->name('clear-profile-sessions');
+
     // Route::post('/update-email', [ProfileController::class, 'verify'])->name('profile.verify');
 });
 
 
 // Halaman Lupa Password
-Route::get('/lupa-password', [ForgotPasswordController::class, 'showForgotForm'])->name('lupa-password');
-Route::get('/lupa-password-2', [ForgotPasswordController::class, 'showForgotForm2'])->name('lupa-password-2');
+Route::get('/lupa-password', [HomeController::class, 'showForgotForm'])->name('lupa-password');
+Route::get('/lupa-password-2', [HomeController::class, 'showForgotForm2'])->name('lupa-password-2');
+Route::get('/verif-forgot-pass', [HomeController::class, 'showVerifNewPassForm'])->name('verif-forgot-pass');
+Route::get('/verif-forgot-pass-2', [HomeController::class, 'showVerifNewPassForm2'])->name('verif-forgot-pass-2');
+Route::get('/new-pass', [HomeController::class, 'showNewPassForm'])->name('new-pass');
+Route::get('/new-pass-2', [HomeController::class, 'showNewPassForm2'])->name('new-pass-2');
 Route::middleware(['web'])->group(function () {
-    Route::get('/pass-baru', [ForgotPasswordController::class, 'showNewPassForm'])->name('pass-baru');
+    Route::post('/verif-forgot', [MailController::class, 'sendVerificationForgot'])->name('verif-forgot');
+    Route::post('/verif-forgot-2', [MailController::class, 'sendVerificationForgot2'])->name('verif-forgot-2');
+    Route::post('/verif-email-forgot', [MailController::class, 'verifyForgot'])->name('verif-email-forgot');
+    Route::post('/verif-email-forgot-2', [MailController::class, 'verifyForgot2'])->name('verif-email-forgot-2');
+    Route::post('/new-pass-submit', [UserController::class, 'updateForgotPassword'])->name('new-pass-submit');
+    Route::post('/new-pass-submit-2', [UserController::class, 'updateForgotPassword2'])->name('new-pass-submit-2');
+    Route::post('/session-clear-forgot', [MailController::class, 'clearEmail'])->name('session-clear-forgot');
 });
 
 

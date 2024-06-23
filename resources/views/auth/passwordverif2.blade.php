@@ -17,10 +17,10 @@
     </main>
     <!-- /main -->
 
-    <!-- Modal Email Verif -->
+    <!-- Modal Register -->
     <div class="popup_wrapper">
         <div class="popup_content newsletter_c">
-            <span class="popup_close back-to-register"><i class="icon_close"></i></span>
+            <span class="popup_close back-to-lupa-pass"><i class="icon_close"></i></span>
             <div class="row g-0">
                 <div class="col-md-5 d-none d-md-flex align-items-center justify-content-center">
                     <figure><img src="{{ asset('resto/gallery2.jpeg') }}" alt=""></figure>
@@ -32,7 +32,7 @@
                                 <img src="{{ asset('resto/logo.png') }}" alt=""
                                     style="width: auto; height: auto; max-width: 140px; max-height: 35px;">
                             </a>
-                            <h3>Verifikasi Email Registrasi</h3>
+                            <h3>Verifikasi Email Ganti Password</h3>
                             <p>Masukkan Kode Verifikasi yang telah di kirim ke Email Anda</p>
                             <div id="codeError" class="alert alert-danger alert-dismissible fade show" role="alert"
                                 style="display: none; margin-bottom: 10px; padding-left: 0px; padding-right: 30px;">
@@ -42,7 +42,7 @@
                                     aria-label="Close">
                                 </button>
                             </div>
-                            <form id="emailRegistForm" action="{{ route('verif-reg-2') }}" method="POST">
+                            <form id="emailForgotForm" action="{{ route('verif-email-forgot-2') }}" method="POST">
                                 @csrf
                                 <p id="timerTextEmail" style="text-align: center; margin-bottom: 10px;">
                                     Timer</p>
@@ -53,9 +53,10 @@
                                 </div>
                                 <button type="submit" class="btn_1 mt-2 mb-4">Submit</button>
                                 <button id="cancel-button" type="button" class="btn_1 mt-2 mb-4"
-                                    onclick="window.location.href='{{ route('register-2') }}'">Batalkan</button>
+                                    onclick="window.location.href='{{ route('lupa-password-2') }}'">Batalkan</button>
                                 <p style="margin-bottom: 10px;">Sudah menjadi Membership? <a href="{{ route('login-2') }}"
                                         class="login-member">Login</a>
+                                </p>
                             </form>
                         </div>
                     </div>
@@ -64,7 +65,7 @@
             <!-- row -->
         </div>
     </div>
-    <!-- /Modal Email Verif -->
+    <!-- /Modal Verif Password -->
 
     <!-- Style -->
     <style>
@@ -107,7 +108,7 @@
     <!-- script -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('emailRegistForm').addEventListener('submit', function(event) {
+            document.getElementById('emailForgotForm').addEventListener('submit', function(event) {
                 event.preventDefault(); // Prevent the default form submission
 
                 // Get the form element
@@ -130,10 +131,7 @@
                     .then(response => response.json())
                     .then(data => {
                         if (data.success) {
-                            window.location.href = '{{ route('login-2') }}'; // Example redirect
-
-                            // Set session message
-                            sessionStorage.setItem('success', 'Pendaftaran berhasil, silahkan login.');
+                            window.location.href = '{{route('new-pass-2')}}'; // Example redirect
                         } else {
                             document.getElementById('codeError').style.display = 'block';
                         }
@@ -150,7 +148,7 @@
             // Initialize the timer
             let timer = 60;
             const timerTextEmail = document.getElementById('timerTextEmail');
-            const form = document.getElementById('emailRegistForm');
+            const form = document.getElementById('emailForgotForm');
 
             // Function to update the timer
             // Fungsi untuk mengupdate timer
@@ -167,7 +165,7 @@
                         const resendForm = document.createElement('form');
                         resendForm.method = 'POST';
                         resendForm.action =
-                        '{{ route('resend-verification') }}'; // Ubah dengan route yang sesuai
+                            '{{ route('resend-verification') }}'; // Ubah dengan route yang sesuai
 
                         const csrfToken = document.querySelector('input[name="_token"]').value;
                         const csrfInput = document.createElement('input');
@@ -203,19 +201,19 @@
             });
         });
 
-        // Untuk masuk ke Halaman Register
+        // Untuk masuk ke Halaman Lupa Password
         document.addEventListener('DOMContentLoaded', function() {
-            var backToLogin = document.querySelector('.back-to-register');
+            var backToLogin = document.querySelector('.back-to-lupa-pass');
 
             backToLogin.addEventListener('click', function() {
                 // Kirim permintaan AJAX untuk menghapus session
                 var xhr = new XMLHttpRequest();
-                xhr.open('POST', '{{ route('session-clear') }}', true);
+                xhr.open('POST', '{{ route('session-clear-forgot') }}', true);
                 xhr.setRequestHeader('X-CSRF-TOKEN', '{{ csrf_token() }}');
                 xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
                 xhr.onload = function() {
                     if (xhr.status === 200) {
-                        window.location.href = '{{ route('register-2') }}';
+                        window.location.href = '{{ route('lupa-password') }}';
                     } else {
                         console.error('Gagal menghapus session');
                     }
@@ -230,12 +228,12 @@
             cancelButton.addEventListener('click', function() {
                 // Kirim permintaan AJAX untuk menghapus session
                 var xhr = new XMLHttpRequest();
-                xhr.open('POST', '{{ route('session-clear') }}', true);
+                xhr.open('POST', '{{ route('session-clear-forgot') }}', true);
                 xhr.setRequestHeader('X-CSRF-TOKEN', '{{ csrf_token() }}');
                 xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
                 xhr.onload = function() {
                     if (xhr.status === 200) {
-                        window.location.href = '{{ route('register') }}';
+                        window.location.href = '{{ route('lupa-password') }}';
                     } else {
                         console.error('Gagal menghapus session');
                     }

@@ -41,12 +41,16 @@
                                     {{ session('success') }}
                                 </div>
                             @endif
+                            <div id="sessionStorageMessage" class="alert alert-success" role="alert"
+                                style="display: none; padding: 0px; margin-top: 10px; margin-bottom: 10px; font-size: 12px;">
+                            </div>
                             <form id="loginForm" action="{{ route('login') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
-                                    <input type="email" name="email" class="form-control" placeholder="Email" required style="margin-bottom: 1rem;">
-                                    <input id="password" type="password" name="password" class="form-control" placeholder="Password"
-                                        required>
+                                    <input type="email" name="email" class="form-control" placeholder="Email" required
+                                        style="margin-bottom: 1rem;">
+                                    <input id="password" type="password" name="password" class="form-control"
+                                        placeholder="Password" required>
                                     <input type="checkbox" onclick="pass()" style="margin-top: 10px;"> Show
                                     Password
                                     @error('password')
@@ -54,8 +58,8 @@
                                     @enderror
                                     <a href="{{ route('lupa-password') }}" class="forgot-password">Lupa Password</a>
                                     <button type="submit" class="btn_1 mt-2 mb-4">Masuk</button>
-                                    <p style="margin-bottom: 10px;">Belum menjadi Membership? <a href="{{ route('register') }}"
-                                            class="regist-member">Buat
+                                    <p style="margin-bottom: 10px;">Belum menjadi Membership? <a
+                                            href="{{ route('register') }}" class="regist-member">Buat
                                             Membership</a></p>
                                     <a href="{{ route('menu-order') }}" class="guest">Masuk sebagai Guest</a>
                                 </div>
@@ -98,6 +102,19 @@
             } else {
                 x.type = "password";
             }
+        }
+
+        // Check if sessionStorage contains a registration success message
+        const registrationSuccess = sessionStorage.getItem('success');
+
+        // If there is a message, display it in the designated element
+        if (registrationSuccess) {
+            const sessionStorageMessage = document.getElementById('sessionStorageMessage');
+            sessionStorageMessage.textContent = registrationSuccess;
+            sessionStorageMessage.style.display = 'block';
+
+            // Clear the sessionStorage after displaying the message
+            sessionStorage.removeItem('success');
         }
     </script>
     <!-- /script -->

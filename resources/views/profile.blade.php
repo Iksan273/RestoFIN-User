@@ -5,7 +5,8 @@
     <main class="pattern_2" style="background-color: #CEBEA5">
         <div class="container margin_60_40">
             @if (session('success'))
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <div id="sesi" class="alert alert-success alert-dismissible fade show" role="alert"
+                    style="margin-bottom: -10px;">
                     {{ session('success') }}
                     <button type="button" class="close-custom" onclick="this.parentElement.style.display='none';"
                         aria-label="Close">
@@ -13,7 +14,8 @@
                 </div>
             @endif
             @if (session('error'))
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <div id="sesi" class="alert alert-danger alert-dismissible fade show" role="alert"
+                    style="margin-bottom: -10px;">
                     {{ session('error') }}
                     <button type="button" class="close-custom" onclick="this.parentElement.style.display='none';"
                         aria-label="Close">
@@ -105,9 +107,6 @@
                                     <div class="col-md-6">
                                         <div class="form-group d-flex justify-content-between align-items-center">
                                             <label>Email Address</label>
-                                            {{-- <label><a href="#verifyemail" id="verifyEmailBtn" class="ml-auto disabled-link"
-                                                    data-bs-toggle="modal"
-                                                    data-bs-target="#verificationEmailModal">Verify</a></label> --}}
                                         </div>
                                         <input id="email" name="email" class="form-control"
                                             value="{{ $customer->email }}" placeholder="Value Email" disabled>
@@ -115,9 +114,6 @@
                                     <div class="col-md-6">
                                         <div class="form-group d-flex justify-content-between align-items-center">
                                             <label>Phone</label>
-                                            {{-- <label><a href="#verifyphone" id="verifyPhoneBtn"
-                                                    class="ml-auto disabled-link" data-bs-toggle="modal"
-                                                    data-bs-target="#verificationPhoneModal">Verify</a></label> --}}
                                         </div>
                                         <input id="phone" name="phone" class="form-control"
                                             value="{{ $customer->phone }}"
@@ -319,10 +315,10 @@
     </main>
     <!-- /main -->
 
-    <!-- Modal Verification Email -->
-    <div class="modal fade" id="verificationEmailModal" tabindex="-1" aria-labelledby="verificationEmailModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+    <!-- Modal Verifikasi Email -->
+    <div class="modal fade" id="verificationEmailModal" tabindex="-1" role="dialog"
+        aria-labelledby="verificationEmailModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <div class="d-flex align-items-center">
@@ -333,26 +329,32 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div style="margin-bottom: 17px;">
-                        <p>EMAIL</p>
-                        <p id="timerTextEmail" style="text-align: center;"></p>
+                    <div id="codeError" class="alert alert-danger alert-dismissible fade show" role="alert"
+                        style="display: none; margin-bottom: 10px;">
+                        Kode Verifikasi salah, silahkan coba lagi.
+                        <button type="button" class="close-custom"
+                            onclick="document.getElementById('codeError').style.display = 'none';" aria-label="Close">
+                        </button>
                     </div>
-                    <div class="text-center" style="padding-bottom: 10px;">
-                        <input type="text" name="" class="form-control" placeholder="Masukkan Kode" required
-                            style="margin-bottom: 20px;">
-                        <a href="{{ route('login') }}" class="btn btn-success">Simpan</a>
-                        <a class="btn btn-secondary" data-bs-dismiss="modal">Batal</a>
-                    </div>
+                    <p style="text-align: center;">Kode verifikasi telah dikirim ke email baru Anda.</p>
+                    <p style="text-align: center;">Periksa email Anda dan masukkan kode verifikasi di sini.</p>
+                    <p id="timerTextEmail" style="text-align: center; margin-bottom: 10px;">
+                        Timer</p>
+                    <input type="text" id="verificationCode" class="form-control"
+                        placeholder="Masukkan Kode Verifikasi">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="verifyEmailCode()">Verifikasi</button>
                 </div>
             </div>
         </div>
     </div>
-    <!-- /Modal Verification Email -->
+    <!-- /Modal Verifikasi Email -->
 
-    <!-- Modal Phone -->
-    <div class="modal fade" id="verificationPhoneModal" tabindex="-1" aria-labelledby="verificationPhoneModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+    <!-- Modal Konfirmasi Simpan Profil -->
+    <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog"
+        aria-labelledby="confirmationModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <div class="d-flex align-items-center">
@@ -363,21 +365,16 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div style="margin-bottom: 17px;">
-                        <p>PHONE</p>
-                        <p id="timerTextPhone" style="text-align: center;"></p>
-                    </div>
-                    <div class="text-center" style="padding-bottom: 10px;">
-                        <input type="text" name="" class="form-control" placeholder="Masukkan Kode" required
-                            style="margin-bottom: 20px;">
-                        <a href="{{ route('login') }}" class="btn btn-success">Simpan</a>
-                        <a class="btn btn-secondary" data-bs-dismiss="modal">Batal</a>
-                    </div>
+                    Apakah Anda yakin ingin menyimpan perubahan pada profil Anda?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-primary" onclick="confirmSaveProfile()">Simpan</button>
                 </div>
             </div>
         </div>
     </div>
-    <!-- /Modal Phone -->
+    <!-- /Modal Konfirmasi Simpan Profil -->
 
     <!-- Modal Promo -->
     <div class="modal fade" id="promoModal" tabindex="-1" aria-labelledby="promoModalLabel" aria-hidden="true">
@@ -1048,7 +1045,8 @@
             /* Ensures the image keeps its aspect ratio */
         }
 
-        .main, .promo {
+        .main,
+        .promo {
             max-height: 600px;
             /* Atur tinggi maksimum */
             overflow-y: auto;
@@ -1058,6 +1056,91 @@
     <!-- /style -->
 
     <script>
+        // Timer //
+        document.addEventListener('DOMContentLoaded', function() {
+            let timer = 60; // Waktu awal 60 detik
+            let timerInterval; // Untuk menyimpan interval timer
+            const timerTextEmail = document.getElementById('timerTextEmail');
+
+            // Fungsi untuk memulai timer
+            function startTimer() {
+                timer = 60; // Set ulang timer ke 60 detik
+                updateTimer(); // Panggil fungsi untuk mengupdate tampilan timer
+                timerInterval = setInterval(updateTimer, 1000); // Set interval untuk update setiap detik
+            }
+
+            // Fungsi untuk update timer
+            function updateTimer() {
+                if (timer > 0) {
+                    timer--;
+                    timerTextEmail.textContent = `Waktu tersisa: ${timer} detik`;
+                } else {
+                    clearInterval(timerInterval); // Hentikan interval jika timer habis
+                    timerTextEmail.innerHTML = '<a id="resendLink">Kirim Kode Verifikasi Ulang</a>';
+
+                    document.getElementById('resendLink').addEventListener('click', function(e) {
+                        e.preventDefault();
+                        startTimer(); // Panggil fungsi untuk memulai timer lagi saat resend diklik
+
+                        // Ambil nilai firstname, lastname, dan email dari form
+                        var firstname = document.getElementById('firstname').value;
+                        var lastname = document.getElementById('lastname').value;
+                        var email = document.getElementById('email').value;
+
+                        // Kirim permintaan ulang verifikasi profil
+                        $.ajax({
+                            url: '/resend-verification-profile',
+                            method: 'POST',
+                            data: {
+                                _token: '{{ csrf_token() }}',
+                                firstname: firstname,
+                                lastname: lastname,
+                                email: email
+                            },
+                            success: function(response) {
+                                console.log('Email verifikasi terkirim ke ' + email);
+                            },
+                            error: function(error) {
+                                console.error('Gagal mengirim email verifikasi:', error);
+                            }
+                        });
+                    });
+
+                    // Hapus sesi verification_code setelah timer habis
+                    fetch('{{ route('clear-verification-session') }}', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                            }
+                        })
+                        .then(response => response.json())
+                        .then(data => console.log(data)) // Handle response jika diperlukan
+                        .catch(error => console.error('Error:', error));
+                }
+            }
+
+
+
+            // Panggil fungsi untuk memulai timer saat modal verifikasi email terbuka
+            $('#verificationEmailModal').on('shown.bs.modal', function() {
+                startTimer();
+            });
+
+            // Hentikan interval timer saat modal ditutup
+            $('#verificationEmailModal').on('hidden.bs.modal', function() {
+                clearInterval(timerInterval);
+            });
+
+            // Hentikan interval timer jika halaman dimuat ulang atau ditutup
+            window.addEventListener('beforeunload', function() {
+                clearInterval(timerInterval);
+            });
+        });
+
+
+        //---------------------------------------------------------------------------------------------//
+
         // Actived Icon //
         let lastActiveIcon = null; // Variabel global untuk menyimpan elemen ikon yang terakhir aktif
 
@@ -1107,6 +1190,14 @@
             // Menambahkan event listener untuk tombol "Akun Saya"
             akunSayaButton.addEventListener('click', function(event) {
                 const element = event.target; // Mendapatkan elemen yang diklik
+
+                // Memilih elemen dengan ID 'sesi'
+                const sesiElement = document.getElementById('sesi');
+                if (sesiElement) {
+                    // Mengatur display none untuk elemen 'sesi'
+                    sesiElement.style.display = 'none';
+                }
+
                 var inputs = document.querySelectorAll('.form-control');
                 inputs.forEach(function(input) {
                     if (!input.disabled) {
@@ -1157,6 +1248,14 @@
             // Menambahkan event listener untuk tombol "Akun Saya"
             passwordButton.addEventListener('click', function(event) {
                 const element = event.target; // Mendapatkan elemen yang diklik
+
+                // Memilih elemen dengan ID 'sesi'
+                const sesiElement = document.getElementById('sesi');
+                if (sesiElement) {
+                    // Mengatur display none untuk elemen 'sesi'
+                    sesiElement.style.display = 'none';
+                }
+
                 var inputs = document.querySelectorAll('.form-control');
                 inputs.forEach(function(input) {
                     if (!input.disabled) {
@@ -1205,6 +1304,14 @@
             // Menambahkan event listener untuk tombol "Akun Saya"
             promoButton.addEventListener('click', function(event) {
                 const element = event.target; // Mendapatkan elemen yang diklik
+
+                // Memilih elemen dengan ID 'sesi'
+                const sesiElement = document.getElementById('sesi');
+                if (sesiElement) {
+                    // Mengatur display none untuk elemen 'sesi'
+                    sesiElement.style.display = 'none';
+                }
+
                 var inputs = document.querySelectorAll('.form-control');
                 inputs.forEach(function(input) {
                     if (!input.disabled) {
@@ -1253,6 +1360,14 @@
             // Menambahkan event listener untuk tombol "Akun Saya"
             transactionButton.addEventListener('click', function(event) {
                 const element = event.target; // Mendapatkan elemen yang diklik
+
+                // Memilih elemen dengan ID 'sesi'
+                const sesiElement = document.getElementById('sesi');
+                if (sesiElement) {
+                    // Mengatur display none untuk elemen 'sesi'
+                    sesiElement.style.display = 'none';
+                }
+
                 var inputs = document.querySelectorAll('.form-control');
                 inputs.forEach(function(input) {
                     if (!input.disabled) {
@@ -1301,6 +1416,14 @@
             // Menambahkan event listener untuk tombol "Akun Saya"
             pointButton.addEventListener('click', function(event) {
                 const element = event.target; // Mendapatkan elemen yang diklik
+
+                // Memilih elemen dengan ID 'sesi'
+                const sesiElement = document.getElementById('sesi');
+                if (sesiElement) {
+                    // Mengatur display none untuk elemen 'sesi'
+                    sesiElement.style.display = 'none';
+                }
+
                 var inputs = document.querySelectorAll('.form-control');
                 inputs.forEach(function(input) {
                     if (!input.disabled) {
@@ -1349,6 +1472,14 @@
             // Menambahkan event listener untuk tombol "Akun Saya"
             strukButton.addEventListener('click', function(event) {
                 const element = event.target; // Mendapatkan elemen yang diklik
+
+                // Memilih elemen dengan ID 'sesi'
+                const sesiElement = document.getElementById('sesi');
+                if (sesiElement) {
+                    // Mengatur display none untuk elemen 'sesi'
+                    sesiElement.style.display = 'none';
+                }
+
                 var inputs = document.querySelectorAll('.form-control');
                 inputs.forEach(function(input) {
                     if (!input.disabled) {
@@ -1407,6 +1538,7 @@
                 document.querySelector('.box_booking').classList.remove('box_booking_hidden');
                 document.querySelector('.box_booking').classList.add('box_booking_visible');
                 document.querySelector('.box_booking_2').classList.remove('box_booking_visible');
+                document.querySelector('.box_booking_2').classList.add('box_booking_hidden');
                 document.querySelector('.box_booking_3').classList.add('box_booking_hidden');
                 document.querySelector('.box_booking_3').classList.remove('box_booking_visible');
                 document.querySelector('.box_booking_4').classList.add('box_booking_hidden');
@@ -1702,14 +1834,88 @@
         function saveProfile() {
             event.preventDefault(); // Mencegah submit form otomatis
             var form = document.getElementById('profileForm');
-            form.submit();
+            var emailInput = document.getElementById('email');
+            var originalEmail = '{{ $customer->email }}';
+            var newEmail = emailInput.value.trim();
+
+            // Data yang akan dikirim
+            var data = {
+                _token: '{{ csrf_token() }}',
+                email: newEmail,
+                firstname: document.getElementById('firstname').value.trim(),
+                lastname: document.getElementById('lastname').value.trim(),
+                phone: document.getElementById('phone').value.trim(),
+                instagram: document.getElementById('instagram').value.trim(),
+                birth_day: document.getElementById('birth_day').value,
+                birth_month: document.getElementById('birth_month').value
+            };
+
+            $.ajax({
+                url: '{{ route('send-verification-email') }}',
+                method: 'POST',
+                data: data,
+                success: function(response) {
+                    if (response.success) {
+                        $('#verificationEmailModal').modal('show');
+                    } else if (response.message) {
+                        $('#confirmationModal').modal('show');
+                    } else {
+                        alert('Gagal mengirim email verifikasi. Silakan coba lagi.');
+                    }
+                },
+                error: function(error) {
+                    console.error('Gagal mengirim email verifikasi:', error);
+                    alert('Terjadi kesalahan. Silakan coba lagi nanti.');
+                }
+            });
+        }
+
+        function verifyEmailCode() {
+            var code = document.getElementById('verificationCode').value.trim();
+
+            $.ajax({
+                url: '{{ route('verify-email-code') }}',
+                method: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    code: code,
+                },
+                success: function(response) {
+                    if (response.success) {
+                        var form = document.getElementById('profileForm');
+                        form.submit();
+                    } else {
+                        document.getElementById('codeError').style.display = 'block';
+                    }
+                },
+                error: function(error) {
+                    console.error('Gagal memverifikasi kode:', error);
+                    alert('Terjadi kesalahan. Silakan coba lagi nanti.');
+                }
+            });
         }
 
         function cancelProfile() {
-            // Batalkan perubahan dan kembalikan nilai asli
-            console.log('Profile edit canceled');
-            // Kembalikan tombol "Ubah Profile" dan nonaktifkan input
-            resetProfileForm();
+            event.preventDefault();
+
+            $.ajax({
+                url: '{{ route('clear-profile-sessions') }}',
+                type: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function(response) {
+                    if (response.success) {
+                        console.log('Profile sessions cleared successfully.');
+                        resetProfileForm();
+                    } else {
+                        console.log('Failed to clear profile sessions.');
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error clearing profile sessions:', error);
+                }
+            });
         }
 
 
@@ -1727,8 +1933,6 @@
                 input.disabled = true;
             });
 
-            // disableVerifyButton();
-
             // Kembalikan tombol "Ubah Profile"
             var buttonContainer = document.querySelector('.text-right');
             buttonContainer.innerHTML = `
@@ -1736,31 +1940,34 @@
     `;
         }
 
-        // Menangani klik pada tautan "Verify"
-        document.getElementById('verifyEmailBtn').addEventListener('click', function(event) {
-            event.preventDefault(); // Mencegah aksi standar (membuka modal)
-            event.stopPropagation(); // Mencegah penyebaran event ke atas (jika ada event listener lain)
-        });
-
-        document.getElementById('verifyPhoneBtn').addEventListener('click', function(event) {
-            event.preventDefault(); // Mencegah aksi standar (membuka modal)
-            event.stopPropagation(); // Mencegah penyebaran event ke atas (jika ada event listener lain)
-        });
-
-        // Fungsi untuk mengaktifkan tautan "Verify"
-        function enableVerifyButton() {
-            var verifyEmailBtn = document.getElementById('verifyEmailBtn');
-            var verifyPhoneBtn = document.getElementById('verifyPhoneBtn');
-            verifyEmailBtn.classList.remove('disabled-link');
-            verifyPhoneBtn.classList.remove('disabled-link');
+        function sendVerificationEmail(newEmail) {
+            // Kirim permintaan AJAX untuk mengirim email verifikasi ke email baru
+            $.ajax({
+                url: '/send-verification-email',
+                method: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    email: newEmail,
+                    firstname: document.getElementById('firstname').value.trim(),
+                    lastname: document.getElementById('lastname').value.trim(),
+                    phone: document.getElementById('phone').value.trim(),
+                    instagram: document.getElementById('instagram').value.trim(),
+                    birth_day: document.getElementById('birth_day').value,
+                    birth_month: document.getElementById('birth_month').value
+                },
+                success: function(response) {
+                    console.log('Email verifikasi terkirim ke ' + newEmail);
+                },
+                error: function(error) {
+                    console.error('Gagal mengirim email verifikasi:', error);
+                }
+            });
         }
 
-        // Fungsi untuk menonaktifkan tautan "Verify"
-        function disableVerifyButton() {
-            var verifyEmailBtn = document.getElementById('verifyEmailBtn');
-            var verifyPhoneBtn = document.getElementById('verifyPhoneBtn');
-            verifyEmailBtn.classList.add('disabled-link');
-            verifyPhoneBtn.classList.add('disabled-link');
+        // Fungsi untuk menangani konfirmasi simpan profil
+        function confirmSaveProfile() {
+            var form = document.getElementById('profileForm');
+            form.submit();
         }
 
         //--------------------------------------------------------------------------------------------------------//

@@ -108,7 +108,7 @@ class RegisterController extends Controller
             $request->session()->put('password', $password);
 
             $details = [
-                'title' => 'Verifikasi Email',
+                'title' => 'Verifikasi Email Registrasi',
                 'body' => 'Kode verifikasi Anda: ' . $verificationCode,
                 'name' => 'Halo sobat kreatif, '. $firstname . ' ' . $lastname . '!',
             ];
@@ -159,7 +159,7 @@ class RegisterController extends Controller
             $request->session()->put('password', $password);
 
             $details = [
-                'title' => 'Verifikasi Email',
+                'title' => 'Verifikasi Email Registrasi',
                 'body' => 'Kode verifikasi Anda: ' . $verificationCode,
                 'name' => 'Halo sobat kreatif, '. $firstname . ' ' . $lastname . '!',
             ];

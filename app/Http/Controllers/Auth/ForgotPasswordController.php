@@ -48,4 +48,8 @@ class ForgotPasswordController extends Controller
     {
         return view('auth.newpass');
     }
+    public function showNewPassForm2()
+    {
+        return view('auth.newpass2');
+    }
 }

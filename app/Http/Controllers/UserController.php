@@ -84,7 +84,7 @@ class UserController extends Controller
                 $user->birth_month = $request->birth_month;
                 $user->instagram = $request->instagram;
                 $user->save();
-                
+
                 session(['email' => $user->email]);
                 return redirect()->route('profile')->with('success', 'Profile berhasil diubah');
             }
@@ -121,6 +121,60 @@ class UserController extends Controller
             return redirect()->route('profile')->with('success', 'Password berhasil diubah');
         } catch (Exception $e) {
             return back()->with('error', 'Gagal mengubah password: ' . $e->getMessage());
+        }
+    }
+
+    public function updateForgotPassword(Request $request)
+    {
+        try {
+            // Validasi data yang diterima dari formulir
+            $request->validate([
+                'password' => 'required|string|min:8',
+                'password_confirmation' => 'required|string|same:password', // Pastikan password baru dan re-type password baru sama
+            ]);
+
+            // Ambil email dari session
+            $email = session('email');
+
+            // Cari user berdasarkan email dari session
+            $user = User::where('email', $email)->first();
+
+            // Update password user
+            $user->password = Hash::make($request->password);
+            $user->save();
+
+            return redirect()->route('login')->with('success', 'Password berhasil diubah');
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return redirect()->route('new-pass')->with('error', 'Password Minimal 8 Karakter.')->withInput();
+        } catch (Exception $e) {
+            return redirect()->route('new-pass')->with('error', 'Ubah password gagal! Silakan coba lagi.');
+        }
+    }
+
+    public function updateForgotPassword2(Request $request)
+    {
+        try {
+            // Validasi data yang diterima dari formulir
+            $request->validate([
+                'password' => 'required|string|min:8',
+                'password_confirmation' => 'required|string|same:password', // Pastikan password baru dan re-type password baru sama
+            ]);
+
+            // Ambil email dari session
+            $email = session('email');
+
+            // Cari user berdasarkan email dari session
+            $user = User::where('email', $email)->first();
+
+            // Update password user
+            $user->password = Hash::make($request->password);
+            $user->save();
+
+            return redirect()->route('login-2')->with('success', 'Password berhasil diubah');
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return redirect()->route('new-pass-2')->with('error', 'Password Minimal 8 Karakter.')->withInput();
+        } catch (Exception $e) {
+            return redirect()->route('new-pass-2')->with('error', 'Ubah password gagal! Silakan coba lagi.');
         }
     }
 }

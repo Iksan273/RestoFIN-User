@@ -41,6 +41,9 @@
                                     {{ session('success') }}
                                 </div>
                             @endif
+                            <div id="sessionStorageMessage" class="alert alert-success" role="alert"
+                                style="display: none; padding: 0px; margin-top: 10px; margin-bottom: 10px; font-size: 12px;">
+                            </div>
                             <form id="loginForm" action="{{ route('login-2') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
@@ -52,7 +55,7 @@
                                     @error('password')
                                         <p style="margin-bottom: 10px;"><span class="text-danger">{{ $message }}</span></p>
                                     @enderror
-                                    <a href="{{ route('lupa-password') }}" class="forgot-password">Lupa Password</a>
+                                    <a href="{{ route('lupa-password-2') }}" class="forgot-password">Lupa Password</a>
                                     <button type="submit" class="btn_1 mt-2 mb-4">Masuk</button>
                                     <p style="margin-bottom: 10px;">Belum menjadi Membership? <a href="{{ route('register-2') }}"
                                             class="regist-member">Buat
@@ -97,6 +100,19 @@
             } else {
                 x.type = "password";
             }
+        }
+
+        // Check if sessionStorage contains a registration success message
+        const registrationSuccess = sessionStorage.getItem('success');
+
+        // If there is a message, display it in the designated element
+        if (registrationSuccess) {
+            const sessionStorageMessage = document.getElementById('sessionStorageMessage');
+            sessionStorageMessage.textContent = registrationSuccess;
+            sessionStorageMessage.style.display = 'block';
+
+            // Clear the sessionStorage after displaying the message
+            sessionStorage.removeItem('success');
         }
     </script>
     <!-- /script -->
