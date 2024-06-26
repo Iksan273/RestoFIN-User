@@ -22,7 +22,7 @@
 
         <div class="pattern_2">
             <div class="container margin_60_40" data-cue="slideInUp">
-                <div class="banner lazy" data-bg="url(img/banner_bg.jpg)">
+                <div class="banner lazy" data-bg="url(https://resto.bemubaya.com/promo/images/{{ $promo->image_url }})">
                     <div class="wrapper d-flex align-items-center justify-content-between opacity-mask"
                         data-opacity-mask="rgba(0, 0, 0, 0.5)">
                         <div>

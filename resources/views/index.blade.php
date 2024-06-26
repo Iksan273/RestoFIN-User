@@ -94,7 +94,7 @@
                     <h2>Our Daily Voucher</h2>
                 </div>
                 <!-- /main_title -->
-                <div class="banner lazy" data-bg="url(img/banner_bg.jpg)">
+                <div class="banner lazy" data-bg="url(https://resto.bemubaya.com/promo/images/{{ $promo->image_url }})">
                     <div class="wrapper d-flex align-items-center justify-content-between opacity-mask"
                         data-opacity-mask="rgba(0, 0, 0, 0.5)">
                         <div>
