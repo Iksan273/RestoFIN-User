@@ -242,7 +242,7 @@
 
                     <!-- Transaksi Saya -->
                     <div class="box_booking_5 style_2 box_booking_hidden box_transaksi_hidden">
-                        <div class="head">
+                        <div class="head" style="margin-bottom: 10px;">
                             <div class="title">
                                 <h3 class="back_btn_4">History Transaksi Saya</h3>
                             </div>
@@ -267,7 +267,7 @@
 
                     <!-- Points -->
                     <div class="box_booking_6 style_2 box_booking_hidden box_points_hidden">
-                        <div class="head">
+                        <div class="head" style="margin-bottom: -25px;">
                             <div class="title">
                                 <h3 class="back_btn_5">Point Member Saya</h3>
                             </div>
@@ -279,7 +279,8 @@
                                     style="margin-top: 20px" data-bs-toggle="modal" data-bs-target="#pointModal"
                                     data-point="{{ $point->point }}"
                                     data-keterangan="{{ $point->keterangan ? $point->keterangan : 'Tidak ada keterangan' }}"
-                                    onclick="showPointDetail('{{ $point->keterangan ? $point->keterangan : 'Tidak ada keterangan' }}')">
+                                    data-order-id="{{ $point->orders_id }}"
+                                    onclick="showPointDetail('{{ $point->keterangan ? $point->keterangan : 'Tidak ada keterangan' }}', '{{ $point->orders_id }}')">
                                     {{ $point->point }} Points
                                 </a>
                             @endforeach
@@ -422,27 +423,23 @@
                         <h2>Detail Point</h2>
                         <p id="pointDetail"></p>
                     </div>
-                    <!-- History Transaksi -->
-                    {{-- <div style="margin-bottom: 17px;">
-                        <h2>History Transaksi</h2>
-                        <p><strong>ID Transaksi:</strong> TRX123456789</p>
-                        <p><strong>Tanggal:</strong> 30 Mei 2024</p>
-                        <p><strong>Pelanggan:</strong> John Doe</p>
-                        <p><strong>Items:</strong></p>
-                        <div style="max-height: 100px; overflow-y: auto;">
-                            <ul>
-                                <li>Item 1 - Rp50.000</li>
-                                <li>Item 2 - Rp30.000</li>
-                                <li>Item 3 - Rp20.000</li>
-                                <li>Item 4 - Rp40.000</li>
-                                <li>Item 5 - Rp25.000</li>
-                                <!-- Tambahkan lebih banyak item jika diperlukan -->
-                            </ul>
+                    <div class="modal-body" id="transactionDetail" style="margin-top: -10px;">
+                        <!-- History Transaksi -->
+                        <div style="margin-bottom: 17px;">
+                            <h2>History Transaksi</h2>
+                            <p><strong>ID Transaksi:</strong> <span id="trx-id-point"></span></p>
+                            <p><strong>Tanggal:</strong> <span id="trx-date-point"></span></p>
+                            <p><strong>Items:</strong></p>
+                            <div style="max-height: 100px; overflow-y: auto;">
+                                <ul id="trx-items-point">
+                                    <!-- Daftar item transaksi akan dimasukkan di sini -->
+                                </ul>
+                            </div>
+                            <p><strong>Total: </strong><span id="trx-total-point"></span></p>
+                            <p><strong>Metode Pembayaran:</strong> <span id="trx-payment-method-point"></span></p>
+                            <p><strong>Status:</strong> <span id="trx-status-point"></span></p>
                         </div>
-                        <p><strong>Total:</strong> Rp100.000</p>
-                        <p><strong>Metode Pembayaran:</strong> QRIS</p>
-                        <p><strong>Status:</strong> Berhasil</p>
-                    </div> --}}
+                    </div>
                 </div>
             </div>
         </div>
@@ -474,7 +471,7 @@
                                 <!-- Daftar item transaksi akan dimasukkan di sini -->
                             </ul>
                         </div>
-                        <p><strong>Total:</strong> Rp <span id="trx-total"></span></p>
+                        <p><strong>Total: </strong><span id="trx-total"></span></p>
                         <p><strong>Metode Pembayaran:</strong> <span id="trx-payment-method"></span></p>
                         <p><strong>Status:</strong> <span id="trx-status"></span></p>
                     </div>
@@ -538,6 +535,10 @@
 
     <!-- style -->
     <style>
+        .box_booking_5 .main {
+            padding: 10px 25px;
+        }
+
         /* hilang kan display untuk hp */
         @media (max-width: 991px) {
             .box_booking_hidden {
@@ -2086,9 +2087,52 @@
             }
         }
 
-        function showPointDetail(keterangan) {
+        function showPointDetail(keterangan, id) {
             var pointDetail = document.getElementById('pointDetail');
             pointDetail.textContent = keterangan;
+
+            var transactionDetail = document.getElementById('transactionDetail');
+            if (id) {
+                fetch(`/transaction/${id}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        // Mengisi detail transaksi ke dalam modal
+                        document.getElementById('trx-id-point').textContent = data.id_transaksi;
+                        document.getElementById('trx-date-point').textContent = data.tanggal;
+                        document.getElementById('trx-total-point').textContent = formatNumber(data.total);
+                        document.getElementById('trx-payment-method-point').textContent = data.metode_pembayaran;
+                        document.getElementById('trx-status-point').textContent = data.status;
+
+                        // Menghapus daftar item yang sebelumnya
+                        const trxItems = document.getElementById('trx-items-point');
+                        trxItems.innerHTML = '';
+
+                        // Menambahkan daftar item baru
+                        data.items.forEach(item => {
+                            const li = document.createElement('li');
+                            const title = document.createElement('div');
+                            title.textContent = item.title;
+                            const price = document.createElement('div');
+                            price.textContent = `${formatNumber(item.price)}`;
+                            li.appendChild(title);
+                            li.appendChild(price);
+                            trxItems.appendChild(li);
+                        });
+
+                        // Menampilkan bagian History Transaksi
+                        transactionDetail.style.display = 'block';
+
+                        // Menampilkan modal
+                        $('#pointModal').modal('show');
+                    })
+                    .catch(error => console.error('Error:', error));
+            } else {
+                // Menyembunyikan bagian History Transaksi jika tidak ada id
+                transactionDetail.style.display = 'none';
+
+                // Menampilkan modal
+                $('#pointModal').modal('show');
+            }
         }
 
         function showStrukDetail(tanggal, file) {

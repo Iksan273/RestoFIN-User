@@ -262,7 +262,7 @@ class HomeController extends Controller
         // Ambil daftar struk_online yang terkait dengan customer
         $strukOnline = StrukOnline::where('users_id', $customer->id)->get();
 
-        // Ambil daftar vocuher promo
+        // Ambil daftar voucher promo
         $promo = Promo::all();
 
         $cart = session()->get('cart', []);
@@ -279,7 +279,7 @@ class HomeController extends Controller
             ->with(['orderItems.menu'])
             ->get();
 
-        // Kirim data customer, daftar bulan, dan memberPoints ke view
+        // Kirim data customer, daftar bulan, memberPoints, orders_mp, strukOnline, promo, cart, transaction, tax, total, dan transactions ke view
         return view('profile', compact('customer', 'months', 'memberPoints', 'strukOnline', 'promo', 'cart', 'transaction', 'tax', 'total', 'transactions'));
     }
 

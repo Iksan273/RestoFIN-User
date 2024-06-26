@@ -30,7 +30,7 @@
                                     </svg>
                                 </div>
                                 <h3>Berhasil Order!</h3>
-                                <p>Tunggu konfirmasi, terima kasih.</p>
+                                <p>Silahkan ke Kasir untuk melakukan Pembayaran, terima kasih.</p>
                             </div>
                             <a class="btn_1 full-width mb_5" href="{{ route('menu-order') }}">Kembali ke Halaman Menu</a>
                             <a class="btn_1 full-width mb_5" href="{{ route('index') }}">Kembali ke Halaman Utama</a>
