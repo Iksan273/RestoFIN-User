@@ -21,17 +21,17 @@
             <div class="container margin_60_40">
                 <div class="main_title center">
                     <span><em></em></span>
-                    <h2>Here some pictures</h2>
-                    <p>Cum doctus civibus efficiantur in imperdiet deterruisset.</p>
+                    <h2>Gallery Section</h2>
+                    <p>by Vinautism Art & Resto.</p>
                 </div>
                 <div class="grid">
                     <ul class="magnific-gallery clearfix">
                         <li>
                             <div class="item">
                                 <div class="item-img" data-cue="slideInUp">
-                                    <img src="{{ asset('resto/gallery.jpeg') }}" alt="">
+                                    <img src="{{ asset('resto/gallery5.jpg') }}" alt="">
                                     <div class="content">
-                                        <a href="{{ asset('resto/gallery.jpeg') }}" title="Photo title"
+                                        <a href="{{ asset('resto/gallery5.jpg') }}" title="Gallery Vinautism Art & Resto"
                                             data-effect="mfp-zoom-in"><i class="arrow_expand"></i></a>
                                     </div>
                                 </div>
@@ -42,7 +42,7 @@
                                 <div class="item-img" data-cue="slideInUp">
                                     <img src="{{ asset('resto/gallery2.jpeg') }}" alt="">
                                     <div class="content">
-                                        <a href="{{ asset('resto/gallery2.jpeg') }}" title="Photo title"
+                                        <a href="{{ asset('resto/gallery2.jpeg') }}" title="Painting Gallery Vinautism Art & Resto"
                                             data-effect="mfp-zoom-in"><i class="arrow_expand"></i></a>
                                     </div>
                                 </div>
@@ -53,7 +53,7 @@
                                 <div class="item-img" data-cue="slideInUp">
                                     <img src="{{ asset('resto/gallery3.jpg') }}" alt="">
                                     <div class="content">
-                                        <a href="{{ asset('resto/gallery3.jpg') }}" title="Photo title"
+                                        <a href="{{ asset('resto/gallery3.jpg') }}" title="Vinkopi by Vinautism Art & Resto"
                                             data-effect="mfp-zoom-in"><i class="arrow_expand"></i></a>
                                     </div>
                                 </div>
@@ -62,9 +62,9 @@
                         <li>
                             <div class="item">
                                 <div class="item-img" data-cue="slideInUp">
-                                    <img src="{{ asset('resto/gallery4.jpg') }}" alt="">
+                                    <img src="{{ asset('Foto Menu/Makanan/Yammie Manis Ayam Merah.png') }}" alt="">
                                     <div class="content">
-                                        <a href="{{ asset('resto/gallery4.jpg') }}" title="Photo title"
+                                        <a href="{{ asset('Foto Menu/Makanan/Yammie Manis Ayam Merah.png') }}" title="Yammie Manis Ayam Merah by Vinautism Art & Resto"
                                             data-effect="mfp-zoom-in"><i class="arrow_expand"></i></a>
                                     </div>
                                 </div>

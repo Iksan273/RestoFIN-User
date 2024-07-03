@@ -140,6 +140,8 @@ Route::get('/promo', [HomeController::class, 'indexPromo'])->name('promo');
 
 // Halaman Information & Contact
 Route::get('/information', [HomeController::class, 'indexInformation'])->name('information');
+Route::post('/send-email', [MailController::class, 'submitForm'])->name('send-email');
+
 
 
 // Halaman Carrer & History

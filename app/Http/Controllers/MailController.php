@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
+use PHPMailer\PHPMailer\PHPMailer;
 
 class MailController extends Controller
 {
@@ -432,6 +433,58 @@ class MailController extends Controller
             }
         } catch (Exception $e) {
             return response()->json(['success' => false, 'error' => 'Terjadi kesalahan. Silahkan coba lagi.'], 500);
+        }
+    }
+
+    public function submitForm(Request $request)
+    {
+        try {
+            $request->validate([
+                'name_contact' => 'required|string',
+                'email_contact' => 'required|email',
+                'message_contact' => 'required|string',
+                'verify_contact' => 'required|numeric'
+            ]);
+
+            $name = $request->input('name_contact');
+            $email = $request->input('email_contact');
+            $message = $request->input('message_contact');
+            $userAnswer = $request->input('verify_contact');
+
+            // Cek jawaban yang benar dari session
+            if ($userAnswer == session('answer')) {
+                $mail = new PHPMailer(true);
+
+                try {
+                    //Server settings
+                    $mail->isSMTP();
+                    $mail->Host       = 'smtp.gmail.com';
+                    $mail->SMTPAuth   = true;
+                    $mail->Username   = 'ta.160420029@gmail.com';
+                    $mail->Password   = 'txsorwmnganegaua';
+                    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+                    $mail->Port       = 587;
+
+                    //Recipients
+                    $mail->addAddress('ta.160420029@gmail.com', 'Vin');
+                    $mail->addReplyTo($email, $name);
+
+                    // Content
+                    $mail->isHTML(true);
+                    $mail->Subject = "CUSTOMER | $name - $email";
+                    $mail->Body    = nl2br($message);
+                    $mail->AltBody = $message;
+
+                    $mail->send();
+                    return redirect()->route('information')->with('success', 'Pesan Email berhasil dikirim.');
+                } catch (Exception $e) {
+                    return redirect()->route('information')->with('error', 'Email tidak ditemukan, silahkan coba lagi');
+                }
+            } else {
+                return redirect()->route('information')->with('error', 'Jawaban salah, silahkan coba lagi.');
+            }
+        } catch (Exception $e) {
+            return redirect()->route('information')->with('error', 'Pesan Email gagal terkirim, silahkan coba lagi.');
         }
     }
 }

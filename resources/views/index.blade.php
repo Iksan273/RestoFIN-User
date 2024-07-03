@@ -62,7 +62,7 @@
                         <figure>
                             <img src="{{asset('resto/gallery.jpeg')}}" data-src="{{asset('resto/gallery.jpeg')}}" width="auto" height="auto"
                                 alt="" class="img-fluid lazy">
-                            <a href="https://www.youtube.com/watch?v=Gj1PAk9uEzE" class="btn_play" data-cue="zoomIn"
+                            <a href="https://drive.google.com/file/d/1h6TjwMySaDBjDhOCZxsD-pR7T5yCh5AD/preview" class="btn_play" data-cue="zoomIn"
                                 data-delay="500"><span class="pulse_bt"><i class="arrow_triangle-right"></i></span></a>
                         </figure>
                     </div>

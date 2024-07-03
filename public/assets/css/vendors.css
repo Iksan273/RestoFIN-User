@@ -2632,7 +2632,7 @@ button.mfp-close {
   right: 15px;
 }
 
-.mfp-arrow.mfp-arrow-left:before, .mfp-arrow.mfp-arrow-right:before {
+.mfp-arrow.mfp-arrow-left:before {
   content: "\34";
   left: -1px;
   top: -1px;
@@ -2641,6 +2641,9 @@ button.mfp-close {
 
 .mfp-arrow.mfp-arrow-right:before {
   content: "\35";
+  left: -1px;
+  top: -1px;
+  position: relative;
 }
 
 .mfp-content:hover .mfp-arrow {

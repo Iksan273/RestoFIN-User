@@ -155,6 +155,13 @@ class HomeController extends Controller
 
     public function indexInformation()
     {
+        $number1 = rand(1, 10);
+        $number2 = rand(1, 10);
+        $question = "$number1 + $number2 = ?";
+        $answer = $number1 + $number2;
+
+        session(['answer' => $answer]);
+
         $promo = Promo::all();
 
         $cart = session()->get('cart', []);
@@ -166,7 +173,7 @@ class HomeController extends Controller
         $tax = $transaction * 0.10; // Pajak 10%
         $total = $transaction + $tax;
 
-        return view('information', compact('cart', 'transaction', 'tax', 'total'));
+        return view('information', compact('cart', 'transaction', 'tax', 'total', 'question'));
     }
 
     public function indexCarrerHistory()
