@@ -207,7 +207,9 @@ class HomeController extends Controller
         $tax = $transaction * 0.10; // Pajak 10%
         $total = $transaction + $tax;
 
-        return view('gallery', compact('cart', 'transaction', 'tax', 'total'));
+        $menus = Menu::all();
+
+        return view('gallery', compact('cart', 'transaction', 'tax', 'total', 'menus'));
     }
 
     public function indexReview()

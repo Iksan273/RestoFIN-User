@@ -158,7 +158,7 @@
                             <li><a href="{{ route('carrerhistory') }}">Career & History</a></li>
                             <li><a href="{{ route('review') }}">Kritik & Saran</a></li>
                             <li><a
-                                    href="https://www.google.co.id/maps/place/Vin+Autism+Gallery/@-7.2950762,112.6521202,17z/data=!4m8!3m7!1s0x2dd7fdc112922645:0xc953059a61c6938!8m2!3d-7.2950762!4d112.6546951!9m1!1b1!16s%2Fg%2F11jr53fzzx?entry=ttu">Review
+                                    href="https://www.google.com/maps/place/Vinautism+Art+%26+Resto/@-7.2950135,112.6547777,20.89z/data=!4m16!1m7!3m6!1s0x2dd7fdc112922645:0xc953059a61c6938!2sVin+Autism+Gallery+Vinautism+art+%26+resto!8m2!3d-7.2950762!4d112.6546951!16s%2Fg%2F11jr53fzzx!3m7!1s0x2dd7fd4d915bc2f1:0x80f066347cb54c3!8m2!3d-7.295025!4d112.654687!9m1!1b1!16s%2Fg%2F11sx0d_9nm?entry=ttu">Review
                                     Google</a></li>
                         </ul>
                     </li>
@@ -191,7 +191,7 @@
                 <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
                     <div class="footer_wp">
                         <i class="icon_pin_alt"></i>
-                        <h3>Alamat Resto & Gallery</h3>
+                        <h3>Vinautism Art & Resto</h3>
                         <p>G Walk, Junction TL 6<br>Jl. Citraland Surabaya No.11, Sambikerep, Kec. Sambikerep, Surabaya,
                             Jawa Timur 60217</p>
                     </div>
@@ -200,7 +200,8 @@
                     <div class="footer_wp">
                         <i class="icon_tag_alt"></i>
                         <h3>Reservasi</h3>
-                        <p><a href="tel:009442323221">+94 423-23-221</a><br><a>reservations@Foores.com</a></p>
+                        <p><a href="https://wa.me/6282230002770?text=Halo%2C%20saya%20hendak%20melakukan%20reservasi%20di%20Vinautism%20Art%20%26%20Resto">+62 822-3000-2770</a><br>
+                            <a href="mailto:vinresto1@gmail.com">vinresto1@gmail.com</a></p>
                     </div>
                 </div>
                 <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
@@ -208,7 +209,8 @@
                         <i class="icon_clock_alt"></i>
                         <h3>Jam Operasional</h3>
                         <ul>
-                            <li>Mon - Sat: 9am - 9pm</li>
+                            <li>Senin sampai Minggu</li>
+                            <li>09:00 - 21:00</li>
                         </ul>
                     </div>
                 </div>
@@ -224,9 +226,9 @@
                         <ul>
                             <li><a><i class="bi bi-facebook"></i></a></li>
                             <li><a><i class="bi bi-twitter-x"></i></a></li>
-                            <li><a><i class="bi bi-instagram"></i></a></li>
+                            <li><a href=""><i class="bi bi-instagram"></i></a></li>
                             <li><a><i class="bi bi-tiktok"></i></a></li>
-                            <li><a><i class="bi bi-whatsapp"></i></a></li>
+                            <li><a href="https://wa.me/6282230002770"><i class="bi bi-whatsapp"></i></a></li>
                         </ul>
                     </div>
                 </div>

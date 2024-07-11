@@ -7,8 +7,8 @@
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-xl-9 col-lg-10 col-md-8">
-                            <h1>Menu with Tabs</h1>
-                            <p>Cooking delicious and tasty food since 2024</p>
+                            <h1>Daftar Menu</h1>
+                            <p>Vinautism Art & Resto</p>
                         </div>
                     </div>
                     <!-- /row -->

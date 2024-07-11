@@ -125,8 +125,7 @@
                     <div class="col-lg-5 col-md-6 text-center">
                         <div class="box_1" data-cue="slideInUp">
                             <h2>Celebrate<span>a Special Event with us!</span></h2>
-                            <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia
-                                consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+                            <p>Rayakan hari-hari spesial Anda di Vinautism Art & Resto. Tempat dimana seluruh imajinasi bersatu dengan perpaduan cita rasa yang nikmat.</p>
                             <a href="{{route('information')}}" class="btn_1 mt-3">Contact us</a>
                         </div>
                     </div>

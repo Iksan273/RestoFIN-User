@@ -21,7 +21,7 @@
             <div class="container margin_60_40">
                 <div class="main_title center">
                     <span><em></em></span>
-                    <h2>Gallery Section</h2>
+                    <h2>Art Gallery Resto</h2>
                     <p>by Vinautism Art & Resto.</p>
                 </div>
                 <div class="grid">
@@ -31,74 +31,9 @@
                                 <div class="item-img" data-cue="slideInUp">
                                     <img src="{{ asset('resto/gallery5.jpg') }}" alt="">
                                     <div class="content">
-                                        <a href="{{ asset('resto/gallery5.jpg') }}" title="Gallery Vinautism Art & Resto"
-                                            data-effect="mfp-zoom-in"><i class="arrow_expand"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="item">
-                                <div class="item-img" data-cue="slideInUp">
-                                    <img src="{{ asset('resto/gallery2.jpeg') }}" alt="">
-                                    <div class="content">
-                                        <a href="{{ asset('resto/gallery2.jpeg') }}" title="Painting Gallery Vinautism Art & Resto"
-                                            data-effect="mfp-zoom-in"><i class="arrow_expand"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="item">
-                                <div class="item-img" data-cue="slideInUp">
-                                    <img src="{{ asset('resto/gallery3.jpg') }}" alt="">
-                                    <div class="content">
-                                        <a href="{{ asset('resto/gallery3.jpg') }}" title="Vinkopi by Vinautism Art & Resto"
-                                            data-effect="mfp-zoom-in"><i class="arrow_expand"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="item">
-                                <div class="item-img" data-cue="slideInUp">
-                                    <img src="{{ asset('Foto Menu/Makanan/Yammie Manis Ayam Merah.png') }}" alt="">
-                                    <div class="content">
-                                        <a href="{{ asset('Foto Menu/Makanan/Yammie Manis Ayam Merah.png') }}" title="Yammie Manis Ayam Merah by Vinautism Art & Resto"
-                                            data-effect="mfp-zoom-in"><i class="arrow_expand"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="item">
-                                <div class="item-img" data-cue="slideInUp">
-                                    <img src="{{ asset('resto/gallery5.jpg') }}" alt="">
-                                    <div class="content">
-                                        <a href="{{ asset('resto/gallery5.jpg') }}" title="Photo title"
-                                            data-effect="mfp-zoom-in"><i class="arrow_expand"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="item">
-                                <div class="item-img" data-cue="slideInUp">
-                                    <img src="{{ asset('resto/gallery6.jpg') }}" alt="">
-                                    <div class="content">
-                                        <a href="{{ asset('resto/gallery6.jpg') }}" title="Photo title"
-                                            data-effect="mfp-zoom-in"><i class="arrow_expand"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="item">
-                                <div class="item-img" data-cue="slideInUp">
-                                    <img src="{{ asset('resto/gallery7.jpg') }}" alt="">
-                                    <div class="content">
-                                        <a href="{{ asset('resto/gallery7.jpg') }}" title="Photo title"
-                                            data-effect="mfp-zoom-in"><i class="arrow_expand"></i></a>
+                                        <a href="{{ asset('resto/gallery5.jpg') }}"
+                                            title="Art Gallery by Vinautism Art & Resto" data-effect="mfp-zoom-in"><i
+                                                class="arrow_expand"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -108,12 +43,113 @@
                                 <div class="item-img" data-cue="slideInUp">
                                     <img src="{{ asset('resto/gallery8.jpg') }}" alt="">
                                     <div class="content">
-                                        <a href="{{ asset('resto/gallery8.jpg') }}" title="Photo title"
-                                            data-effect="mfp-zoom-in"><i class="arrow_expand"></i></a>
+                                        <a href="{{ asset('resto/gallery8.jpg') }}"
+                                            title="Art Gallery by Vinautism Art & Resto" data-effect="mfp-zoom-in"><i
+                                                class="arrow_expand"></i></a>
                                     </div>
                                 </div>
                             </div>
                         </li>
+                        <li>
+                            <div class="item">
+                                <div class="item-img" data-cue="slideInUp">
+                                    <img src="{{ asset('resto/gallery5.jpg') }}" alt="">
+                                    <div class="content">
+                                        <a href="{{ asset('resto/gallery5.jpg') }}"
+                                            title="Art Gallery by Vinautism Art & Resto" data-effect="mfp-zoom-in"><i
+                                                class="arrow_expand"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item">
+                                <div class="item-img" data-cue="slideInUp">
+                                    <img src="{{ asset('resto/gallery10.jpg') }}" alt="">
+                                    <div class="content">
+                                        <a href="{{ asset('resto/gallery10.jpg') }}"
+                                            title="Art Gallery by Vinautism Art & Resto" data-effect="mfp-zoom-in"><i
+                                                class="arrow_expand"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item">
+                                <div class="item-img" data-cue="slideInUp">
+                                    <img src="{{ asset('resto/gallery4.jpg') }}" alt="">
+                                    <div class="content">
+                                        <a href="{{ asset('resto/gallery4.jpg') }}"
+                                            title="Art Gallery by Vinautism Art & Resto" data-effect="mfp-zoom-in"><i
+                                                class="arrow_expand"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item">
+                                <div class="item-img" data-cue="slideInUp">
+                                    <img src="{{ asset('resto/gallery6.jpg') }}" alt="">
+                                    <div class="content">
+                                        <a href="{{ asset('resto/gallery6.jpg') }}"
+                                            title="Art Gallery by Vinautism Art & Resto" data-effect="mfp-zoom-in"><i
+                                                class="arrow_expand"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item">
+                                <div class="item-img" data-cue="slideInUp">
+                                    <img src="{{ asset('resto/gallery7.jpg') }}" alt="">
+                                    <div class="content">
+                                        <a href="{{ asset('resto/gallery7.jpg') }}"
+                                            title="Art Gallery by Vinautism Art & Resto" data-effect="mfp-zoom-in"><i
+                                                class="arrow_expand"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item">
+                                <div class="item-img" data-cue="slideInUp">
+                                    <img src="{{ asset('resto/gallery8.jpg') }}" alt="">
+                                    <div class="content">
+                                        <a href="{{ asset('resto/gallery8.jpg') }}"
+                                            title="Art Gallery by Vinautism Art & Resto" data-effect="mfp-zoom-in"><i
+                                                class="arrow_expand"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /grid gallery -->
+            </div>
+            <!-- /container -->
+        </div>
+        <div class="bg_gray">
+            <div class="container margin_60_40">
+                <div class="main_title center">
+                    <span><em></em></span>
+                    <h2>Food & Beverage</h2>
+                    <p>by Vinautism Art & Resto.</p>
+                </div>
+                <div class="grid">
+                    <ul class="magnific-gallery clearfix">
+                        @foreach ($menus as $m)
+                            <li>
+                                <div class="item">
+                                    <div class="item-img" data-cue="slideInUp">
+                                        <img src="{{ asset('menu/images/' . $m->imageUrl) }}" alt="">
+                                        <div class="content">
+                                            <a href="{{ asset('menu/images/' . $m->imageUrl) }}" title="{{ $m->title }}" data-effect="mfp-zoom-in"><i
+                                                    class="arrow_expand"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        @endforeach
                     </ul>
                 </div>
                 <!-- /grid gallery -->

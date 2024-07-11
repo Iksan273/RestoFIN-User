@@ -9,7 +9,7 @@
                     <div class="row justify-content-center">
                         <div class="col-xl-9 col-lg-10 col-md-8">
                             <h1>About Us</h1>
-                            <p>Cooking delicious food since 2005</p>
+                            <p>Vinautism Art & Resto</p>
                         </div>
                     </div>
                     <!-- /row -->

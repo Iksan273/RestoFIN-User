@@ -52,7 +52,7 @@
                         <div class="main_title">
                             <span><em></em></span>
                             <h2>Lakukan Reservasi</h2>
-                            <p class="reservasi-link">atau Hubungi Kami 08xxxxxx</p>
+                            <p class="reservasi-link">atau Hubungi Kami +62 822-3000-2770</p>
                         </div>
                         <div id="wizard_container">
                             <form id="reserveForm" method="POST" action="{{ route('reservation.store') }}"
@@ -294,8 +294,9 @@
                                                     </ul>
                                                 </ul>
                                                 <div class="centered-div">
-                                                    <p>Apabila jumlah lebih banyak, silahkan hubungi link berikut: <a
-                                                            href="">Klik Disini.</a></p>
+                                                    <p>Apabila jumlah lebih banyak, silahkan hubungi link berikut:
+                                                        <a href="https://wa.me/6282230002770?text=Halo%2C%20saya%20hendak%20melakukan%20reservasi%20sebanyak%20...%20orang">Klik Disini.</a>
+                                                    </p>
                                                 </div>
                                             </div>
                                             <!-- /people_select -->
@@ -429,7 +430,8 @@
     <!-- script -->
     <script>
         document.querySelector('.reservasi-link').onclick = function() {
-            window.location.href = 'https://example.com'; // Ganti URL ini dengan URL tujuan Anda
+            window.location.href =
+                "https://wa.me/6282230002770?text=Halo%2C%20saya%20hendak%20melakukan%20reservasi%20di%20Vinautism%20Art%20%26%20Resto";
         };
 
 

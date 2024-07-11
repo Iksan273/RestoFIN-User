@@ -26,7 +26,8 @@
                         <div class="box_contacts">
                             <i class="icon_tag_alt"></i>
                             <h2>Reservasi</h2>
-                            <a href="#0">+94 423-23-221</a> - <a href="#0">reserve@.com</a>
+                            <a href="https://wa.me/6282230002770">+62 822-3000-2770</a> - <a
+                                href="mailto:vinresto1@gmail.com">vinresto1@gmail.com</a>
                             <small>- <a href="/reservation">atau melalui Form berikut</a> -</small>
                         </div>
                     </div>
@@ -37,16 +38,16 @@
                             <div>G Walk, Junction TL 6</div>
                             <div>Jl. Citraland Surabaya No.11, Sambikerep, Kec. Sambikerep, Surabaya, Jawa Timur 60217</div>
                             <br>
-                            <small>- <a href="https://maps.app.goo.gl/Tamxt7FJ142nxLbk8">Lihat Petunjuk</a> -</small>
+                            <small style="margin-top: -10px;">- <a href="https://maps.app.goo.gl/Tamxt7FJ142nxLbk8">Lihat
+                                    Petunjuk</a> -</small>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="box_contacts">
                             <i class="icon_clock_alt"></i>
                             <h2>Jam Buka</h2>
-                            <div>Senin sampai Rabu 09:00 - 20:00</div>
-                            <div>Kamis sampai Sabtu 09:00 - 19:00</div>
-                            <div>Minggu 11:00 - 19:00</div>
+                            <div>Senin sampai Minggu </div>
+                            <div>09:00 - 21:00</div>
                         </div>
                     </div>
                 </div>
@@ -104,7 +105,7 @@
                 </div>
                 <div class="col-lg-8 col-md-6 add_bottom_25">
                     <iframe class="map_contact"
-                        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15830.088684249085!2d112.6546951!3d-7.2950762!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7fdc112922645%3A0xc953059a61c6938!2sVin%20Autism%20Gallery!5e0!3m2!1sen!2sid!4v1716727706507!5m2!1sen!2sid"
+                        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d267.73897025264!2d112.65477774243918!3d-7.295013483125319!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7fd4d915bc2f1%3A0x80f066347cb54c3!2sVinautism%20Art%20%26%20Resto!5e0!3m2!1sen!2sid!4v1720095725989!5m2!1sen!2sid"
                         allowfullscreen></iframe>
                 </div>
             </div>
