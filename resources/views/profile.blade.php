@@ -231,7 +231,7 @@
                                     data-point_dibutuhkan="{{ $p->point_dibutuhkan ? $p->point_dibutuhkan : 'Tidak ada poin dibutuhkan' }}"
                                     onclick="showPromoDetail('{{ $p->title ? $p->title : 'Tidak ada nama promo' }}', '{{ $p->start_date ? $p->start_date : 'Tidak ada tanggal mulai' }}', '{{ $p->end_date ? $p->end_date : 'Tidak ada tanggal berakhir' }}', '{{ $p->point_digunakan ? $p->point_digunakan : 'Tidak ada poin digunakan' }}', '{{ $p->point_dibutuhkan ? $p->point_dibutuhkan : 'Tidak ada poin dibutuhkan' }}')">
                                     <div class="img-container">
-                                        <img src="https://resto.bemubaya.com/promo/images/{{ $p->image_url }}" alt="Promo Image"
+                                        <img src="https://admin.bemubaya.com/promo/images/{{ $p->image_url }}" alt="Promo Image"
                                             width="150" height="50">
                                     </div>
                                 </a>

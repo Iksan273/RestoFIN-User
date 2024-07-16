@@ -22,7 +22,7 @@
 
         <div class="pattern_2">
             <div class="container margin_60_40" data-cue="slideInUp">
-                <div class="banner lazy" data-bg="url(https://resto.bemubaya.com/promo/images/{{ $promo->image_url }})">
+                <div class="banner lazy" data-bg="url(https://admin.bemubaya.com/promo/images/{{ $promo->image_url }})">
                     <div class="wrapper d-flex align-items-center justify-content-between opacity-mask"
                         data-opacity-mask="rgba(0, 0, 0, 0.5)">
                         <div>
@@ -85,8 +85,8 @@
                                                     <div class="col-lg-6">
                                                         <div class="menu_item order">
                                                             <figure>
-                                                                <img src="https://resto.bemubaya.com/menu/images/{{ $menu->imageUrl }}"
-                                                                    data-src="https://resto.bemubaya.com/menu/images/{{ $menu->imageUrl }}"
+                                                                <img src="https://admin.bemubaya.com/menu/images/{{ $menu->imageUrl }}"
+                                                                    data-src="https://admin.bemubaya.com/menu/images/{{ $menu->imageUrl }}"
                                                                     class="lazy" alt="">
                                                             </figure>
                                                             </figure>
@@ -134,8 +134,8 @@
                                                     <div class="col-lg-6" data-cue="slideInUp">
                                                         <div class="menu_item order">
                                                             <figure>
-                                                                <img src="https://resto.bemubaya.com/menu/images/{{ $menu->imageUrl }}"
-                                                                    data-src="https://resto.bemubaya.com/menu/images/{{ $menu->imageUrl }}"
+                                                                <img src="https://admin.bemubaya.com/menu/images/{{ $menu->imageUrl }}"
+                                                                    data-src="https://admin.bemubaya.com/menu/images/{{ $menu->imageUrl }}"
                                                                     class="lazy" alt="">
                                                             </figure>
                                                             <div class="menu_title">

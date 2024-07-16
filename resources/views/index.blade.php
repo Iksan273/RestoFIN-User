@@ -60,25 +60,35 @@
                 <div class="row justify-content-center d-flex align-items-center">
                     <div class="col-lg-5 text-lg-center d-none d-lg-block" data-cue="slideInUp" style="margin-right: 20px;">
                         <figure>
-                            <img src="{{asset('resto/gallery.jpeg')}}" data-src="{{asset('resto/gallery.jpeg')}}" width="auto" height="auto"
-                                alt="" class="img-fluid lazy">
-                            <a href="https://drive.google.com/file/d/1h6TjwMySaDBjDhOCZxsD-pR7T5yCh5AD/preview" class="btn_play" data-cue="zoomIn"
-                                data-delay="500"><span class="pulse_bt"><i class="arrow_triangle-right"></i></span></a>
+                            <img src="{{ asset('resto/gallery.jpeg') }}" data-src="{{ asset('resto/gallery.jpeg') }}"
+                                width="auto" height="auto" alt="" class="img-fluid lazy">
+                            <a href="https://drive.google.com/file/d/1h6TjwMySaDBjDhOCZxsD-pR7T5yCh5AD/preview"
+                                class="btn_play" data-cue="zoomIn" data-delay="500"><span class="pulse_bt"><i
+                                        class="arrow_triangle-right"></i></span></a>
                         </figure>
                     </div>
                     <div class="col-lg-5 pt-lg-4" data-cue="slideInUp" data-delay="500">
                         <div class="main_title">
                             <span><em></em></span>
-                            <h2>Some words about us</h2>
-                            <p>Cum doctus civibus efficiantur in imperdiet deterruisset.</p>
+                            <h2>Tentang Kami</h2>
+                            <p>Vinautism Art & Resto</p>
                         </div>
-                        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                            mollit anim id est laborum.</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                            laboris nisi ut aliquip ex ea commodo consequat.</p>
-                        <p><img src="{{asset('resto/logo.png')}}" width="140" height="auto" alt="" class="mt-3"></p>
+                        <p>Vinautism Gallery merupakan galeri seni yang berdiri pada tahun 2018 dan memamerkan berbagai
+                            hasil karya lukisan dari Vincent Prijadi Purwono. Lukisan-lukisan yang dihasilkan oleh Vincent
+                            identik dengan gambar kereta api dan pesawat.</p>
+                        <p>Mulai tahun 2024, pemilik mulai mengembangkan galeri seni ini dengan menghadirkan tempat
+                            bersantap kuliner yang menarik dengan konsep Restoran. Pemilik Vin Gallery Art & Resto ingin
+                            menciptakan tempat di mana seni dapat disatukan dengan pengalaman bersantap yang Istimewa.
+                            Kemudian tempat ini berubah nama menjadi Vinautism Art & Resto.</p>
+                        <p>Vinautism Art & Resto merupakan restoran yang menyediakan makanan utama berupa mie. Restoran kami
+                            hadir dengan konsep rumahan dan juga homemade. Di sini semua bahan makanan, termasuk mie, bumbu,
+                            dan olahan bahan baku lainnya dibuat secara homemade, sehingga menghasilkan cita rasa yang khas
+                            dan pastinya aman dikonsumsi oleh semua kalangan.</p>
+                        <p>Pilihan menu yang beragam memudahkan pengunjung untuk menyesuaikan makanan yang sesuai dengan
+                            selera mereka, mulai dari yammie, ramen, rice bowl, dan juga minuman yang menjadi andalan kami
+                            yaitu Lemonade, yang hadir dengan harga terjangkau.</p>
+                        <p><img src="{{ asset('resto/logo.png') }}" width="140" height="auto" alt=""
+                                class="mt-3"></p>
                     </div>
                 </div>
                 <!--/row -->
@@ -109,8 +119,8 @@
                             <br>
                             <a href="{{ route('promo') }}" class="btn_1">Lihat Voucher Lainnya</a>
                         </div>
-                        <figure class="d-none d-lg-block"><img src="{{asset('resto/logo.png')}}" alt="" width="200"
-                                height="200" class="img-fluid"></figure>
+                        <figure class="d-none d-lg-block"><img src="{{ asset('resto/logo.png') }}" alt=""
+                                width="200" height="200" class="img-fluid"></figure>
                     </div>
                     <!-- /wrapper -->
                 </div>
@@ -125,8 +135,9 @@
                     <div class="col-lg-5 col-md-6 text-center">
                         <div class="box_1" data-cue="slideInUp">
                             <h2>Celebrate<span>a Special Event with us!</span></h2>
-                            <p>Rayakan hari-hari spesial Anda di Vinautism Art & Resto. Tempat dimana seluruh imajinasi bersatu dengan perpaduan cita rasa yang nikmat.</p>
-                            <a href="{{route('information')}}" class="btn_1 mt-3">Contact us</a>
+                            <p>Rayakan hari-hari spesial Anda di Vinautism Art & Resto. Tempat dimana seluruh imajinasi
+                                bersatu dengan perpaduan cita rasa yang nikmat.</p>
+                            <a href="{{ route('information') }}" class="btn_1 mt-3">Contact us</a>
                         </div>
                     </div>
                 </div>
@@ -136,7 +147,8 @@
     </main>
 
     <!-- Modal Pesan -->
-    <div class="modal fade" id="reservationModal" tabindex="-1" aria-labelledby="reservationModalLabel" aria-hidden="true">
+    <div class="modal fade" id="reservationModal" tabindex="-1" aria-labelledby="reservationModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">

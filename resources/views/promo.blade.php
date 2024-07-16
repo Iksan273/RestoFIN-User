@@ -24,7 +24,7 @@
         @foreach ($promo as $p)
             <div class="pattern_2">
                 <div class="container margin_60_40" data-cues="slideInUp">
-                    <div class="banner lazy" style="background-image: url(https://resto.bemubaya.com/promo/images/{{ $p->image_url }})">
+                    <div class="banner lazy" style="background-image: url(https://admin.bemubaya.com/promo/images/{{ $p->image_url }})">
                         <div class="wrapper d-flex align-items-center justify-content-between opacity-mask">
                             <div>
                                 <small>Tawaran Spesial</small>
